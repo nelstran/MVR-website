@@ -2,9 +2,9 @@ body{
     background-image: linear-gradient(150deg,rgb(166, 239, 159),rgb(3, 59, 6));
     background-size: 100vw 100vh; 
     font-family: Calibri, sans-serif;
-    font-size: calc(16px + .1vh);
+    font-size: calc(15px + .1vh);
     margin:0 auto;
-    overflow: hidden;
+    overflow: auto;
     height:100vh;
     --ts-Height: max(15%,10em);
     display: grid;
@@ -17,6 +17,18 @@ body{
     border-bottom: 0.1rem solid black;
     width: 100%;
 }
+#topSide img{
+    /* position: absolute; */
+    float:left;
+    height:80%;
+    width: auto;
+    padding: 1rem;
+}
+
+#main{
+    /* border: 2px solid white;  */
+    padding: 1rem;
+}
 
 /* ------------------- */
 /*   REGION: bottomSide */
@@ -25,42 +37,66 @@ body{
     #bottomSide{
         /* border: 2px solid white;  */
         display: grid;
-        grid-template-columns: 15rem 3fr;
-        grid-gap: 1%;
+        grid-template-columns: minmax(min(20vh, 600px), 1fr) 6fr;
     }
     #events{
         border-right: 2px solid black;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content:flex-start;
         overflow-y: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
 
+        /* min-width: calc(50px + 2rem);
+        resize: horizontal; */
     }
+
     #events::-webkit-scrollbar{
         display:none;
+    }
+
+    #events > h1{
+        /* border: 2px solid black; */
+        font-size: large;
+        margin: .5rem 0 0 0;
+        /* text-decoration: underline; */
+        text-align: center;
+    }
+
+    #events hr{
+        color: black;
+        background-color: black;
+        width: 90%;
     }
     
     #events .event{
         /* border: 1px solid black; */
-        /* display:flex;
-        flex-direction: row; */
-        display: grid;
-        grid-template-columns: 50% 50%;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         margin: .5rem 1rem;
+        vertical-align: middle;
+        max-height: 40vh;
     }
     #events img{
+        border: 1px solid black;
         height:auto;
         width: 85%;
+        min-width: 50px;
         border-radius: 100%;
-        float:left;
+    }
+    @media screen and (max-width: 1100px){
+        .event div p{
+            display: none;
+        }
     }
     .event div *{
         /* border:1px solid black; */
+        font-size:80%;
         padding:0;
         margin: 0;
-    }
-    .event h1{
-        text-decoration: underline;
     }
 }

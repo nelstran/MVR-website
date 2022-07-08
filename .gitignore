@@ -1,2 +1,7 @@
 /node_modules
+<<<<<<< HEAD
 /package-lock.json
+=======
+/.vscode
+/.github/workflows
+>>>>>>> 0e5bb9520abc49bb0e3e9f64d84abdb2a5586b8e
