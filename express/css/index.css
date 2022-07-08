@@ -37,10 +37,10 @@ body{
     #bottomSide{
         /* border: 2px solid white;  */
         display: grid;
-        grid-template-columns: minmax(min(20vh, 600px), 1fr) 6fr;
+        grid-template-columns: minmax(calc(50px + 2rem), 10%) auto;
     }
     #events{
-        border-right: 2px solid black;
+        border-right: 0.1rem solid black;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -79,7 +79,7 @@ body{
         align-items: center;
         margin: .5rem 1rem;
         vertical-align: middle;
-        max-height: 40vh;
+        overflow: hidden;
     }
     #events img{
         border: 1px solid black;
