@@ -1,5 +1,6 @@
+$(window).resize(setHeight);
 
-$(window).resize(function(){
+function setHeight(){
     
     // $(".event").children().each(function(){
     //     console.log($(this).outerHeight(true));
@@ -16,4 +17,24 @@ $(window).resize(function(){
         })
         $(this).css("min-height", totalHeight);
     });
-});
+};
+
+// const mainElement = document.getElementById('main');
+// const bodyElement = document.body;
+// mainElement.addEventListener("scroll", event =>{
+//     if(mainElement.scrollTop == 0){
+//         bodyElement.style.overflow = auto;
+//     }
+// })
+
+
+//THIS IS A TEST DELETE WHEN NEEDED
+$(document).ready(function() {
+        $.ajax({
+            url : "package/movie.txt",
+            dataType: "text",
+            success : function (data) {
+                $(".movie").html(data);
+            }
+        });
+}); 
