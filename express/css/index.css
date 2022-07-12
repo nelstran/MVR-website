@@ -1,29 +1,33 @@
 :root{
+    /* Gradient */
     --bg1: rgb(255, 255, 255);
     --bg2: rgb(4, 111, 177);
+    /* Solid */
     --bg:rgb(102, 187, 240);
 }
 
 body{
+    /* Gradient if used */
     /* background-image: linear-gradient(150deg,var(--bg1), var(--bg2) 74%); */
+
+    /* Solid */
     background-color: var(--bg);
+
     background-size: 100vw 100vh; 
     font-family: Calibri, sans-serif;
+
+    /* Do I set a relative font or just use rem???? */
     /* font-size: calc(15px + .1vh); */
     font-size: 1.3rem;
 
     margin:0 auto;
-    overflow: hidden;
-    height:100vh;
+    overflow-y: auto;
+    max-height: 100vh;
+    max-width: 100vw;
     /* --ts-Height: max(15%,10em); */
     --ts-Height: 7em;
     display: grid;
-    grid-template-rows: var(--ts-Height) calc(100% - var(--ts-Height));
-}
-
-#main{
-    /* border: 2px solid white;  */
-    padding: 1em;
+    grid-template-rows: var(--ts-Height) calc(100vh - var(--ts-Height));
 }
 
 /* ------------------- */
@@ -36,7 +40,7 @@ body{
 #topSide #logo{
     /* position: absolute; */
     float:left;
-    height:80%;
+    max-height:80%;
     width: auto;
     padding: .7em;
 }
@@ -44,11 +48,42 @@ body{
 /* ------------------- */
 /*   REGION: bottomSide */
 /* ------------------- */
+/* Main Section */
+#main{
+    /* border: 2px solid white;  */
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
+}
+#main section{
+    /* border: 2px solid black;  */
+    margin-inline: 1rem;
+
+    max-width: 62.5rem;
+}
+
+#team{
+    /* border: 2px solid black;  */
+    margin-inline: 1em;
+    max-width: 56.25rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    
+}
+#team img{
+    max-width: 80%;
+}
+
 @media screen and (orientation: landscape) {
     #bottomSide{
         /* border: 2px solid white;  */
+        max-width: 100vw;
         display: grid;
-        grid-template-columns: minmax(calc(100px + 2rem), 200px) auto;
+        grid-template-columns: minmax(calc(100px + 2rem), 200px) 3fr;
     }
 
     #bottomSide > *{
@@ -61,6 +96,7 @@ body{
         display: none;
     }
     
+    /* Event Section */
     #events{
         border-right: 0.1rem solid black;
         display: flex;
@@ -72,7 +108,7 @@ body{
     #events > h1{
         /* border: 2px solid black; */
         font-size: large;
-        margin: .5em 0 0 0;
+        margin: .5em .3em 0 .3em;
         /* text-decoration: underline; */
         text-align: center;
     }

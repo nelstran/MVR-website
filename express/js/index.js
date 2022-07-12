@@ -19,22 +19,22 @@ function setHeight(){
     });
 };
 
-// const mainElement = document.getElementById('main');
-// const bodyElement = document.body;
-// mainElement.addEventListener("scroll", event =>{
-//     if(mainElement.scrollTop == 0){
-//         bodyElement.style.overflow = auto;
-//     }
-// })
 
 
 //THIS IS A TEST DELETE WHEN NEEDED
-$(document).ready(function() {
-        $.ajax({
-            url : "package/movie.txt",
-            dataType: "text",
-            success : function (data) {
-                $(".movie").html(data);
-            }
-        });
-}); 
+// $(document).ready(function() {
+//         $.ajax({
+//             url : "package/movie.txt",
+//             dataType: "text",
+//             success : function (data) {
+//                 $(".movie").html(data);
+//             }
+//         });
+// }); 
+
+// const output = document.querySelector("#output");
+
+$(window).scroll(function(){
+    var scrollPos = $(document).scrollTop();
+    console.log(scrollPos);
+});
