@@ -21,6 +21,7 @@ body{
     font-size: 1.3rem;
 
     margin:0 auto;
+    overflow-x: hidden;
     overflow-y: auto;
     max-height: 100vh;
     max-width: 100vw;
@@ -48,6 +49,57 @@ body{
 /* ------------------- */
 /*   REGION: bottomSide */
 /* ------------------- */
+
+#bottomSide{
+    max-width: 100vw;
+    display: grid;
+}
+
+#bottomSide > *{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#bottomSide > *::-webkit-scrollbar{
+    display: none;
+}
+
+#promo{
+    display:grid;
+    grid-template-rows: fit-content auto;
+
+}
+
+#events{
+    display: flex;
+    justify-content:flex-start;
+}
+
+.event{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+#events img{
+    border: .1rem solid black;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 100%;
+    width: 90%;
+    height:auto;
+    min-width: 50px;
+}
+
+.event div *{
+    /* border:1px solid black; */
+    font-size:80%;
+
+    padding:0;
+    margin: 0;
+}
 /* Main Section */
 #main{
     /* border: 2px solid white;  */
@@ -56,6 +108,8 @@ body{
     align-items: center;
     flex-direction: column;
     max-width: 100%;
+    overflow-y:auto;
+
 }
 #main section{
     /* border: 2px solid black;  */
@@ -75,66 +129,112 @@ body{
     
 }
 #team img{
-    max-width: 80%;
+    max-width: clamp(300px, 80%, 100%);
+}
+
+
+/* #label{
+    border: 2px solid blue;
+} */
+/* #events{
+    border: 2px solid red;
+} */
+
+/* .event{
+    border: 2px solid black;
+} */
+
+/* #main{
+    border: 2px solid yellow;
+} */
+
+@media screen and (orientation: portrait) {
+    #bottomSide{
+        grid-template-rows: minmax(calc(100px + 2rem), 225px) 3fr;
+    }
+    #promo{
+        border-bottom: 0.1rem solid black;
+        grid-template-rows: auto 1fr;
+        overflow-x: auto;
+        overflow-y:hidden;
+    }
+    @media screen and (max-height:30em){
+        #bottomSide{
+            grid-template-rows: auto;
+        }
+        #promo{
+            display:none;
+        }
+    }
+    #label > h1{
+        max-width: max-content;
+        font-size: large;
+        position:sticky;
+        left:1em;
+        margin: .5em 1em;
+    }
+    #label > hr{
+        display: none;
+    }
+
+    #events{
+        flex-direction: row;
+        align-items: stretch;
+        align-self:center;
+        height:min-content;
+        margin-left:.5em;
+        max-height: 100%;
+    }
+    
+    .event{
+        /* justify-content:flex-start; */
+
+        width: 5em;
+        margin: .1em .1em;
+    }
+
+    .event h1{
+        font-size: 70%;
+    }
+    
+    .event div p{
+        display: none;
+    }
 }
 
 @media screen and (orientation: landscape) {
     #bottomSide{
         /* border: 2px solid white;  */
-        max-width: 100vw;
-        display: grid;
         grid-template-columns: minmax(calc(100px + 2rem), 200px) 3fr;
     }
 
-    #bottomSide > *{
-        overflow-y: auto;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    
-    #bottomSide > *::-webkit-scrollbar{
-        display: none;
-    }
-    
-    /* Event Section */
-    #events{
+    /* Promo Section */
+    #promo{
         border-right: 0.1rem solid black;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content:flex-start;
+        overflow-y: auto;
     }
 
-    #events > h1{
-        /* border: 2px solid black; */
+    #label > h1{
         font-size: large;
         margin: .5em .3em 0 .3em;
         /* text-decoration: underline; */
         text-align: center;
     }
 
-    #events hr{
+    #label > hr{
         color: black;
         background-color: black;
         width: 90%;
     }
-    
-    #events .event{
-        /* border: 1px solid black; */
-        display:flex;
+
+    #events{
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        margin: .5em 1em;
-        vertical-align: middle;
-        overflow: hidden;
     }
-    #events img{
-        border: 1px solid black;
-        height:auto;
-        width: 85%;
-        min-width: 50px;
-        border-radius: 100%;
+
+    .event{
+        justify-content: center;
+        margin: .5em 1em;
     }
     @media screen and (max-width:60em){
         .event div p{
@@ -146,11 +246,5 @@ body{
             display: grid;
             grid-template-columns: minmax(10%, 6.9em) auto;
         }
-    }
-    .event div *{
-        /* border:1px solid black; */
-        font-size:80%;
-        padding:0;
-        margin: 0;
     }
 }

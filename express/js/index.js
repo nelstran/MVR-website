@@ -1,6 +1,6 @@
-$(window).resize(setHeight);
+$(window).resize(setSize);
 
-function setHeight(){
+function setSize(){
     
     // $(".event").children().each(function(){
     //     console.log($(this).outerHeight(true));
@@ -9,9 +9,16 @@ function setHeight(){
     // });
     // $("#events .event").css("min-height", totalHeight);
 
+    $(".event img").each(function(){
+        var width = $(this).width();
+        $(this).css("height", width);
+    })
+    
+    if($(window).height() > $(window).width())
+        return;
+    
     $(".event").each(function(){
         var totalHeight = 0;
-
         $(this).children().each(function(){
             totalHeight = totalHeight + $(this).outerHeight(true);
         })
@@ -33,8 +40,3 @@ function setHeight(){
 // }); 
 
 // const output = document.querySelector("#output");
-
-$(window).scroll(function(){
-    var scrollPos = $(document).scrollTop();
-    console.log(scrollPos);
-});
