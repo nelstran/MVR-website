@@ -187,7 +187,7 @@ body{
             display:none;
         }
     }
-    #label > h1{
+    #label > h2{
         max-width: max-content;
         font-size: large;
         position:sticky;
@@ -212,7 +212,7 @@ body{
         margin: .1em .5em;
     }
 
-    .event h1{
+    .event h2{
         font-size: 70%;
     }
     
