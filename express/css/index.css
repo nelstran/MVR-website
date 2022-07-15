@@ -1,20 +1,12 @@
 :root{
-    /* Gradient */
-    --bg1: rgb(255, 255, 255);
-    --bg2: rgb(4, 111, 177);
-    /* Solid */
     --ts-Height: 7em;
 
     --bg:rgb(102, 187, 240);
+    --promo-bg:rgb(63, 163, 226);
 }
 
 body{
-    /* Gradient if used */
-    /* background-image: linear-gradient(150deg,var(--bg1), var(--bg2) 74%); */
-
-    /* Solid */
     background-color: var(--bg);
-
     background-size: 100vw 100vh; 
     font-family: 'Rubik', sans-serif;
 
@@ -24,27 +16,29 @@ body{
 
     margin:0 auto;
     overflow-x: hidden;
-    overflow-y: auto;
-    /* max-height: 100vh; */
+    overflow-y: hidden;
+    max-height: 100vh;
     max-width: 100vw;
-    /* --ts-Height: max(15%,10em); */
     display: grid;
-    /* grid-template-rows: var(--ts-Height) calc(100vh - var(--ts-Height)); */
-    grid-template-rows: var(--ts-Height) auto;
+    grid-template-rows: var(--ts-Height) calc(100vh - var(--ts-Height));
+    /* grid-template-rows: var(--ts-Height) auto; */
 }
 
 /* ------------------- */
 /*   REGION: topSide */
 /* ------------------- */
 #topSide{
-    border-bottom: 0.1rem solid black;
+    background-color: var(--promo-bg);
     width: 100%;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
-#topSide #logo{
-    /* position: absolute; */
+#logo{
     float:left;
-    max-height:80%;
-    width: auto;
+    /* max-height:80%; */
+    width: calc(var(--ts-Height) * .8);
     padding: .7em;
 }
 
@@ -55,23 +49,23 @@ body{
 #bottomSide{
     max-width: 100vw;
     display: grid;
+    /* top:var(--ts-Height); */
 }
 
-#bottomSide > *{
+#bottomSide *{
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-#bottomSide > *::-webkit-scrollbar{
+#bottomSide *::-webkit-scrollbar{
     display: none;
 }
 
+/* Promo Section */
 #promo{
-    background-color: var(--bg);
+    background-color: var(--promo-bg);
     display:grid;
-    grid-template-rows: min-content auto;
-    position: sticky;
-    top:0;
+    grid-template-rows: min-content 1fr;
 }
 
 #events{
@@ -84,53 +78,46 @@ body{
     flex-direction: column;
     align-items: center;
     vertical-align: middle;
-    overflow: hidden;
+    /* overflow: auto; */
 }
 
-#events img{
+.promoIMG{
     border: .1rem solid black;
     object-fit: cover;
     overflow: hidden;
     border-radius: 100%;
     width: 90%;
-    height:auto;
-    min-width: 50px;
+    /* height:auto; */
+    min-width: 5em;
 }
 
 .event div *{
-    /* border:1px solid black; */
     font-size:80%;
-
     padding:0;
     margin: 0;
 }
 /* Main Section */
 #main{
-    /* border: 2px solid white;  */
     padding: 1em;
     display: flex;
     align-items: center;
     flex-direction: column;
     max-width: 100%;
     overflow-y:auto;
-
+    pointer-events: painted;
 }
 #main section{
-    /* border: 2px solid black;  */
     margin-inline: 1rem;
-
     max-width: 62.5rem;
 }
 
 #team{
-    /* border: 2px solid black;  */
     margin-inline: 1em;
     max-width: 56.25rem;
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-bottom: 2rem;
-    
 }
 #team img{
     max-width: clamp(300px, 80%, 100%);
@@ -141,11 +128,15 @@ body{
     border: 2px solid blue;
 } */
 /* #events{
-    border: 2px solid red;
+    border: 2px solid purple;
 } */
 
-/* #promo{
-    border: 5px solid red;
+/* .event{
+    border:2px solid black;
+} */
+/* 
+#promo{
+    border: 2px solid red;
 } */
 
 /* #main{
@@ -153,11 +144,29 @@ body{
 } */
 
 @media screen and (orientation: portrait) {
+    body{
+        overflow-y: auto;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-height: max-content;
+        /* grid-template-rows: var(--ts-Height) auto; */
+    }
+    #topSide{
+        max-height: var(--ts-Height);
+        border-bottom: .1em solid var(--bg);
+        /* position:sticky;
+        top:0; */
+        z-index: 1;
+    }
+
     #bottomSide{
+        flex-grow: 1;
         grid-template-rows: minmax(calc(100px + 2rem), 225px) 3fr;
+        overflow-y:auto
     }
     #promo{
-        border-bottom: 0.1rem solid black;
+        /* border-bottom: 0.1rem solid black; */
         grid-template-rows: auto 1fr;
         overflow-x: auto;
         overflow-y:hidden;
@@ -192,7 +201,7 @@ body{
     
     .event{
         width: 5em;
-        margin: .1em .1em;
+        margin: .1em .5em;
     }
 
     .event h1{
@@ -206,15 +215,16 @@ body{
 
 @media screen and (orientation: landscape) {
     #bottomSide{
-        /* border: 2px solid white;  */
         grid-template-columns: minmax(calc(100px + 2rem), 200px) 3fr;
     }
 
     /* Promo Section */
     #promo{
-        border-right: 0.1rem solid black;
+        /* border-right: 0.1rem solid black; */
         overflow-y: auto;
-        max-height: 100vh;
+        position: sticky;
+        top:0;
+
     }
 
     #label > h1{
@@ -228,11 +238,13 @@ body{
         color: black;
         background-color: black;
         width: 90%;
+        margin-block: .5em 0;
     }
 
     #events{
         flex-direction: column;
         align-items: center;
+        overflow-y: auto;
     }
 
     .event{
@@ -245,7 +257,6 @@ body{
         }
 
         #bottomSide{
-            /* border: 2px solid white;  */
             display: grid;
             grid-template-columns: minmax(10%, 6.9em) auto;
         }
