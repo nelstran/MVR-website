@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="css/index.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <html lang="en">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <head>
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
         <title>Midvale Records</title>
@@ -26,15 +26,37 @@
     <body onload="setup()">
         <div id="topSide">
             <img id="logo" src="images/logoB.jpg" alt="Midvale Records Logo">
-            <!-- <ul id="links">
+
+            <div id="color">
+                <div>
+                    <label for="bg1">Main Background:</label>
+                    <input type="color" id="bg1" value="#000000">
+                </div>
+                <div>
+                    <label for="promoBg">Promotion Background:</label>
+                    <input type="color" id="promoBg" value="#000000">
+                </div>
+                <div>
+                    <label for="tsBg">Top Background:</label>
+                    <input type="color" id="tsBg" value="#000000">
+                </div>
+                <div>
+                    <label for="fontColor">Font Color:</label>
+                    <input type="color" id="fontColor" value="#000000">
+                </div>
+            </div>
+        </div>
+        
+        <!-- <div id="navbar">
+            <ul id="links">
                 <li><a id="homeLink" onclick="expand()" href="#">Home</a></li>
                 <li><a id="projectLink" onclick="expand()" href="#">Projects</a></li>
                 <li><a id="socialLink" onclick="expand()" href="#">Social</a></li>
                 <li><a id="aboutLink" onclick="expand()" href="#">About Us</a></li>
                 <li><a id="joinLink" onclick="expand()" href="#">Join Us</a></li>
-            </ul> -->
-        </div>
-        
+            </ul>
+        </div> -->
+
         <div id="bottomSide">
             <section id="promo">
 

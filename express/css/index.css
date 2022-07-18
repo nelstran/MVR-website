@@ -4,7 +4,7 @@
     --bg:rgb(220, 220, 220);
     --promo-bg:rgb(186, 186, 186);
     --ts-bg:rgb(255, 255, 255);
-    --font-color: black;
+    --font-color: rgb(0,0,0);
 }
 
 body{
@@ -32,6 +32,10 @@ body{
 /*   REGION: topSide */
 /* ------------------- */
 #topSide{
+    /* display:flex;
+    justify-content: space-between; */
+
+    display:inline;
     background-color: var(--ts-bg);
     width: 100%;
     z-index: 1;
@@ -46,9 +50,65 @@ body{
     transition: all 0.5s ease;
 }
 #logo{
-    float:left;
     max-width: calc(var(--ts-Height) * .8);
     padding: calc(var(--ts-Height) * .1);
+}
+
+#links{
+    display:table;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    box-sizing: border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    list-style-type: none;
+    transition-duration: 0.5s;
+}
+
+#links li{
+    background-color: aqua;
+    display:table-cell;
+}
+#links a{
+    display:block;
+    color:black;
+    text-align:center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1em;
+}
+
+#color input{
+    /* background-color: 0; */
+    margin:0;
+    padding:0;
+}
+#color {
+    position: absolute;
+    top:0;
+    right:0;
+    margin: .5em;
+
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    max-width: fit-content;
+    float:right;
+}
+#color label{
+    font-size: 80%;
+}
+#color input{
+    border:0;
+    margin:0;
 }
 
 /* ------------------- */
@@ -75,15 +135,24 @@ body{
     background-color: var(--promo-bg);
     display:grid;
     grid-template-rows: min-content 1fr;
+    max-height: 100vh;
 }
 
 #events{
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     justify-content:flex-start;
 }
 
 .event{
-    display:flex;
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
     vertical-align: middle;
@@ -110,12 +179,15 @@ body{
     background-color: var(--bg);
     padding: 1em;
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     align-items: center;
     flex-direction: column;
     max-width: 100%;
     overflow-y:auto;
     overflow-x:hidden;
-    pointer-events: painted;
 }
 #main section{
     margin-inline: 1rem;
@@ -126,6 +198,10 @@ body{
     margin-inline: 1em;
     max-width: 56.25rem;
     display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     align-items: center;
     flex-direction: column;
     margin-bottom: 2rem;
@@ -157,7 +233,11 @@ body{
 @media screen and (orientation: portrait) {
     body{
         overflow-y: auto;
-        display:flex;
+        display: flex;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
         flex-direction: row;
         flex-wrap: wrap;
         max-height: max-content;
@@ -166,6 +246,10 @@ body{
     #topSide{
         max-height: var(--ts-Height);
         border-bottom: .1em solid var(--bg);
+    }
+
+    #links{
+        display:none;
     }
 
     #bottomSide{
@@ -187,7 +271,7 @@ body{
             display:none;
         }
     }
-    #label > h2{
+    #label > h1{
         max-width: max-content;
         font-size: large;
         position:sticky;
@@ -225,13 +309,14 @@ body{
     @media screen and (max-height: 500px){
         body{
             overflow-y: auto;
-            display:flex;
+            display: flex;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
             flex-direction: row;
             flex-wrap: wrap;
             max-height: max-content;
-        }
-        #promo{
-            max-height: 100vh;
         }
     }
     #bottomSide{
