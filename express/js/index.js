@@ -13,6 +13,8 @@ function setColorValue(){
     $("#promoBg").val(rgbToHex($(":root").css('--promo-bg')));
     $("#tsBg").val(rgbToHex($(":root").css('--ts-bg')));
     $("#fontColor").val(rgbToHex($(":root").css('--font-color')));
+    $("#navBg").val(rgbToHex($(":root").css('--nav-bg')));
+
 };
 
 function setIMGSize(){
@@ -56,7 +58,10 @@ $("#tsBg").on("change", function(){
 });
 $("#fontColor").on("change", function(){
     $(":root").css('--font-color', $(this).val());
-})
+});
+$("#navBg").on("change", function(){
+    $(":root").css('--nav-bg', $(this).val());
+});
 //#endregion
 
 //THIS IS A TEST DELETE WHEN NEEDED
