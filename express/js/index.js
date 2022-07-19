@@ -1,4 +1,5 @@
 // var cssVar = window.getComputedStyle(document.body);
+var copiedColor;
 
 //#region SETUP
 $(window).resize(setup);
@@ -56,6 +57,7 @@ $("#promoBg").on("change", function(){
 });
 $("#tsBg").on("change", function(){
     $(":root").css('--ts-bg', $(this).val());
+    $('#topSide').css("background-color", `${$(this).val()}7d`);
 });
 $("#fontColor").on("change", function(){
     $(":root").css('--font-color', $(this).val());
@@ -63,9 +65,26 @@ $("#fontColor").on("change", function(){
 $("#navBg").on("change", function(){
     $(":root").css('--nav-bg', $(this).val());
 });
-$("#navFontCOlor").on("change", function(){
+$("#navFontColor").on("change", function(){
+    console.log("test");
     $(":root").css('--nav-font-color', $(this).val());
 });
+
+$(".copy").on("click", function(){
+    let attr = $(this).attr("for");
+    $(".copy").removeAttr("disabled");
+    $(".paste").removeAttr("disabled");
+    $(this).attr("disabled", true);
+    let color = $(`#${attr}`);
+    copiedColor = color.val();
+});
+
+$(".paste").on("click", function(){
+    let attr = $(this).attr("for");
+    let color = $(`#${attr}`);
+    color.val(copiedColor);
+    color.trigger("change");
+})
 //#endregion
 
 //THIS IS A TEST DELETE WHEN NEEDED
