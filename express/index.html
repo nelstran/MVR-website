@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/portrait.css">
+    <link rel="stylesheet" href="css/landscape.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <head>
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -29,24 +32,22 @@
             <img id="logo" src="images/logoB.jpg" alt="Midvale Records Logo">
             <div id="navbar">
                 <ul id="links">
-                    <li><a id="homeLink" onclick="expand()" href="#">Home</a></li>
-                    <li><a id="projectLink" onclick="expand()" href="#">Projects</a></li>
-                    <li><a id="socialLink" onclick="expand()" href="#">Social</a></li>
-                    <li><a id="forumLink" onclick="expand()" href="#">Forums</a></li>
-                    <li><a id="aboutLink" onclick="expand()" href="#">About Us</a></li>
-                    <li><a id="joinLink" onclick="expand()" href="#">Join Us</a></li>
+                    <li><a id="homeLink" onclick="" href="#">Home</a></li>
+                    <li><a id="projectLink" onclick="" href="#">Projects</a></li>
+                    <li><a id="socialLink" onclick="" href="#">Social</a></li>
+                    <li><a id="forumLink" onclick="" href="#">Forums</a></li>
+                    <li><a id="aboutLink" onclick="" href="#">About Us</a></li>
+                    <li><a id="joinLink" onclick="" href="#">Join Us</a></li>
                 </ul>
             </div>
         </div>
 
         <div id="bottomSide">
             <section id="promo">
-
                 <div id="label">
                     Upcoming Shows
                     <hr>
                 </div>
-
                 <section id="events">
                     <section class="event">
                         <img class="promoIMG" src="images/img.jpg">
@@ -70,45 +71,44 @@
                         </div>
                     </section>
                 </section>
-
             </section>
             <section id="main"> 
                 <section id="color">
-                    <div class="test">
-                        <label for="bg1">Main Background:</label>
-                        <input type="color" id="bg1" value="#000000">
-                        <button class="copy" for="bg1" type="button">Copy</button>
-                        <button class="paste" for="bg1" type="button" disabled="true">Paste</button>
+                    <div class="customColor">
+                        <label for="bg">Main Background:</label>
+                        <input type="color" id="bg" value="#000000">
+                        <button class="copy" for="bg" type="button">Copy</button>
+                        <button class="paste" for="bg" type="button" disabled="true">Paste</button>
                     </div>
-                    <div class="test">
-                        <label for="promoBg">Promotion Background:</label>
-                        <input type="color" id="promoBg" value="#000000">
-                        <button class="copy" for="promoBg" type="button">Copy</button>
-                        <button class="paste" for="promoBg" type="button" disabled="true">Paste</button>
+                    <div class="customColor">
+                        <label for="promo-bg">Promotion Background:</label>
+                        <input type="color" id="promo-bg" value="#000000">
+                        <button class="copy" for="promo-bg" type="button">Copy</button>
+                        <button class="paste" for="promo-bg" type="button" disabled="true">Paste</button>
                     </div>
-                    <div class="test">
-                        <label for="tsBg">Top Background:</label>
-                        <input type="color" id="tsBg" value="#000000">
-                        <button class="copy" for="tsBg" type="button">Copy</button>
-                        <button class="paste" for="tsBg" type="button" disabled="true">Paste</button>
+                    <div class="customColor">
+                        <label for="ts-bg">Top Background:</label>
+                        <input type="color" id="ts-bg" value="#000000">
+                        <button class="copy" for="ts-bg" type="button">Copy</button>
+                        <button class="paste" for="ts-bg" type="button" disabled="true">Paste</button>
                     </div>
-                    <div class="test">
-                        <label for="fontColor">Font Color:</label>
-                        <input type="color" id="fontColor" value="#000000">
-                        <button class="copy" for="fontColor" type="button">Copy</button>
-                        <button class="paste" for="fontColor" type="button" disabled="true">Paste</button>
+                    <div class="customColor">
+                        <label for="font-color">Font Color:</label>
+                        <input type="color" id="font-color" value="#000000">
+                        <button class="copy" for="font-color" type="button">Copy</button>
+                        <button class="paste" for="font-color" type="button" disabled="true">Paste</button>
                     </div>
-                    <div class="test">
-                        <label for="navBg">Navigation Background:</label>
-                        <input type="color" id="navBg" value="#000000">
-                        <button class="copy" for="navBg" type="button">Copy</button>
-                        <button class="paste" for="navBg" type="button" disabled="true">Paste</button>
+                    <div class="customColor">
+                        <label for="nav-bg">Navigation Background:</label>
+                        <input type="color" id="nav-bg" value="#000000">
+                        <button class="copy" for="nav-bg" type="button">Copy</button>
+                        <button class="paste" for="nav-bg" type="button" disabled="true">Paste</button>
                     </div>
-                    <div class="test">
-                        <label for="navFontColor">Navigation Font Color:</label>
-                        <input type="color" id="navFontColor" value="#000000">
-                        <button class="copy" for="navFontColor" type="button">Copy</button>
-                        <button class="paste" for="navFontColor" type="button" disabled="true">Paste</button>
+                    <div class="customColor">
+                        <label for="nav-font-color">Navigation Font Color:</label>
+                        <input type="color" id="nav-font-color" value="#000000">
+                        <button class="copy" for="nav-font-color" type="button">Copy</button>
+                        <button class="paste" for="nav-font-color" type="button" disabled="true">Paste</button>
                     </div>
                 </section> 
                 <section id="team">
@@ -129,5 +129,4 @@
         </div>
     </body>
 <script src="js/index.js"></script>
-
 </html>

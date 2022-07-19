@@ -1,0 +1,55 @@
+@media screen and (orientation: landscape) {
+    @media screen and (max-height: 550px){
+        body{
+            overflow-y: auto;
+        }
+        #bottomSide{
+            overflow-y: visible;
+        }
+    }
+    @media screen and (max-width:60em){
+        .event div p{
+            display: none;
+        }
+
+        #bottomSide{
+            display: grid;
+            grid-template-columns: minmax(10%, 8em) auto;
+        }
+    }
+    #bottomSide{
+        grid-template-columns: minmax(calc(100px + 2rem), 200px) 3fr;
+    }
+    #promo{
+        position: sticky;
+        top:0;
+
+        overflow-y: auto;
+
+        box-shadow: 6px 0px 9px -2px rgba(0,0,0,0.58);
+        -webkit-box-shadow: 6px 0px 9px -2px rgba(0,0,0,0.58);
+        -moz-box-shadow: 6px 0px 9px -2px rgba(0,0,0,0.58);
+    }
+    #label{
+        text-align: center;
+        max-width: 100%;
+    }
+
+    #label > hr{
+        color: black;
+        background-color: black;
+
+        width: 90%;
+        margin-block: .5em 0;
+    }
+    #events{
+        flex-direction: column;
+        align-items: center;
+
+        overflow-y: auto;
+    }
+    .event{
+        justify-content: center;
+        margin: .5em 1em;
+    }
+}

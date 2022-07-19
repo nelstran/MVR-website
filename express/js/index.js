@@ -7,16 +7,14 @@ $(window).resize(setup);
 function setup(){
     setIMGSize();
     setColorValue();
-}
+};
 
 function setColorValue(){
     $('#topSide').css("background-color", `${rgbToHex($(":root").css('--ts-bg'))}7d`);
-    $("#bg1").val(rgbToHex($(":root").css('--bg')));
-    $("#promoBg").val(rgbToHex($(":root").css('--promo-bg')));
-    $("#tsBg").val(rgbToHex($(":root").css('--ts-bg')));
-    $("#fontColor").val(rgbToHex($(":root").css('--font-color')));
-    $("#navBg").val(rgbToHex($(":root").css('--nav-bg')));
-    $("#navFontColor").val(rgbToHex($(":root").css('--nav-font-color')));
+    $(".customColor input").each(function(){
+        let color = rgbToHex($(":root").css(`--${$(this).attr("id")}`));
+        $(this).val(color);
+    })
 };
 
 function setIMGSize(){
@@ -37,7 +35,7 @@ function rgbToHex(rgb) {
         return (x.length==1) ? "0"+x : x;  //Add zero if we get only one character
     })
     return "#"+b.join("");
-  }
+};
 //#endregion
 
 //#region EVENT LISTENER
@@ -48,32 +46,20 @@ document.getElementById("topSide").addEventListener("wheel", function(e){
     // scroll the div
     document.getElementById("main").scrollBy(e.deltaX, e.deltaY);
 });
-  
-$("#bg1").on("change", function(){
-    $(":root").css('--bg', $(this).val());
+
+$(".customColor input").on("change", function(){
+    $(":root").css(`--${$(this).attr("id")}`, $(this).val());
+    
 });
-$("#promoBg").on("change", function(){
-    $(":root").css('--promo-bg', $(this).val());
-});
-$("#tsBg").on("change", function(){
-    $(":root").css('--ts-bg', $(this).val());
+
+$("#ts-bg").on("change", function(){
     $('#topSide').css("background-color", `${$(this).val()}7d`);
-});
-$("#fontColor").on("change", function(){
-    $(":root").css('--font-color', $(this).val());
-});
-$("#navBg").on("change", function(){
-    $(":root").css('--nav-bg', $(this).val());
-});
-$("#navFontColor").on("change", function(){
-    console.log("test");
-    $(":root").css('--nav-font-color', $(this).val());
 });
 
 $(".copy").on("click", function(){
     let attr = $(this).attr("for");
     $(".copy").removeAttr("disabled");
-    $(".paste").removeAttr("disabled");
+    $(".paste").attr("disabled", false);
     $(this).attr("disabled", true);
     let color = $(`#${attr}`);
     copiedColor = color.val();
