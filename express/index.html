@@ -24,25 +24,26 @@
     </head>
 
     <body onload="setup()">
+        <div id="background"></div>
         <div id="topSide">
             <img id="logo" src="images/logoB.jpg" alt="Midvale Records Logo">
-        </div>
-        
-        <div id="navbar">
-            <ul id="links">
-                <li><a id="homeLink" onclick="expand()" href="#">Home</a></li>
-                <li><a id="projectLink" onclick="expand()" href="#">Projects</a></li>
-                <li><a id="socialLink" onclick="expand()" href="#">Social</a></li>
-                <li><a id="aboutLink" onclick="expand()" href="#">About Us</a></li>
-                <li><a id="joinLink" onclick="expand()" href="#">Join Us</a></li>
-            </ul>
+            <div id="navbar">
+                <ul id="links">
+                    <li><a id="homeLink" onclick="expand()" href="#">Home</a></li>
+                    <li><a id="projectLink" onclick="expand()" href="#">Projects</a></li>
+                    <li><a id="socialLink" onclick="expand()" href="#">Social</a></li>
+                    <li><a id="forumLink" onclick="expand()" href="#">Forums</a></li>
+                    <li><a id="aboutLink" onclick="expand()" href="#">About Us</a></li>
+                    <li><a id="joinLink" onclick="expand()" href="#">Join Us</a></li>
+                </ul>
+            </div>
         </div>
 
         <div id="bottomSide">
             <section id="promo">
 
                 <div id="label">
-                    <h1>Upcoming Events</h1>
+                    Upcoming Shows
                     <hr>
                 </div>
 
@@ -51,7 +52,21 @@
                         <img class="promoIMG" src="images/img.jpg">
                         <div style="text-align:center">
                             <h2>When you go outside and smell that ZAZA</h2>
-                            <p>01/01/01 @ Right now <br> Outside in your lawn </p>
+                            <p>01/01/01<br> Outside in your lawn </p>
+                        </div>
+                    </section>
+                    <section class="event">
+                        <img class="promoIMG" src="images/habo.png">
+                        <div style="text-align:center">
+                            <h2>Habo</h2>
+                            <p>11/25/2552<br> Ring </p>
+                        </div>
+                    </section>
+                    <section class="event">
+                        <img class="promoIMG" src="images/img.jpg">
+                        <div style="text-align:center">
+                            <h2>When you go outside and smell that ZAZA</h2>
+                            <p>01/01/01<br> Outside in your lawn </p>
                         </div>
                     </section>
                 </section>
@@ -75,10 +90,13 @@
                         <label for="fontColor">Font Color:</label>
                         <input type="color" id="fontColor" value="#000000">
                     </div>
-    
                     <div class="test">
                         <label for="navBg">Navigation Background:</label>
                         <input type="color" id="navBg" value="#000000">
+                    </div>
+                    <div class="test">
+                        <label for="navFontColor">Navigation Font Color:</label>
+                        <input type="color" id="navFontColor" value="#000000">
                     </div>
                 </section> 
                 <section id="team">

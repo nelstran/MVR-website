@@ -9,12 +9,13 @@ function setup(){
 }
 
 function setColorValue(){
+    $('#topSide').css("background-color", `${rgbToHex($(":root").css('--ts-bg'))}7d`);
     $("#bg1").val(rgbToHex($(":root").css('--bg')));
     $("#promoBg").val(rgbToHex($(":root").css('--promo-bg')));
     $("#tsBg").val(rgbToHex($(":root").css('--ts-bg')));
     $("#fontColor").val(rgbToHex($(":root").css('--font-color')));
     $("#navBg").val(rgbToHex($(":root").css('--nav-bg')));
-
+    $("#navFontColor").val(rgbToHex($(":root").css('--nav-font-color')));
 };
 
 function setIMGSize(){
@@ -61,6 +62,9 @@ $("#fontColor").on("change", function(){
 });
 $("#navBg").on("change", function(){
     $(":root").css('--nav-bg', $(this).val());
+});
+$("#navFontCOlor").on("change", function(){
+    $(":root").css('--nav-font-color', $(this).val());
 });
 //#endregion
 
