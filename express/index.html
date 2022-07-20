@@ -32,7 +32,7 @@
             <img id="logo" src="images/logoB.jpg" alt="Midvale Records Logo">
             <div id="navbar">
                 <ul id="links">
-                    <li><a id="homeLink" onclick="" href="#">Home</a></li>
+                    <li><a id="homeLink" href="home.html">Home</a></li>
                     <li><a id="projectLink" onclick="" href="#">Projects</a></li>
                     <li><a id="socialLink" onclick="" href="#">Social</a></li>
                     <li><a id="forumLink" onclick="" href="#">Forums</a></li>
@@ -49,27 +49,29 @@
                     <hr>
                 </div>
                 <section id="events">
-                    <section class="event">
+                    <!-- <section class="event">
                         <img class="promoIMG" src="images/img.jpg">
                         <div style="text-align:center">
                             <h2>When you go outside and smell that ZAZA</h2>
                             <p>01/01/01<br> Outside in your lawn </p>
                         </div>
-                    </section>
-                    <section class="event">
-                        <img class="promoIMG" src="images/habo.png">
-                        <div style="text-align:center">
-                            <h2>Habo</h2>
-                            <p>11/25/2552<br> Ring </p>
-                        </div>
-                    </section>
-                    <section class="event">
-                        <img class="promoIMG" src="images/img.jpg">
-                        <div style="text-align:center">
-                            <h2>When you go outside and smell that ZAZA</h2>
-                            <p>01/01/01<br> Outside in your lawn </p>
-                        </div>
-                    </section>
+                    </section> -->
+                    <!-- <div class="overflow-indicator" id="overflow-begin">«</div> -->
+                    <script>
+                        let text = "<section class='event'>" + 
+                        "<img class='promoIMG' src='images/img.jpg'>" + 
+                        "<div style='text-align:center'>" +
+                            "<h2>When you go outside and smell that ZAZA</h2>" +
+                            "<p>01/01/01<br> Outside in your lawn </p>" +
+                        "</div>"  +
+                        "</section>";
+                        let items = [];
+                        for(let i = 0; i < 10; i++){
+                            items.push(text);
+                        }
+                        $("#events").append(items.join(""));
+                    </script>
+                    <!-- <div class="overflow-indicator" id="overflow-end">»</div> -->
                 </section>
             </section>
             <section id="main"> 
@@ -111,18 +113,18 @@
                         <button class="paste" for="nav-font-color" type="button" disabled="true">Paste</button>
                     </div>
                 </section> 
-                <section id="team">
+                <!-- <section id="team">
                     <h2 style="text-align:center;">Meet the Team!</h2>
                     <img src="images/team.jpg" alt="Midvale Record's Staff">
-                </section>
-                <section>
+                </section> -->
+                <!-- <section>
                     <h2>Time for Change!</h2>
                     <p>Tran Nelson (TERRORISM) Al Queda2.0/Super ISIS KONY 2022 death to america (shooting/napalm bombing/anthrax 11/19/22 subway attack Burger King Sign Stealing/Amazon takedown planning/ HELPELEPEHELPEJELPMEMEMEHELPEM / RICO Charges/ Supreme Court bombing / Gabriel Flores Wellness Check/ hustle grind/ Ukraine War Militia)/ Raising Cane’s pipe bombing/ Cat (trained armada) Cafe/ Pebis appreciation group and cop hunting/precinct arson planning orc factory gang 😇</p>
                 </section>
                 <section>
                     <h2>Ethan's Message</h2>
                     <p>It's not about the benson hedges stuff i just realized around that time that it was really hard to get work done creatively and in other aspects as well where you and i as well sometimes would argue just the most redundant and asinine things and i felt like i couldn't say shit without getting the complete opposite thoughts and reaction from you. I really don't need that and i feel like you've been that way forever and it just stays the same. Even lately I've seen you just go off on people just to be contrarian it seems like. I need peace in my life and leaving the band was hard as fuck but i had had enough of it to where i couldn't even write without thinking oh for sure this isn't gonna fly with titus. That's the reason dog im not looking to argue and im sure you've had your qualms with me similiarly and i don't deny i can be difficult sometimes too but im not tryna reconcile really some things just gotta move on and this is one of those things for me. I would say moving forward you will get a lot of success around people if you listen a little more and push back a little less, there's a difference between sticking to your guns and just being contrarian.</p>
-                </section>
+                </section> -->
                 <!-- <section class="movie">
                 </section>   -->
             </section>

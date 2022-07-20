@@ -7,6 +7,9 @@ $(window).resize(setup);
 function setup(){
     setIMGSize();
     setColorValue();
+    // $(".overflow-indicator").each(function(){
+    //     $(this).css("display", "none");
+    // });
 };
 
 function setColorValue(){
@@ -26,7 +29,7 @@ function setIMGSize(){
 
 //#endregion
 
-//#region HELP FUNCTIONS
+//#region HELPER FUNCTIONS
 function rgbToHex(rgb) {
     var a = rgb.split("(")[1].split(")")[0];
     a = a.split(",");
@@ -71,6 +74,47 @@ $(".paste").on("click", function(){
     color.val(copiedColor);
     color.trigger("change");
 })
+
+// $("#events").on("scroll", function(){ EXPERIMENTAL AF
+//     var arrow = $(".overflow-indicator").eq(0);
+//     var scrollHeight = $(this).scrollTop();
+//     var scrollWidth = $(this).scrollLeft();
+//     // Portrait
+//     if(window.innerHeight > window.innerWidth){
+//         if(scrollWidth >= (arrow.width() * 4)){
+//             $("#overflow-begin").css("display", "flex");
+//         }
+//         else{
+//             $("#overflow-begin").css("display", "none");
+//         }
+//         if(scrollWidth <= ($("#events").prop("scrollWidth")-$(this).width() - (arrow.width() * 4))){
+//             $("#overflow-end").css("display", "flex");
+//         }
+//         else{
+//             $("#overflow-end").css("display", "none");
+//         }
+//     }
+
+//     // Landscape
+//     if(window.innerHeight <  window.innerWidth){
+//         if(scrollHeight >= (arrow.height() * 8)){
+//             $("#overflow-begin").css("display", "flex");
+//         }
+//         else{
+//             $("#overflow-begin").css("display", "none");
+//         }
+//         if(scrollHeight <= ($("#events").prop("scrollHeight")-$(this).height() - (arrow.height() * 8))){
+//             $("#overflow-end").css("display", "flex");
+//         }
+//         else{
+//             $("#overflow-end").css("display", "none");
+//         }
+//     }
+
+//     // console.log(arrow.height());
+//     // console.log($(this).scrollTop());
+
+// })
 //#endregion
 
 //THIS IS A TEST DELETE WHEN NEEDED

@@ -37,15 +37,32 @@
     #label > hr{
         display: none;
     }
+
+    /* #overflow-begin{
+        left:0;
+
+        box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+        -webkit-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+        -moz-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+    }
+    #overflow-end{
+        right:0;
+
+        box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+        -webkit-box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+        -moz-box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+    } */
+
     #events{
         flex-direction: row;
         align-items: stretch;
         align-self:center;
 
-        margin-left:.5em;
+        overflow-x: auto;
 
         height:min-content;
         max-height: 100%;
+        max-width: 100%;
     }
     
     .event{
