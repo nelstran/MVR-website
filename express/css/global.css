@@ -5,7 +5,10 @@
     --ts-bg:rgb(86, 193, 255);
     --font-color: rgb(255, 255, 255);
     --nav-bg: rgb(0, 0, 0);
-    --nav-font-color:rgb(255,5,5);
+    --nav-font-color:rgb(86, 193, 255);
+    --nav-selection-color: rgb(255,255,255);
+    --nav-selection-font-color: rgb(0,0,0);
+    --transition-dur: 0.5s;
 }
 body{
     /* background-color: var(--bg); */
@@ -33,14 +36,14 @@ body{
     right: 0;
 
     display: block;
-    z-index: 1;
+    z-index: -1;
 
     background-image: url(../images/team.jpg);
     background-size: 100%;
     background-position: center;
 
     max-width: 100vw;
-    height: var(--ts-Height);
+    height: calc(var(--ts-Height) + 25px);
 
     -webkit-filter: blur(1px);
     -moz-filter: blur(1px);
@@ -68,7 +71,7 @@ body{
     margin:0;
     padding:0;
 
-    overflow:hidden;
+    overflow:visible;
     list-style-type: none;
 
     box-sizing: border-box;
@@ -78,6 +81,7 @@ body{
 #links li{
     background-color: var(--nav-bg);
     display:table-cell;
+    min-width: max-content;
 }
 #links a{
     color: var(--nav-font-color);
@@ -90,6 +94,15 @@ body{
     text-decoration: none;
     font-weight:bolder;
     font-size:larger;
+
+    position: relative;
+    top:0;
+}
+
+#links a:hover{
+    top: -5px;
+    background-color: var(--nav-selection-color);
+    color:var(--nav-selection-font-color);
 }
 #bottomSide{
     background-color: var(--promo-bg);
@@ -217,35 +230,40 @@ body{
 }
 /* Transitions */
 body{
-    -webkit-transition: color 0.5s ease;
-    -moz-transition: color 0.5s ease;
-    -o-transition: color 0.5s ease;
-    transition: color 0.5s ease;
+    -webkit-transition: color var(--transition-dur) ease;
+    -moz-transition: color var(--transition-dur) ease;
+    -o-transition: color var(--transition-dur) ease;
+    transition: color var(--transition-dur) ease;
 }
 body > *{
-    -webkit-transition: background-color 0.5s ease;
-    -moz-transition: background-color 0.5s ease;
-    -o-transition: background-color 0.5s ease;
-    transition: background-color 0.5s ease;
+    -webkit-transition: background-color var(--transition-dur) ease;
+    -moz-transition: background-color var(--transition-dur) ease;
+    -o-transition: background-color var(--transition-dur) ease;
+    transition: background-color var(--transition-dur) ease;
 }
 #links li{
-    -webkit-transition: background-color 0.5s ease;
-    -moz-transition: background-color 0.5s ease;
-    -o-transition: background-color 0.5s ease;
-    transition: background-color 0.5s ease;
+    -webkit-transition: background-color var(--transition-dur) ease;
+    -moz-transition: background-color var(--transition-dur) ease;
+    -o-transition: background-color var(--transition-dur) ease;
+    transition: background-color var(--transition-dur) ease;
 }
 
 #links a{
-    -webkit-transition: color 0.5s ease;
-    -moz-transition: color 0.5s ease;
-    -o-transition: color 0.5s ease;
-    transition: color 0.5s ease;
+    /* -webkit-transition: var(--transition-dur) ease;
+    -moz-transition: var(--transition-dur) ease;
+    -o-transition: var(--transition-dur) ease;
+    transition: var(--transition-dur) ease; */
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+
 }
 #bottomSide > *{
-    -webkit-transition: background-color 0.5s ease;
-    -moz-transition: background-color 0.5s ease;
-    -o-transition: background-color 0.5s ease;
-    transition: background-color 0.5s ease;
+    -webkit-transition: background-color var(--transition-dur) ease;
+    -moz-transition: background-color var(--transition-dur) ease;
+    -o-transition: background-color var(--transition-dur) ease;
+    transition: background-color var(--transition-dur) ease;
 }
 
 /* DEBUG */
