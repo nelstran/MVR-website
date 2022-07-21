@@ -156,7 +156,7 @@ body{
     justify-content: center;
 
     position: sticky;
-}
+} */
 .event{
     display: flex;
     display: -webkit-box;
@@ -168,7 +168,7 @@ body{
     align-items: center;
     vertical-align: middle;
     align-self: stretch;
-} */
+}
 .promoIMG{
     border: .1rem solid black;
     border-radius: 100%;
@@ -295,7 +295,7 @@ body > *{
     border:2px solid black;
 } */
 /* #promo{
-    border: 2px solid red;
+    border: 2px solid blue;
 } */
 
 /* #main{

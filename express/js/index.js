@@ -118,13 +118,15 @@ $(".paste").on("click", function(){
 //#endregion
 
 //THIS IS A TEST DELETE WHEN NEEDED
-// $(document).ready(function() {
-//     fixedElement = document.getElementById("topSide");
-//         $.ajax({
-//             url : "package/movie.txt",
-//             dataType: "text",
-//             success : function (data) {
-//                 $(".movie").html(data);
-//             }
-//         });
-// }); 
+$(document).ready(function() {
+    fixedElement = document.getElementById("topSide");
+        $.ajax({
+            url : "package/movie.txt",
+            dataType: "text",
+            success : function (data) {
+                $(".movie").html(data);
+            }
+        });
+}); 
+
+

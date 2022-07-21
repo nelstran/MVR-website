@@ -30,6 +30,18 @@ app.get('/home', (req, res) => {
 app.get('/pages/projects', (req, res) => {
   res.render('pages/projects');
 });
+app.get('/pages/social', (req, res) => {
+  res.render('pages/social');
+});
+app.get('/pages/forum', (req, res) => {
+  res.render('pages/forum');
+});
+app.get('/pages/about', (req, res) => {
+  res.render('pages/about');
+});
+app.get('/pages/join', (req, res) => {
+  res.render('pages/join');
+});
 app.listen(port, () => {
   console.log(`App listening at port ${port}`);
 });
