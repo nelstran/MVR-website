@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/portrait.css">
+    <link rel="stylesheet" href="/css/landscape.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <head>
+        <%- include('../partials/metadata'); %>
+    </head>
+    
+    <body onload="setup()">
+        <%- include('../partials/header'); %>
+        <div id="bottomSide">
+            <%- include('../partials/events'); %>
+            <section id="main">
+                <%- include('../partials/colors'); %>
+                <section>
+                <section id="team">
+                    <h2 style="text-align:center;">Meet the Team!</h2>
+                    <img src="/images/team.jpg" alt="Midvale Record's Staff">
+                </section>
+            </section>
+        </div>
+    </body>
+<script src="/js/index.js"></script>
+</html>

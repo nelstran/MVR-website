@@ -213,7 +213,7 @@ body{
     max-width: 62.5rem;
 }
 /* Temporary */
-/* #team{
+#team{
     margin-inline: 1em;
     max-width: 56.25rem;
     margin-bottom: 2rem;
@@ -229,7 +229,7 @@ body{
 }
 #team img{
     max-width: clamp(300px, 80%, 100%);
-} */
+}
 /* Color */
 #color {
     display: table;

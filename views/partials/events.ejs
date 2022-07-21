@@ -1,0 +1,31 @@
+<section id="promo">
+    <div id="label">
+        Upcoming Shows
+        <hr>
+    </div>
+    <section id="events">
+        <!-- <section class="event">
+            <img class="promoIMG" src="images/img.jpg">
+            <div style="text-align:center">
+                <h2>When you go outside and smell that ZAZA</h2>
+                <p>01/01/01<br> Outside in your lawn </p>
+            </div>
+        </section> -->
+        <!-- <div class="overflow-indicator" id="overflow-begin">«</div> -->
+        <script>
+            let text = "<section class='event'>" + 
+            "<img class='promoIMG' src='/images/img.jpg'>" + 
+            "<div style='text-align:center'>" +
+                "<h2>When you go outside and smell that ZAZA</h2>" +
+                "<p>01/01/01<br> Outside in your lawn </p>" +
+            "</div>"  +
+            "</section>";
+            let items = [];
+            for(let i = 0; i < 10; i++){
+                items.push(text);
+            }
+            $("#events").append(items.join(""));
+        </script>
+        <!-- <div class="overflow-indicator" id="overflow-end">»</div> -->
+    </section>
+</section>
