@@ -1,7 +1,8 @@
 @media screen and (orientation: portrait) {
     :root{
-        --nav-bg: rgb(44, 146, 206);
-        --nav-font-color: rgb(0,0,0);
+        /* --nav-bg: #2c92ce;
+        --nav-font-color: #000000; */
+        --nav-bg-dark: #000000;
     }
     @media screen and (max-height:30em){
         #bottomSide{
@@ -29,12 +30,12 @@
         margin: 2em;
         padding:1em;
 
-        background-image: radial-gradient(var(--ts-bg), rgb(55, 126, 168) 100%);
-        border: .1em solid var(--ts-bg);
+        background-image: radial-gradient(var(--nav-bg), var(--nav-bg-dark) 100%);
+        border: .1em solid var(--nav-bg);
         border-radius: 100%;
+        color: var(--nav-font-color);
     }
     #links{
-        /* display: none; */
         background-color: var(--nav-bg);
         border-left: .1em solid black;
 
@@ -49,13 +50,12 @@
         height: 100vh;
 
         box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-
     }
     #back-button{
         border-radius: 100%;
         display:block;
         cursor: pointer;
-        font-size: 5ch;
+        font-size: 4ch;
         font-weight:800;
         color:var(--nav-font-color);
 
@@ -63,7 +63,7 @@
         top:0;
         right:calc( -1 * (100vw - 5em));
 
-        margin: 1rem 2rem;
+        margin: 2rem;
         padding-inline: 1rem;
 
         -webkit-transition: var(--transition-dur) ease;
@@ -77,7 +77,7 @@
     }
     #links li{
         display: inline-block;
-        border-bottom: .1em solid rgb(55, 126, 168);
+        border-bottom: .1em solid var(--nav-bg-dark);
 
         margin-inline:2em;
         overflow:visible;
@@ -112,7 +112,6 @@
     #label > hr{
         display: none;
     }
-
     /* #overflow-begin{
         left:0;
 
@@ -127,7 +126,6 @@
         -webkit-box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
         -moz-box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
     } */
-
     #events{
         flex-direction: row;
         align-items: stretch;
@@ -139,17 +137,20 @@
         max-height: 100%;
         max-width: 100%;
     }
-    
     .event{
         width: 5em;
         margin: .1em .5em;
     }
-
     .event h2{
         font-size: 70%;
     }
-    
     .event div p{
         display: none;
     }
+}
+#navbar-button{
+    -webkit-transition: var(--transition-dur) ease;
+    -moz-transition: var(--transition-dur) ease;
+    -o-transition: var(--transition-dur) ease;
+    transition: var(--transition-dur) ease;
 }

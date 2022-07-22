@@ -1,23 +1,28 @@
 // var cssVar = window.getComputedStyle(document.body);
-var copiedColor;
+var copiedColor = sessionStorage.getItem("copiedColor");
+var hasChanged = false;
 
 //#region SETUP
 $(window).resize(setup);
 
 function setup(){
+    if(!hasChanged){
+        if(window.innerWidth > window.innerHeight){
+            $(":root").css({
+                "--nav-bg" : "#000000",
+                "--nav-font-color" : "#56c1ff"
+            })
+        }
+        else{
+            $(":root").css({
+                "--nav-bg" : "#2c92ce",
+                "--nav-font-color" : "#000000"
+            })
+        }
+    }
     setIMGSize();
     setColorValue();
-    // $(".overflow-indicator").each(function(){
-    //     $(this).css("display", "none");
-    // });
-};
-
-function setColorValue(){
-    $('#topSide').css("background-color", `${rgbToHex($(":root").css('--ts-bg'))}7d`);
-    $(".customColor input").each(function(){
-        let color = rgbToHex($(":root").css(`--${$(this).attr("id")}`));
-        $(this).val(color);
-    })
+    darkenNavColor();
 };
 
 function setIMGSize(){
@@ -30,14 +35,48 @@ function setIMGSize(){
 //#endregion
 
 //#region HELPER FUNCTIONS
-function rgbToHex(rgb) {
-    var a = rgb.split("(")[1].split(")")[0];
-    a = a.split(",");
-    var b = a.map(function(x){             //For each array element
-        x = parseInt(x).toString(16);      //Convert to a base16 string
-        return (x.length==1) ? "0"+x : x;  //Add zero if we get only one character
+
+function darkenNavColor(){
+    let color = $(":root").css("--nav-bg");
+    $(":root").css("--nav-bg-dark", shadeColor(color, -25));
+}
+function shadeColor(color, percent) {
+
+    var R = parseInt(color.substring(1,3),16);
+    var G = parseInt(color.substring(3,5),16);
+    var B = parseInt(color.substring(5,7),16);
+
+    R = parseInt(R * (100 + percent) / 100);
+    G = parseInt(G * (100 + percent) / 100);
+    B = parseInt(B * (100 + percent) / 100);
+
+    R = (R<255)?R:255;  
+    G = (G<255)?G:255;  
+    B = (B<255)?B:255;  
+
+    var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+    var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+    var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+
+    return "#"+RR+GG+BB;
+}
+function setColorValue(){
+    var cache = sessionStorage.getItem("ts-bg");
+    var color = cache != null ? cache : $(":root").css('--ts-bg');
+    console.log(cache + " " + color);
+    $('#topSide').css("background-color", `${color}7d`);
+    $(".customColor input").each(function(){
+        let curr = $(this).attr("id");
+        cache = sessionStorage.getItem(`${curr}`);
+        if(cache){
+            color = cache;
+            $(":root").css(`--${curr}`, color);
+        }
+        else{
+            color = $(":root").css(`--${curr}`);
+        }
+        $(this).val(color);
     })
-    return "#"+b.join("");
 };
 //#endregion
 
@@ -51,8 +90,12 @@ document.getElementById("topSide").addEventListener("wheel", function(e){
 });
 
 $(".customColor input").on("change", function(){
+    sessionStorage.setItem(`${$(this).attr("id")}`, $(this).val());
     $(":root").css(`--${$(this).attr("id")}`, $(this).val());
-    
+    if($(this).attr("id") == "nav-bg"){
+        hasChanged = true;
+        darkenNavColor();
+    }
 });
 
 $("#ts-bg").on("change", function(){
@@ -66,6 +109,7 @@ $(".copy").on("click", function(){
     $(this).attr("disabled", true);
     let color = $(`#${attr}`);
     copiedColor = color.val();
+    sessionStorage.setItem("copiedColor", copiedColor);
 });
 
 $(".paste").on("click", function(){
@@ -83,47 +127,6 @@ $("#links > *").on("click", function(){
     $("#links").css("right", "calc( -1 * (100vw - 5em))");
     $("#back-button").css("right", "calc( -1 * (100vw - 5em))");
 })
-
-// $("#events").on("scroll", function(){ EXPERIMENTAL AF
-//     var arrow = $(".overflow-indicator").eq(0);
-//     var scrollHeight = $(this).scrollTop();
-//     var scrollWidth = $(this).scrollLeft();
-//     // Portrait
-//     if(window.innerHeight > window.innerWidth){
-//         if(scrollWidth >= (arrow.width() * 4)){
-//             $("#overflow-begin").css("display", "flex");
-//         }
-//         else{
-//             $("#overflow-begin").css("display", "none");
-//         }
-//         if(scrollWidth <= ($("#events").prop("scrollWidth")-$(this).width() - (arrow.width() * 4))){
-//             $("#overflow-end").css("display", "flex");
-//         }
-//         else{
-//             $("#overflow-end").css("display", "none");
-//         }
-//     }
-
-//     // Landscape
-//     if(window.innerHeight <  window.innerWidth){
-//         if(scrollHeight >= (arrow.height() * 8)){
-//             $("#overflow-begin").css("display", "flex");
-//         }
-//         else{
-//             $("#overflow-begin").css("display", "none");
-//         }
-//         if(scrollHeight <= ($("#events").prop("scrollHeight")-$(this).height() - (arrow.height() * 8))){
-//             $("#overflow-end").css("display", "flex");
-//         }
-//         else{
-//             $("#overflow-end").css("display", "none");
-//         }
-//     }
-
-//     // console.log(arrow.height());
-//     // console.log($(this).scrollTop());
-
-// })
 //#endregion
 
 //THIS IS A TEST DELETE WHEN NEEDED

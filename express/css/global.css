@@ -1,13 +1,13 @@
 :root{
     --ts-Height: 7em;
-    --bg:rgb(0, 0, 0);
-    --promo-bg:rgb(44, 44, 44);
-    --ts-bg:rgb(86, 193, 255);
-    --font-color: rgb(255, 255, 255);
-    --nav-bg: rgb(0, 0, 0);
-    --nav-font-color:rgb(86, 193, 255);
-    --nav-selection-color: rgb(255,255,255);
-    --nav-selection-font-color: rgb(0,0,0);
+    --bg:#000000;
+    --promo-bg:#2c2c2c;
+    --ts-bg:#56c1ff;
+    --font-color: #ffffff;
+    --nav-bg: #000000;
+    --nav-font-color:#56c1ff;
+    --nav-selection-color: #ffffff;
+    --nav-selection-font-color: #000000;
     --transition-dur: 0.5s;
 }
 body{
@@ -245,6 +245,15 @@ body{
 }
 #color label{
     font-size: 80%;
+}
+.customColor > *:not(:first-child){
+    cursor:pointer;
+}
+.copy:disabled{
+    cursor:auto;
+}
+.paste:disabled{
+    cursor:auto;
 }
 /* Transitions */
 body{
