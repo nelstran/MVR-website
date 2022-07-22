@@ -78,6 +78,9 @@ body{
     -moz-box-sizing:border-box;
     -webkit-box-sizing:border-box;
 }
+#back-button{
+    display: none;
+}
 #links li{
     background-color: var(--nav-bg);
     display:table-cell;
@@ -255,6 +258,12 @@ body > *{
     -moz-transition: background-color var(--transition-dur) ease;
     -o-transition: background-color var(--transition-dur) ease;
     transition: background-color var(--transition-dur) ease;
+}
+#links{
+    -webkit-transition: right var(--transition-dur) ease;
+    -moz-transition: right var(--transition-dur) ease;
+    -o-transition: right var(--transition-dur) ease;
+    transition: right var(--transition-dur) ease;
 }
 #links li{
     -webkit-transition: background-color var(--transition-dur) ease;

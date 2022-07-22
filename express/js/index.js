@@ -75,6 +75,15 @@ $(".paste").on("click", function(){
     color.trigger("change");
 })
 
+$("#navbar-button").on("click", function(){
+    $("#links").css("right", 0);
+    $("#back-button").css("right", 0);
+})
+$("#links > *").on("click", function(){
+    $("#links").css("right", "calc( -1 * (100vw - 5em))");
+    $("#back-button").css("right", "calc( -1 * (100vw - 5em))");
+})
+
 // $("#events").on("scroll", function(){ EXPERIMENTAL AF
 //     var arrow = $(".overflow-indicator").eq(0);
 //     var scrollHeight = $(this).scrollTop();
@@ -128,5 +137,3 @@ $(document).ready(function() {
             }
         });
 }); 
-
-

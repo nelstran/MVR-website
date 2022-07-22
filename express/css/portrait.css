@@ -1,4 +1,8 @@
 @media screen and (orientation: portrait) {
+    :root{
+        --nav-bg: rgb(44, 146, 206);
+        --nav-font-color: rgb(0,0,0);
+    }
     @media screen and (max-height:30em){
         #bottomSide{
             grid-template-rows: auto;
@@ -16,8 +20,79 @@
         max-height: var(--ts-Height);
         border-bottom: .1em solid var(--bg);
     }
+    #navbar-button{
+        position:fixed;
+        top:0;
+        right:0;
+        cursor: pointer;
+
+        margin: 2em;
+        padding:1em;
+
+        background-image: radial-gradient(var(--ts-bg), rgb(55, 126, 168) 100%);
+        border: .1em solid var(--ts-bg);
+        border-radius: 100%;
+    }
     #links{
-        display:none;
+        /* display: none; */
+        background-color: var(--nav-bg);
+        border-left: .1em solid black;
+
+        position:fixed;
+        top: 0;
+        right:calc( -1 * (100vw - 5em));
+
+        padding-top: var(--ts-Height);
+        overflow:hidden;
+
+        max-width: calc(100vw - 5em);
+        height: 100vh;
+
+        box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+
+    }
+    #back-button{
+        border-radius: 100%;
+        display:block;
+        cursor: pointer;
+        font-size: 5ch;
+        font-weight:800;
+        color:var(--nav-font-color);
+
+        position:fixed;
+        top:0;
+        right:calc( -1 * (100vw - 5em));
+
+        margin: 1rem 2rem;
+        padding-inline: 1rem;
+
+        -webkit-transition: var(--transition-dur) ease;
+        -moz-transition: var(--transition-dur) ease;
+        -o-transition: var(--transition-dur) ease;
+        transition: var(--transition-dur) ease;
+    }
+    #back-button:hover{
+        background-color: var(--nav-selection-color);
+        color:var(--nav-selection-font-color);
+    }
+    #links li{
+        display: inline-block;
+        border-bottom: .1em solid rgb(55, 126, 168);
+
+        margin-inline:2em;
+        overflow:visible;
+
+        min-width:calc(100% - 4em);
+    }
+    #links a{
+        /* border: 2px solid white; */
+        padding-block: 1em;
+        position:relative;
+        left:0;
+    }
+    #links a:hover{
+        top:0;
+        left:-1em;
     }
     #bottomSide{
         grid-template-rows: minmax(calc(100px + 2rem), 225px) 3fr;

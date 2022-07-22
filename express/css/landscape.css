@@ -18,6 +18,9 @@
             grid-template-columns: minmax(10%, 8em) auto;
         }
     }
+    #navbar-button{
+        display:none;
+    }
     #bottomSide{
         grid-template-columns: minmax(calc(100px + 2rem), 200px) 3fr;
     }
