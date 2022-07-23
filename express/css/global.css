@@ -38,7 +38,7 @@ body{
     display: block;
     z-index: -1;
 
-    background-image: url(../images/team.jpg);
+    background-image: url(../images/team-min.jpg);
     background-size: 100%;
     background-position: center;
 
@@ -171,6 +171,23 @@ body{
     align-items: center;
     vertical-align: middle;
     align-self: stretch;
+
+    position: relative;
+    top:0;
+}
+.event:hover{
+    animation: floating 1s ease-in-out forwards infinite;
+}
+@keyframes floating{
+    0%{
+        top: 0px;
+    }
+    50%{
+        top: -5px;
+    }
+    100%{
+        top:0px;
+    }
 }
 .promoIMG{
     border: .1rem solid black;
@@ -254,6 +271,14 @@ body{
 }
 .paste:disabled{
     cursor:auto;
+}
+#colorMisc{
+    display:flex;
+    justify-content: center;
+}
+#colorMisc button{
+    margin: .5em;
+    cursor: pointer;
 }
 /* Transitions */
 body{

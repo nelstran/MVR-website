@@ -83,6 +83,7 @@
         overflow:visible;
 
         min-width:calc(100% - 4em);
+        max-width: 80%;
     }
     #links a{
         /* border: 2px solid white; */
@@ -91,6 +92,7 @@
         left:0;
     }
     #links a:hover{
+        margin-inline:-3em;
         top:0;
         left:-1em;
     }
