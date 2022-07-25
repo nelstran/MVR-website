@@ -2,15 +2,16 @@
 var copiedColor = sessionStorage.getItem("copiedColor");
 var hasChanged = false;
 
-//From :root
+// Default colors
 var cssVar = [
-    "#000000",
-    "#2c2c2c",
-    "#56c1ff",
-    "#ffffff",
-    "#000000",
-    "#56c1ff",
+    $(":root").css("--bg"),
+    $(":root").css("--promo-bg"),
+    $(":root").css("--ts-bg"),
+    $(":root").css("--font-color"),
+    $(":root").css("--nav-bg"),
+    $(":root").css("--nav-font-color"),
 ];
+console.log(cssVar)
 
 //#region SETUP
 $(window).resize(setup);
