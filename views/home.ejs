@@ -9,7 +9,7 @@
     <body onload="setup()">
         <%- include('partials/header'); %>
         <div id="bottomSide">
-            <%- include('partials/events'); %>
+            <%- include('partials/events', {events: events}); %>
             <section id="main">
                 <%- include('partials/colors'); %>
                 <section>

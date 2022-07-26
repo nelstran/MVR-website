@@ -4,28 +4,20 @@
         <hr>
     </div>
     <section id="events">
-        <!-- <section class="event">
-            <img class="promoIMG" src="images/img.jpg">
+        <% if(events == null || events.length == 0) { %>
+            <h2 style="text-align:center; font-size: 120%">Nothing coming up right now.</h2>
+        <% }
+        else 
+        {%>
+        <% for(let i = 0; i < events.length; i++){ %>
+        <section class="event">
+            <img class="promoIMG" src="<%- events[i].event_promo %>">
             <div style="text-align:center">
-                <h2>When you go outside and smell that ZAZA</h2>
-                <p>01/01/01<br> Outside in your lawn </p>
+                <h2><%- events[i].event_name %></h2>
+                <p><%- events[i].event_date.toLocaleDateString("en-US") %><br> <%- events[i].event_location %> </p>
             </div>
-        </section> -->
-        <!-- <div class="overflow-indicator" id="overflow-begin">«</div> -->
-        <script>
-            let text = "<section class='event'>" + 
-            "<img class='promoIMG' src='/images/img-min.jpg' size=>" + 
-            "<div style='text-align:center'>" +
-                "<h2>When you go outside and smell that ZAZA</h2>" +
-                "<p>01/01/01<br> Outside in your lawn </p>" +
-            "</div>"  +
-            "</section>";
-            let items = [];
-            for(let i = 0; i < 1; i++){
-                items.push(text);
-            }
-            $("#events").append(items.join(""));
-        </script>
-        <!-- <div class="overflow-indicator" id="overflow-end">»</div> -->
+        </section>
+        <% } %>
+        <% } %>
     </section>
 </section>
