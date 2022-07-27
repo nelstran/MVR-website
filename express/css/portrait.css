@@ -1,7 +1,5 @@
 @media screen and (orientation: portrait) {
     :root{
-        /* --nav-bg: #2c92ce;
-        --nav-font-color: #000000; */
         --nav-bg-dark: #000000;
     }
     @media screen and (max-height:30em){
@@ -104,6 +102,10 @@
 
         overflow-x: auto;
         overflow-y:hidden;
+
+        box-shadow: 0px -78px 25px -80px rgba(0,0,0,0.75) inset;
+        -webkit-box-shadow: 0px -78px 25px -80px rgba(0,0,0,0.75) inset;
+        -moz-box-shadow: 0px -78px 25px -80px rgba(0,0,0,0.75) inset;
     }
     #label{
         position:sticky;
@@ -114,20 +116,6 @@
     #label > hr{
         display: none;
     }
-    /* #overflow-begin{
-        left:0;
-
-        box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-        -webkit-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-        -moz-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-    }
-    #overflow-end{
-        right:0;
-
-        box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-        -webkit-box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-        -moz-box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-    } */
     #events{
         flex-direction: row;
         align-items: stretch;

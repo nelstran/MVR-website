@@ -52,7 +52,8 @@ body{
     filter: blur(1px);
 }
 #topSide{
-    background-color: var(--ts-bg);
+    /* background-color: var(--ts-bg); */
+    background-color: #56c1ff7d;
     display:inline;
     width: 100%;
     z-index: 2;
@@ -63,7 +64,7 @@ body{
 }
 #logo{
     max-width: calc(var(--ts-Height) * .8);
-    padding: calc(var(--ts-Height) * .1);
+    margin: calc(var(--ts-Height) * .1);
 }
 #links{
     display:table;
@@ -147,19 +148,6 @@ body{
 
     justify-content:flex-start;
 }
-/* .overflow-indicator{
-    padding: .3em;
-
-    font-weight: 900;
-    font-size:2.5em;
-
-    display:flex;
-    align-self: stretch;
-    align-items: center;
-    justify-content: center;
-
-    position: sticky;
-} */
 .event{
     display: flex;
     display: -webkit-box;
