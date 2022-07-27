@@ -4,20 +4,29 @@
         <hr>
     </div>
     <section id="events">
+        
         <% if(events == null || events.length == 0 || false) { %> <!-- Set false to true if you don't want events-->
             <h2 style="text-align:center; font-size: 120%">Nothing coming up right now.</h2>
         <% }
         else 
         {%>
-        <% for(let i = 0; i < events.length; i++){ %>
-        <section class="event">
-            <img class="promoIMG" src="<%- events[i].event_promo %>">
-            <div style="text-align:center">
-                <h2><%- events[i].event_name %></h2>
-                <p><%- events[i].event_date.toLocaleDateString("en-US") %><br> <%- events[i].event_location %> </p>
-            </div>
-        </section>
+            <% for(let i = 0; i < events.length; i++){ %>
+            <a href="#poster<%- i %>">
+            <section class="event">
+                <img class="promoIMG" src="<%- events[i].event_promo %>" width="100" height="100">
+                <div style="text-align:center">
+                    <h2><%- events[i].event_name %></h2>
+                    <p><%- events[i].event_date.toLocaleDateString("en-US") %><br> <%- events[i].event_location %> </p>
+                </div>
+            </section>
+            </a>
+            <% } %>
         <% } %>
+
+        <% for(let i = 0; i < events.length; i++){ %>
+        <a class="lightbox" href="#" id="poster<%- i %>">
+            <span style="background-image: url('..<%- events[i].event_promo %>');"></span>
+        </a>
         <% } %>
     </section>
 </section>

@@ -48,6 +48,9 @@
         height: 100vh;
 
         box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+        -webkit-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+        -moz-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+
     }
     #back-button{
         border-radius: 100%;
