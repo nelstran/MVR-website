@@ -4,5 +4,4 @@
 /.vscode
 package-lock.json
 /process.env
-/CREATE DATABASE events;.pgsql
 CREATE DATABASE events;.pgsql
