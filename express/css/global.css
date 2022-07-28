@@ -196,58 +196,29 @@ body{
     padding:0;
     margin: 0;
 }
-#events a{
-    text-decoration: none;
-    color:inherit;
-
-    align-self: stretch;
-
-    margin:0;
-    padding:0;
-}
-.lightbox{
-    /* Default to hidden */
-  display: none;
-
-  /* Overlay entire screen */
-  position: fixed;
-  z-index: 5;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.poster{
+    display: none;
   
-  /* A bit of padding around image */
-  padding: 1em;
-
-  /* Translucent background */
-  background: rgba(0, 0, 0, 0.8);
-}
-.lightbox:target{
-    display:block;
-}
-.lightbox span{
-    /* Full width and height */
-  display: block;
-  width: 100%;
-  height: 100%;
-
-  /* Size and position background image */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.lightbox a{
-    border: 2px solid red;
-    z-index: 6;
     position: fixed;
-    top:50vh;
-    right:0;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    padding: 1em;
+  
+    background: rgba(0, 0, 0, 0.8);
+  }
+.poster span{
+    display:block;
+    width: 100%;
+    height:100%;
 
-    width:100px;
-    height:100px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 
-    background-color: red;
 }
 #main{
     background-color: var(--bg);
