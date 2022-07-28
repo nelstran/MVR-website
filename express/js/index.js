@@ -11,7 +11,6 @@ var cssVar = [
     $(":root").css("--nav-bg"),
     $(":root").css("--nav-font-color"),
 ];
-console.log(cssVar)
 
 //#region SETUP
 $(window).resize(setup);
@@ -50,6 +49,18 @@ function setIMGSize(){
     })
 };
 
+//#endregion
+
+//#region FUNCTIONS
+function toggleImage(event){
+    let element = $(event).attr("id").split("-");
+    let id = element[1];
+    console.log(element)
+    if(element[0] == "image")
+        $(`#poster-${id}`).css("display", "block");
+    else
+        $(`#poster-${id}`).css("display", "none");
+}
 //#endregion
 
 //#region HELPER FUNCTIONS
@@ -109,7 +120,35 @@ document.getElementById("topSide").addEventListener("wheel", function(e){
     // scroll the div
     document.getElementById("main").scrollBy(e.deltaX, e.deltaY);
 });
+var didScroll = false;
+var lastScroll = 0;
+$(window).scroll(function(){
+    if(!didScroll){
+        //Add stuff here
+        let st=$(window).scrollTop();
+        let navButton = $("#navbar-button");
+        if(lastScroll < st){
+            navButton.css({
+                "position": "fixed",
+                "top": "-10em"
+            })
+        }
+        else{
+            navButton.css({
+                "position": "fixed",
+                "top": "0"
+            })
+        }
+        lastScroll = st;
+    }
 
+    didScroll = true;
+})
+setInterval(function() {
+    if ( didScroll ) {
+        didScroll = false;
+    }
+}, 100);
 $(".customColor input").on("change", function(){
     sessionStorage.setItem(`${$(this).attr("id")}`, $(this).val());
 

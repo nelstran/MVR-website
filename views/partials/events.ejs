@@ -11,22 +11,21 @@
         else 
         {%>
             <% for(let i = 0; i < events.length; i++){ %>
-            <a href="#poster<%- i %>">
-            <section class="event">
+            <section class="event" id="image-<%- i %>" onclick="toggleImage(this);">
                 <img class="promoIMG" src="<%- events[i].event_promo %>" width="100" height="100">
                 <div style="text-align:center">
                     <h2><%- events[i].event_name %></h2>
-                    <p><%- events[i].event_date.toLocaleDateString("en-US") %><br> <%- events[i].event_location %> </p>
+                    <p><%- events[i].event_date.toLocaleDateString("en-US") %> @<br> <%- events[i].event_location %> </p>
                 </div>
             </section>
-            </a>
             <% } %>
         <% } %>
 
         <% for(let i = 0; i < events.length; i++){ %>
-        <a class="lightbox" href="#" id="poster<%- i %>">
-            <span style="background-image: url('..<%- events[i].event_promo %>');"></span>
-        </a>
+            <div class="poster" onclick="toggleImage(this);" id="poster-<%- i %>">
+                <span style="background-image: url('..<%- events[i].event_promo %>');"></span>
+            </div>
         <% } %>
     </section>
+    
 </section>
