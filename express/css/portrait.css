@@ -1,7 +1,5 @@
 @media screen and (orientation: portrait) {
     :root{
-        /* --nav-bg: #2c92ce;
-        --nav-font-color: #000000; */
         --nav-bg-dark: #000000;
     }
     @media screen and (max-height:30em){
@@ -50,6 +48,9 @@
         height: 100vh;
 
         box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+        -webkit-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+        -moz-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
+
     }
     #back-button{
         border-radius: 100%;
@@ -104,6 +105,10 @@
 
         overflow-x: auto;
         overflow-y:hidden;
+
+        box-shadow: 0px -78px 25px -80px rgba(0,0,0,0.75) inset;
+        -webkit-box-shadow: 0px -78px 25px -80px rgba(0,0,0,0.75) inset;
+        -moz-box-shadow: 0px -78px 25px -80px rgba(0,0,0,0.75) inset;
     }
     #label{
         position:sticky;
@@ -114,20 +119,6 @@
     #label > hr{
         display: none;
     }
-    /* #overflow-begin{
-        left:0;
-
-        box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-        -webkit-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-        -moz-box-shadow: 78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-    }
-    #overflow-end{
-        right:0;
-
-        box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-        -webkit-box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-        -moz-box-shadow: -78px 0px 25px -80px rgba(0,0,0,0.75) inset;
-    } */
     #events{
         flex-direction: row;
         align-items: stretch;
@@ -151,8 +142,9 @@
     }
 }
 #navbar-button{
-    -webkit-transition: var(--transition-dur) ease;
-    -moz-transition: var(--transition-dur) ease;
-    -o-transition: var(--transition-dur) ease;
-    transition: var(--transition-dur) ease;
+    --nav-dur: 0.3s;
+    -webkit-transition: var(--nav-dur) ease-out;
+    -moz-transition: var(--nav-dur) ease-out;
+    -o-transition: var(--nav-dur) ease-out;
+    transition: var(--nav-dur) ease-out;
 }

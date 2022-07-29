@@ -15,4 +15,4 @@
 --     '/images/habo.png'
 -- )
 
-SELECT * from events
+-- SELECT * from events
