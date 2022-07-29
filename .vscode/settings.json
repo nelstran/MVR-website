@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/a615434b-79e2-4285-a042-add479de70a8/microsoft.web/sites/subscriptions/a615434b-79e2-4285-a042-add479de70a8/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/MidvaleRecords",
-    "appService.deploySubpath": "."
-}
