@@ -92,7 +92,7 @@
         position:relative;
         left:0;
     }
-    #links a:hover{
+    #links a:hover, #links a:hover{
         margin-inline:-3em;
         top:0;
         left:-1em;
