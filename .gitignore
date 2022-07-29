@@ -3,4 +3,9 @@
 /.github
 /.vscode
 package-lock.json
+<<<<<<< HEAD
 /.env
+=======
+/process.env
+CREATE DATABASE events;.pgsql
+>>>>>>> d084544ff23a1d17b17ab8b85d80f89c5313a22c
