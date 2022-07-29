@@ -5,7 +5,6 @@ const env = require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
 const { Client } = require('pg');
-const { CLIENT_RENEG_WINDOW } = require('tls');
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
