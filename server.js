@@ -16,13 +16,16 @@ const client = new Client({
 var events;
 var updateEvents = function(){
   client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
-    if (err) throw err;
+    if (err) return events = null;
     events = data.rows;
   })
 };
-
-client.connect();
-
+try{
+  client.connect();
+}
+catch{
+  console.log("Unable to connect to Postgres Servers");
+}
 app.use(express.json());
 app.use(express.static("express"));// default URL for website
 

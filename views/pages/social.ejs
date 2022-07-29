@@ -3,6 +3,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <head>
+        <link rel="stylesheet" href="/css/social.css">
         <%- include('../partials/metadata'); %>
     </head>
     
@@ -12,8 +13,45 @@
             <%- include('../partials/events', {events: events}); %>
             <section id="main">
                 <%- include('../partials/colors'); %>
-                <section>
-                    <h1>Social Page</h1>
+
+                <section class="socials">
+                    <div>
+                        <img src="/images/star.jpg">
+                        <h1>Stardance Riot</h1>
+                        <div class="socialLinks">
+                            <a href="https://www.instagram.com/stardanceriot/" target="_blank">
+                                <img src="https://static.cdninstagram.com/rsrc.php/v3/yt/r/30PrGfR3xhB.png">
+                            </a>
+                            <a>
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/yD/r/d4ZIVX-5C-b.ico">
+                            </a>
+                            <a>
+                                <img src="//abs.twimg.com/favicons/twitter.2.ico">
+                            </a>
+                            <a>
+                                <img src="https://www.youtube.com/s/desktop/cc9e7915/img/favicon_32x32.png">
+                            </a>
+                        </div>
+                    </div>
+                    <ul> 
+                        <h1>Members:<hr></h1>
+                        <li>
+                            <img class="profile" src="/images/dog.jpg">
+                            Shelby Wren
+                        </li>
+                        <li>
+                            <img class="profile" src="/images/ethan.jpg">
+                            Ethan Goldrup
+                        </li>
+                        <li>
+                            <img class="profile" src="/images/habo.png">
+                            Lindy Alvarado
+                        </li>
+                        <li>
+                            <img class="profile" src="/images/mid-min.jpg">
+                            Parley Kimball
+                        </li>
+                    </ul>
                 </section>
             </section>
         </div>
