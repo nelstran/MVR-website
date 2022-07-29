@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     gap:1em;
+    padding: 3em;
 }
 .socials > div{
     display:flex;
@@ -73,10 +74,21 @@
     border-radius: 100%;
     border: 1px solid white;
 }
+@media screen and (orientation: portrait) {
+    #main{
+        flex-flow: row wrap;
+        align-items: flex-start;
+        justify-content: center;
+    }
+}
 @media screen and (orientation:landscape){
     .socials{
         width:50vw;
         justify-content: space-evenly;
+    }
+    .socials:nth-of-type(2n){
+        background-color: rgb(31, 31, 31);
+        /* flex-direction: row-reverse; */
     }
     .socials li{
         justify-content: flex-start;
