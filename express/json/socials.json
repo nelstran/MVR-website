@@ -1,0 +1,109 @@
+
+[
+    {
+        "enabled": true,
+        "name": "Stardance Riot",
+        "icon" : "/images/star.webp",
+        "socials" : {
+            "insta": "https://www.instagram.com/stardanceriot/",
+            "fb": null,
+            "twitter": null,
+            "yt": null,
+            "bandcamp": null
+        },
+        "members" : [
+            {
+                "name": "Shelby Wren",
+                "icon": "/images/dog.webp"
+            },
+            {
+                "name": "Ethan Goldrup",
+                "icon": "/images/ethan.webp"
+            },
+            {
+                "name": "Lindy Alvarado",
+                "icon": "/images/habo.webp"
+            },
+            {
+                "name": "Parley Kimball",
+                "icon": "/images/mid-min.webp"
+            }
+        ]
+    },
+    {
+        "enabled": true,
+        "name": "Ethyl Cat",
+        "icon" : "/images/ethyl.webp",
+        "socials" : {
+            "insta": "https://www.instagram.com/ethylcat/",
+            "fb": null,
+            "twitter": null,
+            "yt": null,
+            "bandcamp": "https://ethylcat.bandcamp.com/releases"
+        },
+        "members" : [
+            {
+                "name": "Ethan Goldrup",
+                "icon": "/images/ethan.webp"
+            },
+            {
+                "name": "Creighton Lowe",
+                "icon": "/images/dog.webp"
+            },
+            {
+                "name": "Ella",
+                "icon": "/images/habo.webp"
+            }
+        ]
+    },
+    {
+        "enabled": true,
+        "name": "EXAMPLE",
+        "icon" : null,
+        "socials" : {
+            "insta": "https://www.instagram.com",
+            "fb": "https://www.facebook.com",
+            "twitter": "https://www.twitter.com",
+            "yt": "https://www.twitter.com",
+            "bandcamp": "https://www.bandcamp.com"
+        },
+        "members" : [
+            {
+                "name": "EXAMPLE",
+                "icon": null,
+                "social": {
+                    "insta": null,
+                    "fb": null,
+                    "twitter": null,
+                    "yt": null,
+                    "bandcamp": null
+                }
+            }
+        ]
+    },
+    {
+        "enabled": false,
+        "name": "EXAMPLE",
+        "icon" : null,
+        "socials" : {
+            "insta": null,
+            "fb": null,
+            "twitter": null,
+            "yt": null,
+            "bandcamp": null
+        },
+        "members" : [
+            {
+                "name": null,
+                "icon": null,
+                "social": {
+                    "insta": null,
+                    "fb": null,
+                    "twitter": null,
+                    "yt": null,
+                    "bandcamp": null
+                }
+            }
+        ]
+    }
+]

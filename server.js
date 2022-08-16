@@ -13,7 +13,7 @@ const client = new Client({
 });
 
 var events;
-var updateEvents = function(){
+function updateEvents(){
   client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
     if (err) return events = null;
     events = data.rows;
@@ -45,7 +45,7 @@ app.get('/pages/projects', (req, res) => {
 });
 app.get('/pages/social', (req, res) => {
   updateEvents();
-  res.render('pages/social', {events: events});
+  res.render('pages/social', {events: events, socials: require("./express/json/socials.json")});
 });
 app.get('/pages/forum', (req, res) => {
   updateEvents();

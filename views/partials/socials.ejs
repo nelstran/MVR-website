@@ -1,0 +1,75 @@
+<%
+let instaICO = "https://static.cdninstagram.com/rsrc.php/v3/yt/r/30PrGfR3xhB.png";
+let fbICO =  "https://static.xx.fbcdn.net/rsrc.php/yD/r/d4ZIVX-5C-b.ico";
+let twitterICO = "//abs.twimg.com/favicons/twitter.2.ico";
+let ytICO = "https://www.youtube.com/s/desktop/cc9e7915/img/favicon_32x32.png";
+let bandICO = "https://s4.bcbits.com/img/favicon/favicon-32x32.png";
+let nullImg = "/images/img-min.webp";
+for(let key in socials){ 
+    var band = key;
+    if(socials.hasOwnProperty(key))
+        band = socials[key];
+
+    if(!band.enabled)
+        continue; 
+        %>
+
+    <section class="socials">
+        <div>
+            <img src="<%- band.icon == null ? nullImg : band.icon %>">   
+            <h1> <%- band.name %> </h1>
+            <div class="socialLinks">
+                <% for(let social in band.socials){
+                    let media = social;
+                    let link = band.socials[social];
+                    let ico = nullImg;
+                    if(link == null)
+                        continue;
+                    %>
+                    <a href="<%- link %>" target="_blank">
+                        <%
+                        switch(media){
+                            case "insta":
+                                ico = instaICO;
+                                break;
+                            case "fb":
+                                ico = fbICO;
+                                break;
+                            case "twitter":
+                                ico = twitterICO;
+                                break;
+                            case "yt":
+                                ico = ytICO;
+                                break;
+                            case "bandcamp":
+                                ico = bandICO;
+                                break;
+                        }   
+                        %> 
+                        <img src="<%- ico %>">
+                    </a>
+                <%}%>
+            </div> 
+        </div>
+        <div style="gap:0">
+            <h1>Members:<hr></h1> 
+            <ul>
+                <% for(let key in band.members){
+                    var member = key;
+                    if(band.members.hasOwnProperty(key))
+                        member = band.members[key];
+                    
+                    let name = member.name;
+                    let icon = member.icon == null ? nullImg : member.icon;
+                    %>
+                    <li>
+                        <img class="profile" src="<%- icon %>">
+                        <%- name %> 
+                    </li>
+                <%}%>
+            </ul>
+        </div>
+    </section>
+
+   <% } %>
+   
