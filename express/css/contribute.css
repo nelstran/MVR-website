@@ -1,0 +1,29 @@
+form{
+    background-color: rgb(31,31,31);
+    display:flex;
+    gap:1em;
+    flex-direction: column;
+    padding:1em;
+}
+input[type=text], input[type=email]{
+    margin-top:.5em;
+}
+form > section:nth-of-type(1) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1em;
+    padding-inline:0;
+}
+#SSN > input{
+    max-width: 2em;
+}
+#teamType{
+    display: flex;
+    justify-content: space-evenly;
+    gap:1em;
+    flex-wrap: wrap;
+}
+form > section > section {
+    margin-inline:0;
+}

@@ -252,7 +252,7 @@ body{
     max-width: 62.5rem;
 
 }
-#main section{
+#main > section{
     margin-inline: 1rem;
     max-width: 62.5rem;
 }

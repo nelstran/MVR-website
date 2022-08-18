@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <head>
+        <%- include('../partials/metadata'); %>
+        <link rel="stylesheet" href="/css/contribute.css">
+
+    </head>
+    
+    <body onload="setup()">
+        <%- include('../partials/header'); %>
+        <div id="bottomSide">
+            <%- include('../partials/events', {events: events}); %>
+            <section id="main">
+                <%- include('../partials/colors'); %>
+                <section>
+                    <h1 style="position:relative; left:50%;
+                    transform: translate(-50%,0); text-align: center;">
+                        Join Us!
+                    </h1>
+
+                    <p style="position:relative; left:50%;
+                    transform: translate(-50%,0); text-align: center; color:black">
+                        This form does nothing do not put sensitive information here
+                    </p>
+
+                    <form>
+                            <section>
+                                <section style="flex-grow: 1; margin-right: 1em;">
+                                <label for="first" style="max-width:100%;">First Name:<br>
+                                <input tabindex=1 type="text" id="first" name="fname" style="width:100%;"
+                                placeholder="John">
+                                </label>
+                                </section>
+
+                                <section style="flex-grow: 1; margin-right: 1em;">
+                                <label for="last" style="max-width:100%;">Last Name:<br>
+                                <input tabindex=2 type="text" id="last" name="lname" style="width:100%;"
+                                placeholder="Doe">
+                                </label>
+                                </section>
+                            </section>
+
+                            <section id="SSN">
+                                <label for="SS" >Social Security:</label><br>
+                               <input tabindex=3 type="text" id="SS1" name="SS" maxlength="3"
+                               placeholder="123"> -
+                               <input tabindex=4 type="text" id="SS2" name="SS" maxlength="2"
+                               placeholder="45"> -
+                               <input tabindex=5 type="text" id="SS3" name="SS" maxlength="3"
+                               placeholder="678">
+                            </section>
+
+                            <section style="padding-right: 1em;">
+                               <label for="mail" >Email Address:</label><br>
+                               <input tabindex=6 type="email" id="mail" name="mail" style="width:100%;"
+                               placeholder="name@domain.com">
+                            </section>
+
+                            <section id="teamType">
+                                <label for="team">
+                                    <input type="radio" id="type1" name="teamType" value="team" checked="true">
+                                    I'm with a group
+                                </label>
+                                <label for="solo">
+                                    <input type="radio" id="type2" name="teamType" value="solo">
+                                    I'm alone
+                                </label>
+                            </section>
+
+                            <textarea tabindex=7 name="moreInfo" id="moreInfo"
+                            placeholder="Enter more information you would like to include (Optional)"
+                             style="resize:none; height: 5em;"></textarea> 
+
+                            <button tabindex=8 type="button" id="joinButton">Submit</button>
+                            <h1 style="display:none; text-align:center;">Form submitted!</h1>
+                    </form>
+                </section>
+            </section>
+        </div>
+        <script src="/js/index.js"></script>
+        <script src="/js/contribute.js"></script>
+    </body>
+</html>
