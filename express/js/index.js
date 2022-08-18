@@ -55,7 +55,6 @@ function setIMGSize(){
 function toggleImage(event){
     let element = $(event).attr("id").split("-");
     let id = element[1];
-    console.log(element)
     if(element[0] == "image")
         $(`#poster-${id}`).css("display", "block");
     else
@@ -124,7 +123,6 @@ var didScroll = false;
 var lastScroll = 0;
 $(window).scroll(function(){
     if(!didScroll){
-        //Add stuff here
         let st=$(window).scrollTop();
         let navButton = $("#navbar-button");
         if(lastScroll < st){
@@ -216,15 +214,3 @@ $("#closeButton").on("click", function(){
 
 })
 //#endregion
-
-//THIS IS A TEST DELETE WHEN NEEDED
-$(document).ready(function() {
-    fixedElement = document.getElementById("topSide");
-        $.ajax({
-            url : "package/movie.txt",
-            dataType: "text",
-            success : function (data) {
-                $(".movie").html(data);
-            }
-        });
-}); 
