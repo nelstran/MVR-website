@@ -8,10 +8,13 @@ form{
     border-radius: 2%;
 }
 label{
-    transition: color var(--transition-dur) ease;
+    transition: color .1s ease;
     right:0;
     position:relative;
 
+}
+.invalid{
+    background-color: rgb(255, 134, 134);
 }
 .animate{
     animation: error .2s linear forwards;
@@ -35,7 +38,7 @@ input[type=text], input[type=email]{
     font-size: 1.1rem;
     border-radius: 2px;
     margin-top:.5em;
-    background-color: rgb(229, 229, 229);
+    transition: background-color .1s linear;
 }
 #require{
     display:none;

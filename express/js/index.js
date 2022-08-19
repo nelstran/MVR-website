@@ -124,8 +124,9 @@ var lastScroll = 0;
 $(window).scroll(function(){
     if(!didScroll){
         let st=$(window).scrollTop();
+        console.log(st);
         let navButton = $("#navbar-button");
-        if(lastScroll < st){
+        if(lastScroll < st && st > 100){
             navButton.css({
                 "position": "fixed",
                 "top": "-10em"
@@ -182,12 +183,12 @@ $(".paste").on("click", function(){
 })
 
 $("#navbar-button").on("click", function(){
-    $("#links").css("right", 0);
+    $("#links").css("left", "5em");
     $("#back-button").css("right", 0);
 })
 $("#links > *").on("click", function(){
-    $("#links").css("right", "calc( -1 * (100vw - 5em))");
-    $("#back-button").css("right", "calc( -1 * (100vw - 5em))");
+    $("#links").css("left", "100vw");
+    $("#back-button").css("right", "calc(5em - 100vw)");
 })
 
 $("#defaultButton").on("click", function(){

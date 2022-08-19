@@ -15,20 +15,43 @@ $("#SSN input").keyup(function (event) {
         $(this).prev('#SSN input').focus();
 });
 $("#joinButton").click(function(e){
-    if($("#first").val().length > 0 &&
-        $("#last").val().length > 0 &&
-        $("#mail").val().length > 0 &&
-        $("#mail").is(":valid")){
+    let forms = [$("#first"), $("#last"), $("#mail")];
+    let valid = [
+        forms[0].val().length > 0,
+        forms[1].val().length > 0,
+        forms[2].val().length > 0 && forms[2].is(":valid")
+    ];
+    if(valid.every(bool => bool == true)){
             $("form > *").css("display", "none");
             $("form > h1").css("display", "block");
     }
     else{
-        $("label[for=first]").addClass("animate");
+        let scrollToForm = null;
+        for(let i = 0; i < valid.length; i++){
+            let formID = forms[i].attr('id');
+            if(!valid[i]){
+                $(`label[for=${formID}]`).addClass("animate");
+                $(`label[for=${formID}]`).css("color", "red");
+                $(`label[for=${formID}] input`).addClass("invalid");
+                if(scrollToForm == null)
+                    scrollToForm = formID;
+            }
+            else{
+                $(`label[for=${formID}]`).css("color", "white");
+                $(`label[for=${formID}] input`).removeClass("invalid");
+            }
+        }
+        $('html, body').animate({
+            scrollTop: $(`#${scrollToForm}`).offset().top - 50
+        }, 500);
+        console.log($(`#${scrollToForm}`).offset().top + " " + scrollToForm);
+        // $("label[for=first]").addClass("animate");
         $("#require").css("display", "block");
+
     }
     return false;
 });
 
-$("label[for=first]").on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function (){
+$("label[for=first], label[for=last], label[for=mail]").on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function (){
     $(this).removeClass("animate");
 })
