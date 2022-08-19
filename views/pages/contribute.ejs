@@ -15,66 +15,127 @@
             <section id="main">
                 <%- include('../partials/colors'); %>
                 <section>
-                    <h1 style="position:relative; left:50%;
-                    transform: translate(-50%,0); text-align: center;">
+                    <h1 style="text-align: center;">
                         Join Us!
                     </h1>
 
-                    <p style="position:relative; left:50%;
-                    transform: translate(-50%,0); text-align: center; color:black">
-                        This form does nothing do not put sensitive information here
+                    <p style="text-align: center; color:black">
+                        This form does nothing. Do not put sensitive information here
                     </p>
 
                     <form>
-                            <section>
-                                <section style="flex-grow: 1; margin-right: 1em;">
+                        <p id="require">
+                            Invalid form
+                        </p>
+                        <section id="name">
+                            <section style="flex-grow: 1; margin-right: 1em;">
                                 <label for="first" style="max-width:100%;">First Name:<br>
                                 <input tabindex=1 type="text" id="first" name="fname" style="width:100%;"
                                 placeholder="John">
                                 </label>
-                                </section>
+                            </section>
 
-                                <section style="flex-grow: 1; margin-right: 1em;">
+                            <section style="flex-grow: 1; margin-right: 1em;">
                                 <label for="last" style="max-width:100%;">Last Name:<br>
-                                <input tabindex=2 type="text" id="last" name="lname" style="width:100%;"
+                                <input tabindex=1 type="text" id="last" name="lname" style="width:100%;"
                                 placeholder="Doe">
                                 </label>
-                                </section>
+                            </section>
+                        </section>
+
+                        <section id="SSN">
+                            <label for="SS" >Social Security:</label><br>
+                            <input tabindex=1 type="text" id="SS1" name="SS" maxlength="3"
+                            placeholder="123"> -
+                            <input tabindex=1 type="text" id="SS2" name="SS" maxlength="2"
+                            placeholder="45"> -
+                            <input tabindex=1 type="text" id="SS3" name="SS" maxlength="3"
+                            placeholder="678">
+                        </section>
+
+                        <section id="credit" style="align-items:flex-end">
+                            <section>
+                                <label for="CC" >Credit Card Number:</label><br>
+                                <input tabindex=1 type="text" id="CC" name="CC" maxlength="19"
+                                placeholder="1234 5678 9123 4567">
+                            </section>
+                            <section>
+                                <input tabindex=1 type="text" id="route" name="route" maxlength="9"
+                                placeholder="Routing Number">
+                            </section>
+                            <section>
+                                <input tabindex=1 type="text" id="account" name="account" maxlength="17"
+                                placeholder="Account Number">
+                            </section>
+                        </section>
+
+                        <section id="drop">
+                            <section>
+                                <label for="blood">Blood Type:</label>
+                                <select name="blood" id="blood" style="padding-right: 1em;">
+                                    <option selected disabled hidden>(Select)</option>
+                                    <option>A+</option>
+                                    <option>A-</option>
+                                    <option>B+</option>
+                                    <option>B-</option>
+                                    <option>O</option>
+                                    <option>AB+</option>
+                                </select>
                             </section>
 
-                            <section id="SSN">
-                                <label for="SS" >Social Security:</label><br>
-                               <input tabindex=3 type="text" id="SS1" name="SS" maxlength="3"
-                               placeholder="123"> -
-                               <input tabindex=4 type="text" id="SS2" name="SS" maxlength="2"
-                               placeholder="45"> -
-                               <input tabindex=5 type="text" id="SS3" name="SS" maxlength="3"
-                               placeholder="678">
+                            <section>
+                                <label for="csgo">CSGO Rank:</label>
+                                <select name="csgo" id="csgo">
+                                    <option selected disabled hidden>(Select)</option>
+                                    <option>Silver</option>
+                                    <option>Gold Nova</option>
+                                    <option>Master Guardian</option>
+                                    <option>DMG</option>
+                                    <option>Legendary Eagle</option>
+                                    <option>Global Elite</option>
+                                </select>
                             </section>
 
-                            <section style="padding-right: 1em;">
-                               <label for="mail" >Email Address:</label><br>
-                               <input tabindex=6 type="email" id="mail" name="mail" style="width:100%;"
-                               placeholder="name@domain.com">
+                            <section>
+                                <label for="favColor">Favorite Color:</label>
+                                <select name="favColor" id="favColor">
+                                    <option selected disabled hidden>(Select)</option>
+                                    <option>Purple</option>
+                                </select>
                             </section>
+                        </section>
 
-                            <section id="teamType">
-                                <label for="team">
-                                    <input type="radio" id="type1" name="teamType" value="team" checked="true">
-                                    I'm with a group
-                                </label>
-                                <label for="solo">
-                                    <input type="radio" id="type2" name="teamType" value="solo">
-                                    I'm alone
-                                </label>
-                            </section>
+                        <section style="padding-right: 1em;">
+                           <label for="mail" >Email Address:</label><br>
+                           <input tabindex=1 type="email" id="mail" name="mail" style="width:100%;"
+                           placeholder="name@domain.com">
+                        </section>
 
-                            <textarea tabindex=7 name="moreInfo" id="moreInfo"
-                            placeholder="Enter more information you would like to include (Optional)"
-                             style="resize:none; height: 5em;"></textarea> 
+                        <section id="teamType">
+                            <label for="team">
+                                <input type="radio" id="type1" name="teamType" value="team" checked="true">
+                                I'm with a group
+                            </label>
 
-                            <button tabindex=8 type="button" id="joinButton">Submit</button>
-                            <h1 style="display:none; text-align:center;">Form submitted!</h1>
+                            <label for="solo">
+                                <input type="radio" id="type2" name="teamType" value="solo">
+                                I'm alone
+                            </label>
+                        </section>
+
+                        <section style="text-align: center;">
+                            <label for="cook">
+                               <input type="checkbox" name="cook" id="cook">
+                               Can you cook fudge brownies?
+                            </label>
+                        </section>
+
+                        <textarea tabindex=1 name="moreInfo" id="moreInfo"
+                        placeholder="Enter more information you would like to include (Optional)"
+                         style="resize:none; height: 5em;"></textarea> 
+
+                        <button tabindex=1 type="button" id="joinButton">Submit</button>
+                        <h1 style="display:none; text-align:center;">Form submitted!</h1>
                     </form>
                 </section>
             </section>

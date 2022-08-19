@@ -1,14 +1,50 @@
 form{
     background-color: rgb(31,31,31);
+    border: .2em solid rgb(70, 70, 70);
     display:flex;
     gap:1em;
     flex-direction: column;
     padding:1em;
+    border-radius: 2%;
+}
+label{
+    transition: color var(--transition-dur) ease;
+    right:0;
+    position:relative;
+
+}
+.animate{
+    animation: error .2s linear forwards;
+}
+@keyframes error{
+    0%{
+        right: 0px;
+    }
+    50%{
+        right: -5px;
+    }
+    75%{
+        right: 5px;
+    }
+    100%{
+        right:0px;
+    }
 }
 input[type=text], input[type=email]{
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.1rem;
+    border-radius: 2px;
     margin-top:.5em;
+    background-color: rgb(229, 229, 229);
 }
-form > section:nth-of-type(1) {
+#require{
+    display:none;
+    text-align:center;
+    margin:0;
+    padding:0;
+    color:red;
+}
+#name, #drop, #credit{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
