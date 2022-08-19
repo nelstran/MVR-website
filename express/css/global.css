@@ -198,6 +198,7 @@ body{
 
     width: 90%;
     min-width: 5em;
+    min-height: 5em;
 
     margin: .5em;
 }
@@ -303,10 +304,10 @@ body > *{
     transition: background-color var(--transition-dur) ease;
 }
 #links{
-    -webkit-transition: right var(--transition-dur) ease;
-    -moz-transition: right var(--transition-dur) ease;
-    -o-transition: right var(--transition-dur) ease;
-    transition: right var(--transition-dur) ease;
+    -webkit-transition: left var(--transition-dur) ease;
+    -moz-transition: left var(--transition-dur) ease;
+    -o-transition: left var(--transition-dur) ease;
+    transition: left var(--transition-dur) ease;
 }
 #links li{
     -webkit-transition: background-color var(--transition-dur) ease;

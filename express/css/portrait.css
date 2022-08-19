@@ -38,8 +38,9 @@
         border-left: .1em solid black;
 
         position:fixed;
+        transform-origin: top left;
         top: 0;
-        right:calc( -1 * (100vw - 5em));
+        left: 100vw;
 
         padding-top: var(--ts-Height);
         overflow:hidden;
@@ -62,7 +63,7 @@
 
         position:fixed;
         top:0;
-        right:calc( -1 * (100vw - 5em));
+        right:calc(5em - 100vw);
 
         margin: 2rem;
         padding-inline: 1rem;
