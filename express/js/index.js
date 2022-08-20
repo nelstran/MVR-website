@@ -40,6 +40,11 @@ function setup(){
     setIMGSize();
     setColorValue();
     darkenNavColor();
+    $("#contribute-content").css("width", $("#contribute").css("width"));
+    $("#contribute-content > li").each(function(i){
+        i++;
+        $(this).css("transition", `opacity ${i * 200}ms, right ${i * 100}ms`)
+    })
 };
 
 function setIMGSize(){
@@ -186,11 +191,19 @@ $("#navbar-button").on("click", function(){
     $("#links").css("left", "5em");
     $("#back-button").css("right", 0);
 })
-$("#links > *").on("click", function(){
+$("#links > *:not(#contribute > a, #contribute)").on("click", function(){
     $("#links").css("left", "100vw");
     $("#back-button").css("right", "calc(5em - 100vw)");
 })
-
+$("#contribute > a").on("click"), function(){
+    $("#contribute-content > li").toggleClass("show");
+}
+$("#contribute-content > li > a").mouseenter(function(){
+    $("#contribute > a").focus();
+})
+$("#contribute-content > li > a").mouseleave(function(){
+    $("#contribute > a").blur();
+})
 $("#defaultButton").on("click", function(){
     $(".customColor input").each(function(i){
         let color = cssVar[i];
