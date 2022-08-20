@@ -77,7 +77,7 @@
         background-color: var(--nav-selection-color);
         color:var(--nav-selection-font-color);
     }
-    #links li{
+    #links > li{
         display: inline-block;
         border-bottom: .1em solid var(--nav-bg-dark);
 
@@ -87,13 +87,13 @@
         min-width:calc(100% - 4em);
         max-width: 80%;
     }
-    #links a{
+    #links > li > a{
         /* border: 2px solid white; */
         padding-block: 1em;
         position:relative;
         left:0;
     }
-    #links a:hover, #links a:hover{
+    #links > li > a:hover, #links > li > a:focus, .hover{
         margin-inline:-3em;
         top:0;
         left:-1em;

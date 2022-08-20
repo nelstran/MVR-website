@@ -87,7 +87,7 @@ body{
     display:table-cell;
     min-width: max-content;
 }
-#links a{
+#links li a, #contribute button{
     color: var(--nav-font-color);
     display:block;
     letter-spacing: 0.05em;
@@ -105,10 +105,34 @@ body{
     outline:none;
 }
 
-#links a:hover, #links a:focus{
+#links > li > a:hover, #links > li > a:focus{
     top: -5px;
     background-color: var(--nav-selection-color);
     color:var(--nav-selection-font-color);
+}
+#contribute-content{
+    position:fixed;
+    display:block;
+    padding: 0;
+    margin: -5px 0 0 0;
+}
+#contribute-content > li{
+    display:table;
+    width:100%;
+    visibility:collapse;
+    opacity: 0;
+    position:relative;
+    right:-10px;
+    background-color: var(--nav-selection-color);
+    position:relative;
+}
+#contribute-content > li > a{
+    color: var(--nav-selection-font-color);
+}
+#contribute:hover #contribute-content > li, #contribute > a:focus + #contribute-content > li, .show{
+    visibility: visible;
+    opacity: 100;
+    right:0;
 }
 #bottomSide{
     background-color: var(--promo-bg);
@@ -309,23 +333,23 @@ body > *{
     -o-transition: left var(--transition-dur) ease;
     transition: left var(--transition-dur) ease;
 }
-#links li{
+#links > li{
     -webkit-transition: background-color var(--transition-dur) ease;
     -moz-transition: background-color var(--transition-dur) ease;
     -o-transition: background-color var(--transition-dur) ease;
     transition: background-color var(--transition-dur) ease;
 }
-
-#links a{
-    /* -webkit-transition: var(--transition-dur) ease;
-    -moz-transition: var(--transition-dur) ease;
-    -o-transition: var(--transition-dur) ease;
-    transition: var(--transition-dur) ease; */
+#links > li > a{
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
-
+}
+#contribute-content > li{
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
 }
 #bottomSide > *{
     -webkit-transition: background-color var(--transition-dur) ease;
