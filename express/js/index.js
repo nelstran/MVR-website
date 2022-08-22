@@ -41,9 +41,10 @@ function setup(){
     setColorValue();
     darkenNavColor();
     $("#contribute-content").css("width", $("#contribute").css("width"));
+
     $("#contribute-content > li").each(function(i){
         i++;
-        $(this).css("transition", `opacity ${i * 200}ms, right ${i * 100}ms`)
+        $(this).css("transition", `opacity ${i * 300}ms, right ${i * 100}ms`)
     })
 };
 
@@ -195,15 +196,16 @@ $("#links > *:not(#contribute > a, #contribute)").on("click", function(){
     $("#links").css("left", "100vw");
     $("#back-button").css("right", "calc(5em - 100vw)");
 })
-$("#contribute > a").on("click"), function(){
-    $("#contribute-content > li").toggleClass("show");
-}
-$("#contribute-content > li > a").mouseenter(function(){
-    $("#contribute > a").focus();
-})
-$("#contribute-content > li > a").mouseleave(function(){
-    $("#contribute > a").blur();
-})
+// $("#contribute > a").click(function(){
+//     $("#contribute-content > li").toggleClass("show");
+
+// });
+// $("#contribute-content > li > a").mouseenter(function(){
+//     $("#contribute > a").focus();
+// })
+// $("#contribute-content > li > a").mouseleave(function(){
+//     $("#contribute > a").blur();
+// })
 $("#defaultButton").on("click", function(){
     $(".customColor input").each(function(i){
         let color = cssVar[i];

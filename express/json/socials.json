@@ -14,7 +14,7 @@
         "members" : [
             {
                 "name": "Shelby Wren",
-                "icon": "/images/dog.webp"
+                "icon": "/images/shelby.webp"
             },
             {
                 "name": "Ethan Goldrup",
@@ -22,11 +22,15 @@
             },
             {
                 "name": "Lindy Alvarado",
-                "icon": "/images/habo.webp"
+                "icon": "/images/lindy.webp"
             },
             {
                 "name": "Parley Kimball",
-                "icon": "/images/mid-min.webp"
+                "icon": "/images/parley.webp"
+            },
+            {
+                "name": "Paulo Cubas",
+                "icon": "/images/paulo.webp"
             }
         ]
     },
@@ -48,29 +52,29 @@
             },
             {
                 "name": "Creighton Lowe",
-                "icon": "/images/dog.webp"
+                "icon": "/images/creighton.webp"
             },
             {
                 "name": "Ella",
-                "icon": "/images/habo.webp"
+                "icon": null
             }
         ]
     },
     {
         "enabled": true,
-        "name": "EXAMPLE",
-        "icon" : null,
+        "name": "Tran Nelson (Terrorism)",
+        "icon" : "/images/tnt.webp",
         "socials" : {
-            "insta": "https://www.instagram.com",
-            "fb": "https://www.facebook.com",
-            "twitter": "https://www.twitter.com",
-            "yt": "https://www.twitter.com",
-            "bandcamp": "https://www.bandcamp.com"
+            "insta": null,
+            "fb": null,
+            "twitter": null,
+            "yt": null,
+            "bandcamp": null
         },
         "members" : [
             {
-                "name": "EXAMPLE",
-                "icon": null,
+                "name": "Paulo Cubas",
+                "icon": "/images/paulo.webp",
                 "social": {
                     "insta": null,
                     "fb": null,
@@ -80,95 +84,7 @@
                 }
             },
             {
-                "name": "EXAMPLE",
-                "icon": null,
-                "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
-                }
-            },
-            {
-                "name": "EXAMPLE",
-                "icon": null,
-                "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
-                }
-            },
-            {
-                "name": "EXAMPLE",
-                "icon": null,
-                "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
-                }
-            },
-            {
-                "name": "EXAMPLE",
-                "icon": null,
-                "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
-                }
-            },
-            {
-                "name": "EXAMPLE",
-                "icon": null,
-                "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
-                }
-            },
-            {
-                "name": "EXAMPLE",
-                "icon": null,
-                "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
-                }
-            },
-            {
-                "name": "EXAMPLE",
-                "icon": null,
-                "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
-                }
-            },
-            {
-                "name": "EXAMPLE",
-                "icon": null,
-                "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
-                }
-            },
-            {
-                "name": "EXAMPLE",
+                "name": "Nelson Tran",
                 "icon": null,
                 "social": {
                     "insta": null,

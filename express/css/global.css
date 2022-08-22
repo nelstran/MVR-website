@@ -110,6 +110,10 @@ body{
     background-color: var(--nav-selection-color);
     color:var(--nav-selection-font-color);
 }
+#contribute-content > li > a:hover, #contribute-content > li > a:focus{
+    background-color: var(--nav-selection-font-color);
+    color:var(--nav-selection-color);
+}
 #contribute-content{
     position:fixed;
     display:block;
@@ -119,21 +123,21 @@ body{
 #contribute-content > li{
     display:table;
     width:100%;
-    visibility:collapse;
-    opacity: 0;
-    position:relative;
-    right:-10px;
     background-color: var(--nav-selection-color);
-    position:relative;
 }
 #contribute-content > li > a{
     color: var(--nav-selection-font-color);
+}
+/* .hide{
+    visibility:collapse;
+    opacity: 0;
+    right:-100px;
 }
 #contribute:hover #contribute-content > li, #contribute > a:focus + #contribute-content > li, .show{
     visibility: visible;
     opacity: 100;
     right:0;
-}
+} */
 #bottomSide{
     background-color: var(--promo-bg);
     display: grid;
@@ -345,11 +349,17 @@ body > *{
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-#contribute-content > li{
+#contribute-content{
     -webkit-transition: all 0.1s ease-out;
     -moz-transition: all 0.1s ease-out;
     -o-transition: all 0.1s ease-out;
     transition: all 0.1s ease-out;
+}
+#contribute-content > li > a{
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
 }
 #bottomSide > *{
     -webkit-transition: background-color var(--transition-dur) ease;

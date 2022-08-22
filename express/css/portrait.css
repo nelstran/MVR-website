@@ -88,15 +88,25 @@
         max-width: 80%;
     }
     #links > li > a{
-        /* border: 2px solid white; */
         padding-block: 1em;
         position:relative;
         left:0;
     }
-    #links > li > a:hover, #links > li > a:focus, .hover{
+    #links > li > a:hover, #links > li > a:focus{
         margin-inline:-3em;
         top:0;
         left:-1em;
+    }
+    #contribute-content{
+        width: calc(100vw - 5em);
+        margin:0;
+    }
+    #contribute-content > li{
+        margin-inline: -2em;
+        padding-inline: 2em;
+    }
+    #contribute-content > li > a:hover, #contribute-content > li > a:focus{
+        margin-inline:-1.7em;
     }
     #bottomSide{
         grid-template-rows: minmax(calc(100px + 2rem), 225px) 3fr;
