@@ -82,13 +82,14 @@ body{
 #back-button{
     display: none;
 }
-#links li{
+#links > li{
     background-color: var(--nav-bg);
     display:table-cell;
     min-width: max-content;
 }
-#links li a, #contribute button{
+#links li a{
     color: var(--nav-font-color);
+
     display:block;
     letter-spacing: 0.05em;
     padding: .5em;
@@ -104,11 +105,9 @@ body{
 
     outline:none;
 }
-
-#links > li > a:hover, #links > li > a:focus{
-    top: -5px;
-    background-color: var(--nav-selection-color);
-    color:var(--nav-selection-font-color);
+#links > li > a:not(#contribute-anchor):hover, #links > li > a:focus, .highlight{
+    background-color: var(--nav-selection-color) !important;
+    color:var(--nav-selection-font-color) !important;
 }
 #contribute-content > li > a:hover, #contribute-content > li > a:focus{
     background-color: var(--nav-selection-font-color);
@@ -121,23 +120,26 @@ body{
     margin: -5px 0 0 0;
 }
 #contribute-content > li{
-    display:table;
-    width:100%;
     background-color: var(--nav-selection-color);
+
+    display:table;
+    position:relative;
+    width:100%;
 }
+#contribute-content > li.hide{
+    opacity: 0;
+    right: -100px;
+}
+#contribute-content > li.show{
+    opacity: 100;
+    right: 0;
+}
+
 #contribute-content > li > a{
     color: var(--nav-selection-font-color);
+    background-color: var(--nav-selection-color);
+
 }
-/* .hide{
-    visibility:collapse;
-    opacity: 0;
-    right:-100px;
-}
-#contribute:hover #contribute-content > li, #contribute > a:focus + #contribute-content > li, .show{
-    visibility: visible;
-    opacity: 100;
-    right:0;
-} */
 #bottomSide{
     background-color: var(--promo-bg);
     display: grid;
@@ -344,10 +346,10 @@ body > *{
     transition: background-color var(--transition-dur) ease;
 }
 #links > li > a{
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
 }
 #contribute-content{
     -webkit-transition: all 0.1s ease-out;
@@ -356,10 +358,10 @@ body > *{
     transition: all 0.1s ease-out;
 }
 #contribute-content > li > a{
-    -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-out;
-    -o-transition: all 0.2s ease-out;
-    transition: all 0.2s ease-out;
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
 }
 #bottomSide > *{
     -webkit-transition: background-color var(--transition-dur) ease;
