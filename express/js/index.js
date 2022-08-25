@@ -195,17 +195,61 @@ $("#navbar-button").on("click", function(){
 $("#links > *:not(#contribute > a, #contribute)").on("click", function(){
     $("#links").css("left", "100vw");
     $("#back-button").css("right", "calc(5em - 100vw)");
+    disappear();
 })
-// $("#contribute > a").click(function(){
-//     $("#contribute-content > li").toggleClass("show");
-
-// });
-// $("#contribute-content > li > a").mouseenter(function(){
-//     $("#contribute > a").focus();
-// })
-// $("#contribute-content > li > a").mouseleave(function(){
-//     $("#contribute > a").blur();
-// })
+var hoverState = false;
+var focusState = false;
+var drop = false;
+$("#contribute").hover(function(){
+    appear();
+    hoverState = true;
+    // console.log(`Hover:${hoverState} Focus:${focusState}`)
+}, function(){
+    if(!focusState && !drop)
+        disappear();
+    hoverState = false;
+});
+$("#contribute a").focus(function(){
+    appear();
+    focusState = true;
+});
+$("#contribute a").blur(function(){
+    var $anchor = $(this).closest('#contribute');
+    var inFocus = false;
+    setTimeout(function(){
+        inFocus = $.contains($anchor[0], document.activeElement);
+        // console.log(`Infocus:${inFocus} Hover:${hoverState} Focus:${focusState}`)
+        if(!inFocus)
+            focusState = false;
+        if(!focusState && !hoverState && !drop)
+            disappear();
+    },1);
+})
+$("#contribute > a").click(function(){
+    toggleDropdown();
+})
+function toggleDropdown(){
+    drop = !drop;
+    drop ? appear() : disappear();
+}
+function appear(){
+    $("#contribute-content > li").trigger("classChanged");
+    $("#contribute-content > li").addClass("show");
+    $("#contribute-content > li").removeClass("hide");
+    $("#contribute > a").addClass("highlight");
+}
+function disappear(){
+    $("#contribute-content > li").removeClass("show");
+    $("#contribute-content > li").addClass("hide");
+    $("#contribute > a").removeClass("highlight");
+}
+$("#contribute-content > li").on("classChanged", function(){
+    let i = $(this).index() + 1;
+    if($(this).attr("class") == "show")
+        $(this).css("transition", `opacity ${(4-i) * 150}ms, right ${(4-i) * 100}ms`);
+    if($(this).attr("class") == "hide")
+        $(this).css("transition", `opacity ${i * 150}ms, right ${i * 100}ms`);
+})
 $("#defaultButton").on("click", function(){
     $(".customColor input").each(function(i){
         let color = cssVar[i];
