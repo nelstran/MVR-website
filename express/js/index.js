@@ -44,7 +44,7 @@ function setup(){
 
     $("#contribute-content > li").each(function(i){
         i++;
-        $(this).css("transition", `opacity ${i * 300}ms, right ${i * 100}ms`)
+        $(this).css("transition", `opacity ${i * 75}ms, right ${i * 100}ms`)
     })
 };
 
@@ -197,59 +197,6 @@ $("#links > *:not(#contribute > a, #contribute)").on("click", function(){
     $("#back-button").css("right", "calc(5em - 100vw)");
     disappear();
 })
-var hoverState = false;
-var focusState = false;
-var drop = false;
-$("#contribute").hover(function(){
-    appear();
-    hoverState = true;
-    // console.log(`Hover:${hoverState} Focus:${focusState}`)
-}, function(){
-    if(!focusState && !drop)
-        disappear();
-    hoverState = false;
-});
-$("#contribute a").focus(function(){
-    appear();
-    focusState = true;
-});
-$("#contribute a").blur(function(){
-    var $anchor = $(this).closest('#contribute');
-    var inFocus = false;
-    setTimeout(function(){
-        inFocus = $.contains($anchor[0], document.activeElement);
-        // console.log(`Infocus:${inFocus} Hover:${hoverState} Focus:${focusState}`)
-        if(!inFocus)
-            focusState = false;
-        if(!focusState && !hoverState && !drop)
-            disappear();
-    },1);
-})
-$("#contribute > a").click(function(){
-    toggleDropdown();
-})
-function toggleDropdown(){
-    drop = !drop;
-    drop ? appear() : disappear();
-}
-function appear(){
-    $("#contribute-content > li").trigger("classChanged");
-    $("#contribute-content > li").addClass("show");
-    $("#contribute-content > li").removeClass("hide");
-    $("#contribute > a").addClass("highlight");
-}
-function disappear(){
-    $("#contribute-content > li").removeClass("show");
-    $("#contribute-content > li").addClass("hide");
-    $("#contribute > a").removeClass("highlight");
-}
-$("#contribute-content > li").on("classChanged", function(){
-    let i = $(this).index() + 1;
-    if($(this).attr("class") == "show")
-        $(this).css("transition", `opacity ${(4-i) * 150}ms, right ${(4-i) * 100}ms`);
-    if($(this).attr("class") == "hide")
-        $(this).css("transition", `opacity ${i * 150}ms, right ${i * 100}ms`);
-})
 $("#defaultButton").on("click", function(){
     $(".customColor input").each(function(i){
         let color = cssVar[i];
@@ -273,4 +220,65 @@ $("#closeButton").on("click", function(){
     display = !display;
 
 })
+//#endregion
+
+//#region DROPDOWN MAGIC
+var hoverState = false;
+var focusState = false;
+var drop = false;
+$("#contribute").hover(function(){
+    appear();
+    hoverState = true;
+    // console.log(`Hover:${hoverState} Focus:${focusState}`)
+}, function(){
+    if(!focusState && !drop)
+        disappear();
+    hoverState = false;
+});
+$("#contribute a").focus(function(){        
+    appear();
+    focusState = true;
+});
+$("#contribute a").blur(function(){
+    var $anchor = $(this).closest('#contribute');
+    var inFocus = false;
+    setTimeout(function(){
+        inFocus = $.contains($anchor[0], document.activeElement);
+        // console.log(`Infocus:${inFocus} Hover:${hoverState} Focus:${focusState}`)
+        if(!inFocus)
+            focusState = false;
+        if(!focusState && !hoverState && !drop)
+            disappear();
+    },1);
+})
+$("#contribute > a").click(function(){
+    toggleDropdown();
+})
+$("#contribute-content > li").on("classChanged", function(){
+    let i = $(this).index() + 1;
+    if($(this).attr("class") == "show")
+        $(this).css("transition", `opacity ${(4-i) * 75}ms, right ${(4-i) * 100}ms`);
+    if($(this).attr("class") == "hide")
+        $(this).css("transition", `opacity ${i * 75}ms, right ${i * 100}ms`);
+})
+function toggleDropdown(){
+    drop = !drop;
+    drop ? appear() : disappear();
+}
+function appear(){
+    $("#contribute-content > li").css("visibility", "visible");
+    $("#contribute-content > li").trigger("classChanged");
+    $("#contribute-content > li").addClass("show");
+    $("#contribute-content > li").removeClass("hide");
+    $("#contribute > a").addClass("highlight");
+}
+function disappear(){
+    $("#contribute-content > li").trigger("classChanged");
+    $("#contribute-content > li").removeClass("show");
+    $("#contribute-content > li").addClass("hide");
+    $("#contribute > a").removeClass("highlight");
+    setTimeout(function(){
+        $("#contribute-content > li").css("visibility", "collapse");
+    },225);
+}
 //#endregion

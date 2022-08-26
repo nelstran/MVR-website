@@ -92,7 +92,9 @@
         position:relative;
         left:0;
     }
-    #links > li > a:not(#contribute-anchor):hover, #links > li > a:focus, .highlight{
+    #links > li > a:not(#contribute-anchor):hover,
+    #links > li > a:not(#contribute-anchor):focus,
+    .highlight{
         margin-inline:-3em;
         left:-1em !important;
     }
