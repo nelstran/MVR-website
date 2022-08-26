@@ -21,7 +21,8 @@
     #navbar-button{
         display:none;
     }
-    #links > li > a:not(#contribute-anchor):hover, #links > li > a:focus, .highlight{
+    #links > li > a:not(#contribute-anchor):hover, 
+    #links > li > a:not(#contribute-anchor):focus, .highlight{
         top:-5px !important;
     }
     #bottomSide{

@@ -33,12 +33,37 @@ label{
         right:0px;
     }
 }
-input[type=text], input[type=email]{
+input[type=text], input[type=email], textarea, select, button{
     font-family: 'Rubik', sans-serif;
     font-size: 1.1rem;
-    border-radius: 2px;
+
+    border: none;
+    outline: 1px solid rgb(70, 70, 70);
+    
     margin-top:.5em;
+    padding: .5em;
+
     transition: background-color .1s linear;
+
+    background-color: rgb(31,31,31);
+    color:white;
+}
+button{
+    background-color: rgb(100,100,100);
+    max-width: 40%;
+    width: 10em;
+    align-self: center;
+}
+button:hover, button:focus{
+    outline-offset: .1em;
+    background-color: rgb(70,70,70);
+}
+button:active{
+    outline-offset: .1em;
+    background-color: rgb(50,50,50);
+}
+input[type=text]:focus, input[type=email]:focus, textarea:focus{
+    outline:2px solid rgb(100,100,100);
 }
 #require{
     display:none;
