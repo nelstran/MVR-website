@@ -4,6 +4,8 @@
 
     <head>
         <%- include('../partials/metadata'); %>
+        <link rel="stylesheet" href="/css/projects.css">
+
     </head>
     
     <body onload="setup()">
@@ -12,9 +14,33 @@
             <%- include('../partials/events', {events: events}); %>
             <section id="main">
                 <%- include('../partials/colors'); %>
-                <section>
-                    <h1>Projects Page</h1>
+                <section class="project-container">
+                    <h3>Gale's Death Recreation</h3>
+                    <iframe src="https://www.youtube-nocookie.com/embed/l6CC4AxVzxg"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </section>
+                <section class="project-container">
+                    <h3>Founder's memorial</h3>
+                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
+                </section>
+                <section class="project-container">
+                    <h3>Founder's memorial</h3>
+                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
+                </section>
+                <section class="project-container">
+                    <h3>Founder's memorial</h3>
+                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
+                </section>
+                <section class="project-container">
+                    <h3>Founder's memorial</h3>
+                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
+                </section>
+                <section class="project-container">
+                    <h3>Founder's memorial</h3>
+                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
+                </section>
+
             </section>
         </div>
         <script src="/js/index.js"></script>
