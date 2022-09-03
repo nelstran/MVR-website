@@ -53,8 +53,14 @@ app.get('/pages/about', (req, res) => {
   updateEvents();
   res.render('pages/about', {events: events});
 });
+app.get('/pages/donate', (req, res) => {
+  res.render('pages/donate', {events: events});
+});
 app.get('/pages/join', (req, res) => {
   res.render('pages/join', {events: events});
+});
+app.get('/pages/contact', (req, res) => {
+  res.render('pages/contact', {events: events});
 });
 app.listen(port, () => {
   console.log(`App listening at port ${port}`);
