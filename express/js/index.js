@@ -130,7 +130,6 @@ var lastScroll = 0;
 $(window).scroll(function(){
     if(!didScroll){
         let st=$(window).scrollTop();
-        console.log(st);
         let navButton = $("#navbar-button");
         if(lastScroll < st && st > 100){
             navButton.css({

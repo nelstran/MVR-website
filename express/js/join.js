@@ -44,7 +44,7 @@ $("#joinButton").click(function(e){
         $('html, body').animate({
             scrollTop: $(`#${scrollToForm}`).offset().top - 50
         }, 500);
-        console.log($(`#${scrollToForm}`).offset().top + " " + scrollToForm);
+        // console.log($(`#${scrollToForm}`).offset().top + " " + scrollToForm);
         // $("label[for=first]").addClass("animate");
         $("#require").css("display", "block");
 

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <script src="https://unpkg.com/colcade@0/colcade.js"></script>
     <head>
         <%- include('../partials/metadata'); %>
         <link rel="stylesheet" href="/css/projects.css">
 
     </head>
+    <script src="/js/projects.js"></script>
     
     <body onload="setup()">
         <%- include('../partials/header'); %>
@@ -14,33 +15,37 @@
             <%- include('../partials/events', {events: events}); %>
             <section id="main">
                 <%- include('../partials/colors'); %>
-                <section class="project-container">
-                    <h3>Gale's Death Recreation</h3>
-                    <iframe src="https://www.youtube-nocookie.com/embed/l6CC4AxVzxg"
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write;
-                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </section>
-                <section class="project-container">
-                    <h3>Founder's memorial</h3>
-                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
-                </section>
-                <section class="project-container">
-                    <h3>Founder's memorial</h3>
-                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
-                </section>
-                <section class="project-container">
-                    <h3>Founder's memorial</h3>
-                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
-                </section>
-                <section class="project-container">
-                    <h3>Founder's memorial</h3>
-                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
-                </section>
-                <section class="project-container">
-                    <h3>Founder's memorial</h3>
-                    <img src="/images/founders.webp" style="filter: grayscale(100%)">
-                </section>
+                <div class="grid">
+                    <div class="grid-col grid-col--1"></div>
+                    <div class="grid-col grid-col--2" style="display:none;"></div>
+                    <div class="grid-col grid-col--3" style="display:none;"></div>
+                    <div class="grid-col grid-col--4" style="display:none;"></div>
 
+                    <div class="grid-item">
+                        <h3 class="content">Test</h3>
+                        <img src="/images/founders.webp">
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="content">Test</h3>
+                        <img src="/images/dog.webp">
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="content">Test</h3>
+                        <img src="/images/ethan.webp">
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="content">Test</h3>
+                        <img src="/images/tnt.webp">
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="content">Test</h3>
+                        <img src="/images/habo.webp">
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="content">Test</h3>
+                        <img src="/images/team-min.webp">
+                    </div>
+                </div>
             </section>
         </div>
         <script src="/js/index.js"></script>
