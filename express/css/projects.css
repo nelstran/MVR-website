@@ -1,3 +1,6 @@
+#notMuch{
+    display:none;
+}
 .grid{
     display:flex;
 }
@@ -40,6 +43,24 @@
     display:block;
     opacity: 100;
     left:0;
+}
+.desc{
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    padding: 1em;
+  
+    background: rgba(0, 0, 0, 0.8);
+}
+.hidden{
+    display:none;
+}
+.appear{
+    display:block;
 }
 .content{
     -webkit-transition: all 0.1s ease-out;
