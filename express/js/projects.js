@@ -1,12 +1,31 @@
 $(document).ready(function(){
-    resize();
+    if($(".grid-item").length == 0){
+        $("#notMuch").css("display", "block");
+    }
+    else{
+        if($(".grid-item").length)
+        resize();
 
-    var colc = new Colcade('.grid', {
-        columns: '.grid-col',
-        items: '.grid-item'
-    });
+        var colc = new Colcade('.grid', {
+            columns: '.grid-col',
+            items: '.grid-item'
+        });
+    }
 })
-$(window).resize(resize)
+$(window).resize(resize);
+var vis = false;
+function toggleDesc(event){
+    let desc = $(event).find(".desc").first();
+        vis = !vis;
+        vis ? show(desc) : hide(desc);
+}
+function show(event){
+    $(event).css("display", "block");
+}
+function hide(event){
+    $(event).css("display", "none");
+}
+
 function resize(){
     var max = $(".grid-item").length > 3 ? 3 : $(".grid-item").length;
     let winWid = $(window).width();
