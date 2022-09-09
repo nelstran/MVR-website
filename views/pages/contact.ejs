@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <head>
+        <%- include('../partials/metadata'); %>
+    </head>
+    
+    <body onload="setup()">
+        <%- include('../partials/header'); %>
+        <div id="bottomSide">
+            <%- include('../partials/events', {events: events}); %>
+            <section id="main">
+                <%- include('../partials/colors'); %>
+                <section>
+                    <h1>Contact Page</h1>
+                </section>
+            </section>
+        </div>
+        <script src="/js/index.js"></script>
+    </body>
+    
+</html>
