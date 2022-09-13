@@ -15,8 +15,9 @@
             <%- include('../partials/events', {events: events}); %>
             <section id="main">
                 <%- include('../partials/colors'); %>
-                <h1 style="text-align: center;">See what we're working on!</h1>
-                <p id="notMuch">Not much...</p>
+                <h1 style="text-align: center; margin:0;">See what we're working on!</h1>
+                <p>(Click for more information)</p>
+                <p id="notMuch">Not much going on right now...</p>
                 <div class="grid">
                     <div class="grid-col grid-col--1"></div>
                     <div class="grid-col grid-col--2" style="display:none;"></div>
@@ -26,32 +27,50 @@
                     <div class="grid-item" onclick="toggleDesc(this)">
                         <h3 class="content">Test</h3>
                         <img src="/images/founders.webp">
-                        <h3 class="desc hidden">Test 1</h3>
+                        <div class="desc hidden">
+                            <h1>Header</h1>
+                            <h3>Test</h3>
+                        </div>
                     </div>
                     <div class="grid-item" onclick="toggleDesc(this)">
                         <h3 class="content">Test</h3>
                         <img src="/images/dog.webp">
-                        <h3 class="desc hidden">Test 2</h3>
+                        <div class="desc hidden">
+                            <h1>Header</h1>
+                            <h3>Test</h3>
+                        </div>
                     </div>
                     <div class="grid-item" onclick="toggleDesc(this)">
                         <h3 class="content">Test</h3>
                         <img src="/images/ethan.webp">
-                        <h3 class="desc hidden">Test 3</h3>
+                        <div class="desc hidden">
+                            <h1>Header</h1>
+                            <h3>Test</h3>
+                        </div>
                     </div>
                     <div class="grid-item" onclick="toggleDesc(this)">
                         <h3 class="content">Test</h3>
                         <img src="/images/tnt.webp">
-                        <h3 class="desc hidden">Test 4</h3>
+                        <div class="desc hidden">
+                            <h1>Header</h1>
+                            <h3>Test</h3>
+                        </div>
                     </div>
                     <div class="grid-item" onclick="toggleDesc(this)">
                         <h3 class="content">Test</h3>
                         <img src="/images/habo.webp">
-                        <h3 class="desc hidden">Test 5</h3>
+                        <div class="desc hidden">
+                            <h1>Header</h1>
+                            <h3>Test</h3>
+                        </div>
                     </div>
                     <div class="grid-item" onclick="toggleDesc(this)">
                         <h3 class="content">Test</h3>
                         <img src="/images/team-min.webp">
-                        <h3 class="desc hidden">Test 6</h3>
+                        <div class="desc hidden">
+                            <h1>Header</h1>
+                            <h3>Test</h3>
+                        </div>
                     </div>
                 </div>
             </section>
