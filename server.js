@@ -13,12 +13,19 @@ const client = new Client({
 });
 
 var events;
+var projects
 function updateEvents(){
   client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
     if (err) return events = null;
     events = data.rows;
   })
 };
+function getProjects(){
+  client.query("SELECT * FROM projects", (err, data) =>{
+    if(err) return events = null;
+      projects = data.rows;
+  })
+}
 client.connect()
 .then(() => console.log("Connected to Postgresql server!"))
 .catch(err => console.error("Unable to connect to Postgresql server!"));
@@ -39,7 +46,8 @@ app.get('/home', (req, res) => {
 });
 app.get('/pages/projects', (req, res) => {
   updateEvents();
-  res.render('pages/projects', {events: events});
+  getProjects();
+  res.render('pages/projects', {events: events, projects: projects});
 });
 app.get('/pages/social', (req, res) => {
   updateEvents();
