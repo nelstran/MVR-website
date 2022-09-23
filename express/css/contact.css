@@ -1,0 +1,65 @@
+#info{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:1em;
+}
+@media screen and (orientation: portrait) {
+    #info{
+        flex-direction: column;
+    }
+    .contact{
+        flex: 1;
+        /* min-width:20rem;
+        min-height:10rem; */
+        max-width:30rem;
+    }
+}
+.contact{
+    flex: calc(50% - 2em);
+    /* min-width:20rem;
+    min-height:10rem; */
+    max-width:30rem;
+}
+.contact > div{
+    padding-inline:1em;
+}
+.contact li{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: .5em;
+}
+.contact a:not(#insta){
+    margin:0;
+    align-self: center;
+    color:black;
+    background-color: rgb(63, 143, 200);
+    outline: 2px solid rgb(109, 162, 201);
+    padding: .3em;
+    border-radius: .5em;
+    text-decoration: none;
+}
+#insta{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color:white;
+}
+.contact a:not(#insta):hover, .contact a:not(#insta):focus{
+    background-color: rgb(41, 92, 128);
+    
+}
+.title{
+    background-color: rgb(31, 31, 31);
+    padding:.5em;
+    margin:0;
+}
+.contact a{
+    -webkit-transition: background-color .3s ease;
+    -moz-transition: background-color .3s ease;
+    -o-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+}
