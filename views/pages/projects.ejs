@@ -24,7 +24,27 @@
                     <div class="grid-col grid-col--3" style="display:none;"></div>
                     <div class="grid-col grid-col--4" style="display:none;"></div>
 
-                    <div class="grid-item" onclick="toggleDesc(this)">
+                    <%if(projects != null && projects.length != 0 && true) { %>
+                    <% projects.forEach(project =>{ %>
+                        <div class="grid-item" onclick="toggleDesc(this)">
+                            <h3 class="content"> <%- project.title %> </h3>
+                            <img src="<%- project.img %>">
+                            <div class="desc hidden"> <!-- overlay -->
+                                <div class="overlay"> <!-- content -->
+                                    <h1 style="text-align:center">
+                                        <%- project.title %>
+                                    </h1>
+                                    <br>
+                                    <div class="img-container">
+                                        <img src="<%- project.img %>">
+                                    </div>
+                                    <h3 style="text-align:justify"><%- project.desc %></h3>
+                                </div>
+                            </div>
+                        </div>
+                    <%})
+                    }%>
+                    <!-- <div class="grid-item" onclick="toggleDesc(this)">
                         <h3 class="content">Test</h3>
                         <img src="/images/founders.webp">
                         <div class="desc hidden">
@@ -71,7 +91,7 @@
                             <h1>Header</h1>
                             <h3>Test</h3>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </section>
         </div>

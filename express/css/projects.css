@@ -18,7 +18,7 @@
     overflow: hidden;
     /* border: 2px solid red; */
 }
-.grid-item *{
+.grid-item > *{
     width:100%;
     height:auto;
     margin:0;
@@ -39,7 +39,7 @@
     max-width: fit-content;
     max-height: fit-content;
 }
-@media (hover:none){
+@media (pointer:coarse){
 
     .content{
         display:block;
@@ -63,16 +63,36 @@
     right: 0;
     bottom: 0;
     
-    padding: 1em;
+    /* padding: 1em; */
   
     background: rgba(0, 0, 0, 0.8);
-
-    text-align: center;
 }
-.desc > h1{
+.overlay{
+    max-width:62.5rem;
+    height:100%; 
+    margin-inline:auto;
+    padding-inline: 3em;
+}
+.img-container{
+    float:left;
+    max-width: 25%;
+    padding:0 1em 1em 0;
+}
+.img-container img{
+    max-height: 100%; 
+    max-width: 100%;
+    object-fit: contain;
+}
+@media screen and (orientation: portrait) {
+    .img-container{
+        max-width: 100%;
+        padding-bottom: 1em;
+    }
+}
+.desc h1{
     margin-block:1em;
 }
-.desc > h3{
+.desc h3{
     margin:auto;
     overflow-wrap: break-word;
     max-width: 62.5rem;
