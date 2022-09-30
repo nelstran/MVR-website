@@ -177,7 +177,7 @@ body{
     font-weight: 700;
 
     padding:0;
-    margin: .5em .3em 0 .3em;
+    margin: 1em .3em 0 .5em;
 }
 #events{
     display: flex;
@@ -234,10 +234,15 @@ body{
     margin: .5em;
 }
 .event div *{
-    font-size:90%;
 
     padding:0;
     margin: 0;
+}
+.event div h2{
+    font-size:90%;
+}
+.event div p{
+    font-size:75%;
 }
 .poster{
     display: none;
