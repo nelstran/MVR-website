@@ -152,6 +152,17 @@
     .event div p{
         display: none;
     }
+    .entry{
+        display:grid;
+    }
+    .entry > h1, .date{
+        order: 2;
+    }
+    .home-img-container{
+        order:1;
+        max-width: 100%;
+        margin-bottom: 1em;
+    }
 }
 #navbar-button{
     --nav-dur: 0.3s;

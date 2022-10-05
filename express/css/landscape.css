@@ -56,4 +56,11 @@
         justify-content: center;
         margin: .5em 1em;
     }
+    .entry > h1, .date{
+        order: 1;
+    }
+    .home-img-container{
+        order:2;
+        max-width: 25%;
+    }
 }
