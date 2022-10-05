@@ -243,6 +243,7 @@ body{
 }
 .event div p{
     font-size:75%;
+    color: #828282;
 }
 .poster{
     display: none;
@@ -291,7 +292,29 @@ body{
 }
 #main > section{
     margin-inline: 1rem;
+    margin-block: .8rem;
     max-width: 62.5rem;
+}
+.entry > h1, .date{
+    margin: 0;
+    display:inline;
+}
+.date{
+    font-size:75%;
+    color: #828282;
+}
+.home-img-container{
+    float:left;
+    padding:1em 1em 0 0;
+}
+.home-img-container img{
+    max-height: 100%; 
+    max-width: 100%;
+    object-fit: contain;
+}
+.entry > p:not(.date){
+    order:3;
+    margin-top: .5rem;
 }
 #main img{
     max-width:100%;
