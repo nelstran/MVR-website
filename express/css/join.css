@@ -5,7 +5,7 @@ form{
     gap:1em;
     flex-direction: column;
     padding:1em;
-    border-radius: 2%;
+    border-radius: 1em;
 }
 label{
     transition: color .1s ease;
