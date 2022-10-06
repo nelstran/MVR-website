@@ -5,21 +5,11 @@
     justify-content: center;
     gap:1em;
 }
-@media screen and (orientation: portrait) {
-    #info{
-        flex-direction: column;
-    }
-    .contact{
-        flex: 1;
-        /* min-width:20rem;
-        min-height:10rem; */
-        max-width:30rem;
-    }
+#main{
+    padding:0;
 }
 .contact{
     flex: calc(50% - 2em);
-    /* min-width:20rem;
-    min-height:10rem; */
     max-width:30rem;
 }
 .contact > div{
@@ -56,6 +46,14 @@
     background-color: rgb(31, 31, 31);
     padding:.5em;
     margin:0;
+}
+@media screen and (orientation: portrait) {
+    #info{
+        flex-direction: column;
+    }
+    .contact{
+        flex: 1;
+    }
 }
 .contact a{
     -webkit-transition: background-color .3s ease;
