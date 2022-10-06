@@ -72,11 +72,12 @@
     height:100%; 
     margin-inline:auto;
     padding-inline: 3em;
+    overflow-y:auto
 }
 .img-container{
     float:left;
     max-width: 25%;
-    padding:0 1em 1em 0;
+    padding-right:1em;
 }
 .img-container img{
     max-height: 100%; 
