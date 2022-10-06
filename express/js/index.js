@@ -62,13 +62,15 @@ function setIMGSize(){
         else{
             $(".event div p").addClass("not-visible");
         }
-
     })
 };
 
 //#endregion
 
 //#region FUNCTIONS
+function hideHeader(event){ //Remove in final project
+    $(event).css("display", "none");
+}
 function toggleImage(event){
     let element = $(event).attr("id").split("-");
     let id = element[1];
@@ -202,12 +204,12 @@ $("#navbar-button").on("click", function(){
     $("#links").css("left", "5em");
     $("#back-button").css("right", 0);
 })
-$("#links > *:not(#contribute > a, #contribute)").on("click", function(){
-    // $("#links").css("left", "100vw");
-    // $("#back-button").css("right", "calc(5em - 100vw)");
+$("#back-button").on("click", function(){
+    $("#links").css("left", "100vw");
+    $("#back-button").css("right", "calc(5em - 100vw)");
     disappear();
 })
-$("#links > *:not(#contribute > a, #contribute)").click(function(e) {
+$("#links > *:not(#contribute > a, #contribute, #back-button)").click(function(e) {
     e.preventDefault();
     setTimeout(function (){
         window.location = e.target.href;
