@@ -203,10 +203,16 @@ $("#navbar-button").on("click", function(){
     $("#back-button").css("right", 0);
 })
 $("#links > *:not(#contribute > a, #contribute)").on("click", function(){
-    $("#links").css("left", "100vw");
-    $("#back-button").css("right", "calc(5em - 100vw)");
+    // $("#links").css("left", "100vw");
+    // $("#back-button").css("right", "calc(5em - 100vw)");
     disappear();
 })
+$("#links > *:not(#contribute > a, #contribute)").click(function(e) {
+    e.preventDefault();
+    setTimeout(function (){
+        window.location = e.target.href;
+    }, $(e.target).css("transition-duration"));
+});
 $("#defaultButton").on("click", function(){
     $(".customColor input").each(function(i){
         let color = cssVar[i];
