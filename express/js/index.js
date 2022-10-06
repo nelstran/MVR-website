@@ -49,9 +49,20 @@ function setup(){
 };
 
 function setIMGSize(){
-    $(".promoIMG").each(function(){
+    return Promise.all($(".promoIMG").each(function(){
         var width = $(this).width();
         $(this).css("height", width);
+    })).then(() =>{
+        $(".promoIMG, .event div h2").addClass("visible");
+        $(".promoIMG, .event div h2").removeClass("not-visible");
+        if(window.innerWidth > window.innerHeight){
+            $(".event div p").addClass("visible");
+            $(".event div p").removeClass("not-visible");
+        }
+        else{
+            $(".event div p").addClass("not-visible");
+        }
+
     })
 };
 
