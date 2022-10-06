@@ -13,7 +13,7 @@ const client = new Client({
 });
 
 var events;
-var projects
+var projects;
 function updateEvents(){
   client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
     if (err) return events = null;

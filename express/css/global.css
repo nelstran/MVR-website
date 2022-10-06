@@ -66,6 +66,27 @@ body{
     max-width: calc(var(--ts-Height) * .8);
     margin: calc(var(--ts-Height) * .1);
 }
+#mvr-links{
+    position:absolute;
+    right:0;
+    top:0;
+    background-color: rgba(0,0,0,.3);
+    max-height: 2em;
+    padding:.3em;   
+
+    display:flex;
+    flex-direction: row-reverse;
+    gap: .5em;
+}
+#mvr-links a{
+    display: block;
+    width:25px;
+    height:25px;
+}
+#mvr-links img{
+    max-width: 100%;
+    max-height: 100%;
+}
 #links{
     display:table;
     width:100%;
