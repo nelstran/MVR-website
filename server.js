@@ -4,7 +4,6 @@ const path = require('path');
 const env = require('dotenv').config();
 const app = express();
 const session = require('express-session');
-const cookieParser = require("cookie-parser");
 const port = process.env.PORT || 3000;
 const { Client } = require('pg');
 const client = new Client({
