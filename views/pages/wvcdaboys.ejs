@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <head>
+        <%- include('../partials/metadata'); %>
+        <link rel="stylesheet" href="/css/social.css">
+
+    </head>
+    
+    <body onload="setup()">
+        <%- include('../partials/header'); %>
+        <div id="bottomSide">
+            <%- include('../partials/events', {events: events}); %>
+            <section id="main">
+                <%- include('../partials/colors'); %>
+                <h1>Login Page</h1>
+                <form action="/auth" method="post">
+                    <label for="user">Username:</label>
+                    <input id="user"type="text" name="username" id="username" required>
+                    <label for="pass">Password:</label>
+                    <input id="pass" type="password" name="password" id="password" required>
+                    <button id="login">Login</button>
+                </form>
+            </section>
+        </div>
+        <script src="/js/index.js"></script>
+    </body>
+</html>
