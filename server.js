@@ -4,6 +4,7 @@ const path = require('path');
 const env = require('dotenv').config();
 const app = express();
 const session = require('express-session');
+const cookieParser = require("cookie-parser");
 const port = process.env.PORT || 3000;
 const { Client } = require('pg');
 const client = new Client({
@@ -15,6 +16,7 @@ const client = new Client({
 
 var events;
 var projects;
+var admin = false;
 
 function updateEvents(){
   client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
@@ -46,42 +48,70 @@ app.set('views', path.join(__dirname,'views'));
 
 app.get('/', (req, res) => {
   updateEvents();
-  res.render('home', {events: events});
+  if(req.session.loggedin)
+    admin = true;
+  res.render('home', {events: events, admin: admin});
 });
 app.get('/home', (req, res) => {
   updateEvents();
-  res.render('home', {events: events});
+  if(req.session.loggedin)
+    admin = true;
+   
+  res.render('home', {events: events, admin: admin});
 });
 app.get('/pages/projects', (req, res) => {
   updateEvents();
   getProjects();
-  res.render('pages/projects', {events: events, projects: projects});
+  if(req.session.loggedin)
+    admin = true;
+   
+  res.render('pages/projects', {events: events, projects: projects, admin: admin});
 });
 app.get('/pages/social', (req, res) => {
   updateEvents();
-  res.render('pages/social', {events: events, socials: require("./express/json/socials.json")});
+  if(req.session.loggedin)
+    admin = true;
+   
+  res.render('pages/social', {events: events, socials: require("./express/json/socials.json"), admin: admin});
 });
 app.get('/pages/forum', (req, res) => {
   updateEvents();
-  res.render('pages/forum', {events: events});
+  if(req.session.loggedin)
+    admin = true;
+   
+  res.render('pages/forum', {events: events, admin: admin});
 });
 app.get('/pages/about', (req, res) => {
   updateEvents();
-  res.render('pages/about', {events: events});
+  if(req.session.loggedin)
+    admin = true;
+   
+  res.render('pages/about', {events: events, admin: admin});
 });
 app.get('/pages/donate', (req, res) => {
-  res.render('pages/donate', {events: events});
+  updateEvents();
+  if(req.session.loggedin)
+    admin = true;
+   
+  res.render('pages/donate', {events: events, admin: admin});
 });
 app.get('/pages/join', (req, res) => {
-  res.render('pages/join', {events: events});
+  res.render('pages/join', {events: events, admin: admin});
 });
 app.get('/pages/contact', (req, res) => {
-  res.render('pages/contact', {events: events});
+  updateEvents();
+  if(req.session.loggedin)
+    admin = true;
+   
+  res.render('pages/contact', {events: events, admin: admin});
 });
 
 app.get('/pages/wvcdaboys', (req, res) => {
   updateEvents();
-  res.render('pages/wvcdaboys', {events: events});
+  if(req.session.loggedin)
+    admin = true;
+   
+  res.render('pages/wvcdaboys', {events: events, admin: admin});
 });
 app.listen(port, () => {
   console.log(`App listening at port ${port}`);
