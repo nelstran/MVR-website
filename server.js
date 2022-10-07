@@ -29,6 +29,12 @@ function getProjects(){
       projects = data.rows;
   })
 }
+
+function giveAdmin(req){
+  if(!req.session.loggedin)
+    return;
+  admin = true;
+}
 client.connect()
 .then(() => console.log("Connected to Postgresql server!"))
 .catch(err => console.error("Unable to connect to Postgresql server!"));
@@ -47,50 +53,43 @@ app.set('views', path.join(__dirname,'views'));
 
 app.get('/', (req, res) => {
   updateEvents();
-  if(req.session.loggedin)
-    admin = true;
+  giveAdmin(req);
   res.render('home', {events: events, admin: admin});
 });
 app.get('/home', (req, res) => {
   updateEvents();
-  if(req.session.loggedin)
-    admin = true;
+  giveAdmin(req);
    
   res.render('home', {events: events, admin: admin});
 });
 app.get('/pages/projects', (req, res) => {
   updateEvents();
   getProjects();
-  if(req.session.loggedin)
-    admin = true;
+  giveAdmin(req);
    
   res.render('pages/projects', {events: events, projects: projects, admin: admin});
 });
 app.get('/pages/social', (req, res) => {
   updateEvents();
-  if(req.session.loggedin)
-    admin = true;
+  giveAdmin(req);
    
   res.render('pages/social', {events: events, socials: require("./express/json/socials.json"), admin: admin});
 });
 app.get('/pages/forum', (req, res) => {
   updateEvents();
-  if(req.session.loggedin)
-    admin = true;
+  giveAdmin(req);
    
   res.render('pages/forum', {events: events, admin: admin});
 });
 app.get('/pages/about', (req, res) => {
   updateEvents();
-  if(req.session.loggedin)
-    admin = true;
+  giveAdmin(req);
    
   res.render('pages/about', {events: events, admin: admin});
 });
 app.get('/pages/donate', (req, res) => {
   updateEvents();
-  if(req.session.loggedin)
-    admin = true;
+  giveAdmin(req);
    
   res.render('pages/donate', {events: events, admin: admin});
 });
@@ -99,16 +98,14 @@ app.get('/pages/join', (req, res) => {
 });
 app.get('/pages/contact', (req, res) => {
   updateEvents();
-  if(req.session.loggedin)
-    admin = true;
+  giveAdmin(req);
    
   res.render('pages/contact', {events: events, admin: admin});
 });
 
 app.get('/pages/wvcdaboys', (req, res) => {
   updateEvents();
-  if(req.session.loggedin)
-    admin = true;
+  giveAdmin(req);
    
   res.render('pages/wvcdaboys', {events: events, admin: admin});
 });

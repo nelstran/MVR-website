@@ -1,0 +1,56 @@
+#admin-container{
+    margin-inline: 1rem;
+    margin-block: .8rem;
+    max-width: 62.5rem;
+    width:100%;
+    min-height: fit-content;
+
+    display:flex;
+    justify-content: center;
+}
+#addEntry{
+    font-size:2em;
+    min-width:4rem;
+    max-width: 4rem;
+    min-height: 4rem;
+    max-height: 4rem;
+    padding:0;
+    background-color: #504f4f;
+    border:none;
+}
+#addEntry:hover, #addEntry:focus{
+    background-color: #636363;
+}
+#addEntry:active{
+    background-color: #444444;
+}
+#entry-container{
+    width:calc(100% - 8em);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-inline:1em;
+}
+#blogEntry{
+    resize: none;
+    height: 10em;
+}
+#titleEntry, #blogEntry{
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.1rem;
+
+    border: none;
+    outline: 1px solid rgb(70, 70, 70);
+    
+    margin-top:.5em;
+    padding: .5em;
+
+    transition: background-color .1s linear;
+
+    background-color: rgb(31,31,31);
+    color:white;
+}
+.hidden{
+    display:none !important;
+}
