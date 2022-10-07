@@ -25,8 +25,19 @@
                     <p class="date"> 10/05/2022 5:21 PM</p>
                     <p>Mauris cursus mattis molestie a iaculis at erat pellentesque. Ac tortor dignissim convallis aenean. Commodo elit at imperdiet dui accumsan sit. Adipiscing at in tellus integer feugiat scelerisque varius morbi. Scelerisque felis imperdiet proin fermentum leo vel. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Viverra ipsum nunc aliquet bibendum. Sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus. In eu mi bibendum neque egestas congue. Orci dapibus ultrices in iaculis nunc sed. Tristique nulla aliquet enim tortor. Elit duis tristique sollicitudin nibh sit amet commodo nulla. Ultrices eros in cursus turpis massa.</p>
                 </section>
+                <% if(admin) { %>
+                    <div id="admin-container">
+                        <button id="addEntry">+</button>
+                        <div id="entry-container" class="hidden">
+                            <h1 style="text-align:center">Add new entry to the home page</h2>
+                            <input id="titleEntry" type="text" placeholder="Title">
+                            <textarea id="blogEntry" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                <%}%>
             </section>
         </div>
         <script src="/js/index.js"></script>
+        <script src="/js/admin.js"></script>
     </body>
 </html>
