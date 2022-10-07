@@ -1,5 +1,8 @@
-<% if(true)
-    return; %>
+<% if(admin == false || typeof admin == 'undefined'){
+    console.log(admin)
+    return;
+}
+%>
 <section id="color">
     <div class="customColor">
         <label for="bg">Main Background:</label>
