@@ -1,113 +1,43 @@
-// const http = require('http');
 const express = require('express');
-const path = require('path');
-const env = require('dotenv').config();
-const app = express();
 const session = require('express-session');
+const app = express();
+const adminRouter = require('./routes/admin');
+const pages = require('./routes/pages');
 const port = process.env.PORT || 3000;
-const { Client } = require('pg');
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+
+const path = require('path');
 
 var events;
-var projects;
 var admin = false;
-
-function updateEvents(){
-  client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
-    if (err) return events = null;
-    events = data.rows;
-  })
-};
-function getProjects(){
-  client.query("SELECT * FROM projects", (err, data) =>{
-    if(err) return events = null;
-      projects = data.rows;
-  })
-}
-
-function giveAdmin(req){
-  if(!req.session.loggedin)
-    return;
-  admin = true;
-}
-client.connect()
-.then(() => console.log("Connected to Postgresql server!"))
-.catch(err => console.error("Unable to connect to Postgresql server!"));
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("express"));// default URL for website
+app.use('/admin', adminRouter);
+app.use('/pages', pages.router);
 app.use(session({
 	secret: 'secret',
 	resave: true,
 	saveUninitialized: true
 }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("express"));// default URL for website
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'));
 
+//Default page
 app.get('/', (req, res) => {
-  updateEvents();
-  giveAdmin(req);
-  res.render('home', {events: events, admin: admin});
+  res.redirect("/home");
 });
 app.get('/home', (req, res) => {
-  updateEvents();
-  giveAdmin(req);
+  events = pages.updateEvents();
+  admin = pages.giveAdmin(req);
    
   res.render('home', {events: events, admin: admin});
 });
-app.get('/pages/projects', (req, res) => {
-  updateEvents();
-  getProjects();
-  giveAdmin(req);
-   
-  res.render('pages/projects', {events: events, projects: projects, admin: admin});
-});
-app.get('/pages/social', (req, res) => {
-  updateEvents();
-  giveAdmin(req);
-   
-  res.render('pages/social', {events: events, socials: require("./express/json/socials.json"), admin: admin});
-});
-app.get('/pages/forum', (req, res) => {
-  updateEvents();
-  giveAdmin(req);
-   
-  res.render('pages/forum', {events: events, admin: admin});
-});
-app.get('/pages/about', (req, res) => {
-  updateEvents();
-  giveAdmin(req);
-   
-  res.render('pages/about', {events: events, admin: admin});
-});
-app.get('/pages/donate', (req, res) => {
-  updateEvents();
-  giveAdmin(req);
-   
-  res.render('pages/donate', {events: events, admin: admin});
-});
-app.get('/pages/join', (req, res) => {
-  res.render('pages/join', {events: events, admin: admin});
-});
-app.get('/pages/contact', (req, res) => {
-  updateEvents();
-  giveAdmin(req);
-   
-  res.render('pages/contact', {events: events, admin: admin});
-});
 
-app.get('/pages/wvcdaboys', (req, res) => {
-  updateEvents();
-  giveAdmin(req);
-   
-  res.render('pages/wvcdaboys', {events: events, admin: admin});
+//Page not found
+app.get('*', function(req, res) {
+  //Error page has not been made yet
+  res.redirect('/');
 });
 app.listen(port, () => {
   console.log(`App listening at port ${port}`);
