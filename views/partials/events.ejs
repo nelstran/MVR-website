@@ -4,9 +4,17 @@
         <hr>
     </div>
     <section id="events" tabindex="-1">
+        <% if(admin == true) { %>
+            <form action="/admin/createEvent" class="adminForm event">
+                <button id="addEvent" class="add" title="Add an event">+</button>
+                <h2>Add event</h2>
+            </form>
+        <%}%>
         <% if(events == null || events.length == 0 || false) { %> <!-- Set false to true if you don't want events-->
+            <% if(admin == false){ %>
             <h2 style="text-align:center; font-size: 120%; position: relative;
              left:50%; transform: translate(-50%,0);">Nothing coming up right now.</h2>
+            <% } %>
         <% }
         else 
         {%>
@@ -25,11 +33,6 @@
                 </div>
             <% } %>
         <% } %>
-        <% if(admin == true) { %>
-            <form action="/admin/createEvent">
-                <button id="addEvent" class="add">+</button>
-            </form>
-        <%}%>
     </section>
     
 </section>
