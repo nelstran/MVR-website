@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 const path = require('path');
 
-var events;
+var events = pages.updateEvents();
 var admin = false;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,8 +23,8 @@ app.set('views', path.join(__dirname,'views'));
 app.get('/', (req, res) => {
   res.redirect("/home");
 });
-app.get('/home', (req, res) => {
-  events = pages.updateEvents();
+app.get('/home', async (req, res) => {
+  events = await pages.updateEvents();
   admin = pages.giveAdmin(req);
    
   res.render('home', {events: events, admin: admin});
