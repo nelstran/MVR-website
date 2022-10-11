@@ -18,9 +18,10 @@
         <% }
         else 
         {%>
+            <% let imgURL = "https://ik.imagekit.io/mvrecords/"; %>
             <% for(let i = 0; i < events.length; i++){ %>
             <section class="event" id="image-<%- i %>" onclick="toggleImage(this);" tabindex="0">
-                <img class="promoIMG not-visible" src="<%- events[i].event_promo %>">
+                <img class="promoIMG not-visible" src="<%- imgURL + events[i].event_image_id %>">
                 <div style="text-align:center">
                     <h2 class="not-visible"><%- events[i].event_name %></h2>
                     <p class="not-visible"><%- events[i].event_date.toLocaleDateString("en-US") %> @<br> <%- events[i].event_location %> </p>
@@ -29,7 +30,7 @@
             <% } %>
             <% for(let i = 0; i < events.length; i++){ %>
                 <div class="poster" onclick="toggleImage(this);" id="poster-<%- i %>">
-                    <span style="background-image: url('..<%- events[i].event_promo %>');"></span>
+                    <span style="background-image: url('<%- imgURL + events[i].event_image_id %>');"></span>
                 </div>
             <% } %>
         <% } %>
