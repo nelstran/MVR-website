@@ -33,10 +33,11 @@
                     <div class="grid-col grid-col--4" style="display:none;"></div>
 
                     <%if(projects != null && projects.length != 0 && true) { %>
+                    <% let imgURL = "https://ik.imagekit.io/mvrecords/"; %>
                     <% projects.forEach(project =>{ %>
                         <div class="grid-item" onclick="toggleDesc(this)">
                             <h3 class="content"> <%- project.title %> </h3>
-                            <img src="<%- project.img %>">
+                            <img src="<%- imgURL + project.img_id %>">
                             <div class="desc hidden"> <!-- overlay -->
                                 <div class="overlay"> <!-- content -->
                                     <h1 style="text-align:center">
@@ -44,7 +45,7 @@
                                     </h1>
                                     <br>
                                     <div class="img-container">
-                                        <img src="<%- project.img %>">
+                                        <img src="<%- imgURL + project.img_id %>">
                                     </div>
                                     <h3><%- project.desc %></h3>
                                 </div>
