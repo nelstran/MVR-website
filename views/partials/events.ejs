@@ -25,6 +25,11 @@
                 </div>
             <% } %>
         <% } %>
+        <% if(admin == true) { %>
+            <form action="/admin/createEvent">
+                <button id="addEvent" class="add">+</button>
+            </form>
+        <%}%>
     </section>
     
 </section>

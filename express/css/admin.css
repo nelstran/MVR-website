@@ -1,56 +1,29 @@
-#admin-container{
-    margin-inline: 1rem;
-    margin-block: .8rem;
-    max-width: 62.5rem;
-    width:100%;
-    min-height: fit-content;
-
-    display:flex;
-    justify-content: center;
-}
-#addEntry{
-    font-size:2em;
-    min-width:4rem;
-    max-width: 4rem;
-    min-height: 4rem;
-    max-height: 4rem;
+button.add{
     padding:0;
     background-color: #504f4f;
     border:none;
+    outline: none;
+    cursor:pointer;
 }
-#addEntry:hover, #addEntry:focus{
+#addEntry{
+    font-size:2em;
+    min-width: 4rem;
+    max-width: 4rem;
+    min-height: 4rem;
+    max-height: 4rem;
+}
+#addEvent{
+    font-size:2em;
+    min-width: 5rem;
+    max-width: 5rem;
+    min-height: 5rem;
+    max-height: 5rem;
+    margin-block: .5em;
+    border-radius: 100%;
+}
+button.add:hover, button.add:focus{
     background-color: #636363;
 }
-#addEntry:active{
+button.add:active{
     background-color: #444444;
-}
-#entry-container{
-    width:calc(100% - 8em);
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding-inline:1em;
-}
-#blogEntry{
-    resize: none;
-    height: 10em;
-}
-#titleEntry, #blogEntry{
-    font-family: 'Rubik', sans-serif;
-    font-size: 1.1rem;
-
-    border: none;
-    outline: 1px solid rgb(70, 70, 70);
-    
-    margin-top:.5em;
-    padding: .5em;
-
-    transition: background-color .1s linear;
-
-    background-color: rgb(31,31,31);
-    color:white;
-}
-.hidden{
-    display:none !important;
 }
