@@ -1,6 +1,13 @@
+const { response } = require('express');
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const router = express.Router();
+const userSession = new session({
+  secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+})
 
 const { Client } = require('pg');
 const env = require('dotenv').config();
@@ -14,6 +21,8 @@ const client = new Client({
 var events;
 var projects;
 var admin = false;
+
+router.use(userSession);
 
 router.get('/', (req, res) => {
   res.redirect("/");
@@ -75,13 +84,17 @@ router.get('/wvcdaboys', (req, res) => {
    
   res.render('pages/wvcdaboys', {events: events, admin: admin});
 });
+
 //Error page
 router.get('*', function(req, res) {
   res.redirect('/');
 });
+
 client.connect()
 .then(() => console.log("Connected to Postgresql server!"))
 .catch(err => console.error("Unable to connect to Postgresql server!"));
+
+
 
 var updateEvents = function(){
   client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
@@ -103,6 +116,45 @@ var giveAdmin = function(req){
   admin = true;
   return true;
 };
+
+var authentication = function(req, res){
+  let user = req.body.username;
+  let pass = req.body.password;
+
+  if(user && pass && validate(user,pass)){
+    let query = `SELECT * FROM users WHERE user_id='${user}' AND password='${pass}'`;
+    client.query(query, function(err, results, fields){
+      if(err) throw err;
+      
+      if(results.rows.length > 0) {
+        req.session.loggedin = true;
+        req.session.username = user;
+        res.redirect('/');
+      }
+      else{
+        res.send('Incorrect Username and/or Password!');
+      }
+    });
+  }
+  else{
+    res.send('Please enter Username and Password!');
+    res.end();
+  }
+};
+
+function validate(user, pass){
+  if(user.includes(" ") || pass.includes(" ") ||
+    user.includes("=") || pass.includes("=") ||
+    user.length < 7 || pass.length < 7)
+    return false;
+  return true;
+}
 module.exports = {
-    router, events, updateEvents, giveAdmin, admin
+    router,
+    events, 
+    updateEvents, 
+    giveAdmin, 
+    authentication,
+    admin, 
+    userSession
 };
