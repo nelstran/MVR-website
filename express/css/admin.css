@@ -3,14 +3,20 @@
     margin: 0;
     padding:0;
 }
-button.add{
-    background-color: #328abd;
+.add, .manage{
     padding:0;
     border:none;
     outline: none;
     cursor:pointer;
 }
-#addEntry, #addProject{
+.add{
+    background-color: #328abd;
+}
+.manage{
+    background-color: #12aa36;
+
+}
+#addEntry, #addProject, .adminButton{
     border-radius: 5em;
     width:auto;
     height: fit-content;
@@ -40,16 +46,36 @@ button.add{
     margin-block: .2em;
     border-radius: 100%;
 }
-#addEvent + h2{
+#addEvent + h2, .adminButton + h2{
     font-size: 1em;
     text-align: center;
     margin:0;
+}
+#adminSection{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+#adminSection > section{
+    display:flex;
+    flex-direction: column;
+    margin-inline: .3em;
+}
+.adminButton{
+    width:100%;
+    margin-inline:0;
 }
 .add:hover, .add:focus{
     background-color: #215c7e !important;
 }
 .add:active{
     background-color: #17435c !important;
+}
+.manage:hover, .manage:focus{
+    background-color: #0c7e26 !important;
+}
+.manage:active{
+    background-color: #08581b !important;
 }
 
 .adminForm button{
