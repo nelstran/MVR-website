@@ -41,7 +41,7 @@ var giveAdmin = function(req){
 
 var events = updateEvents();
 var projects = getProjects();
-var admin = true;
+var admin = false;
 
 router.use(userSession);
 
