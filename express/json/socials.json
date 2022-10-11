@@ -3,7 +3,7 @@
     {
         "enabled": true,
         "name": "Stardance Riot",
-        "icon" : "/images/star.webp",
+        "icon" : "https://ik.imagekit.io/mvrecords/star_j-MpMmAHYi.webp",
         "socials" : {
             "insta": "https://www.instagram.com/stardanceriot/",
             "fb": null,
@@ -14,30 +14,30 @@
         "members" : [
             {
                 "name": "Shelby Wren",
-                "icon": "/images/shelby.webp"
+                "icon": "https://ik.imagekit.io/mvrecords/shelby_iGQq2edtH5.webp"
             },
             {
                 "name": "Ethan Goldrup",
-                "icon": "/images/ethan.webp"
+                "icon": "https://ik.imagekit.io/mvrecords/etan_JaB2mhDD4F.webp"
             },
             {
                 "name": "Lindy Alvarado",
-                "icon": "/images/lindy.webp"
+                "icon": "https://ik.imagekit.io/mvrecords/lindy_XFuv6knsJ.webp"
             },
             {
                 "name": "Parley Kimball",
-                "icon": "/images/parley.webp"
+                "icon": "https://ik.imagekit.io/mvrecords/parley_IBWWL53Yke.webp"
             },
             {
                 "name": "Paulo Cubas",
-                "icon": "/images/paulo.webp"
+                "icon": "https://ik.imagekit.io/mvrecords/paulo_D7PLnZ6f9N.webp"
             }
         ]
     },
     {
         "enabled": true,
         "name": "Ethyl Cat",
-        "icon" : "/images/ethyl.webp",
+        "icon" : "https://ik.imagekit.io/mvrecords/ethyl_IFwXcuQz-c.webp",
         "socials" : {
             "insta": "https://www.instagram.com/ethylcat/",
             "fb": null,
@@ -48,11 +48,11 @@
         "members" : [
             {
                 "name": "Ethan Goldrup",
-                "icon": "/images/ethan.webp"
+                "icon": "https://ik.imagekit.io/mvrecords/etan_JaB2mhDD4F.webp"
             },
             {
                 "name": "Creighton Lowe",
-                "icon": "/images/creighton.webp"
+                "icon": "https://ik.imagekit.io/mvrecords/creighton_-kv4qBBCGZ.webp"
             },
             {
                 "name": "Ella",
@@ -63,7 +63,7 @@
     {
         "enabled": true,
         "name": "Tran Nelson (Terrorism)",
-        "icon" : "/images/tnt.webp",
+        "icon" : "https://ik.imagekit.io/mvrecords/tnt_uTzEp4eGi.webp",
         "socials" : {
             "insta": null,
             "fb": null,
@@ -74,7 +74,7 @@
         "members" : [
             {
                 "name": "Paulo Cubas",
-                "icon": "/images/paulo.webp",
+                "icon": "https://ik.imagekit.io/mvrecords/paulo_D7PLnZ6f9N.webp",
                 "social": {
                     "insta": null,
                     "fb": null,
