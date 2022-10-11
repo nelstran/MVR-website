@@ -15,9 +15,17 @@
             <%- include('../partials/events', {events: events}); %>
             <section id="main">
                 <%- include('../partials/colors'); %>
-                <h1 style="text-align: center; margin:0;">See what we're working on!</h1>
-                <p>(Click for more information)</p>
-                <p id="notMuch">Not much going on right now...</p>
+                <h1 style="text-align: center; margin:1em;">See what we're working on!</h1>
+                <% if(admin == false) {%>
+                    <p id="notMuch">Not much going on right now...</p>
+                <% } %>
+                <% if(admin == true) { %>
+                    <form action="/admin/createProject" class="adminForm">
+                        <button id="addProject" class="add" title="Add a project">
+                            <h1>Showcase your work ♬</h1>
+                        </button>
+                    </form>
+                <%}%>
                 <div class="grid">
                     <div class="grid-col grid-col--1"></div>
                     <div class="grid-col grid-col--2" style="display:none;"></div>
@@ -45,6 +53,7 @@
                     <%})
                     }%>
                 </div>
+                
             </section>
         </div>
         <script src="/js/index.js"></script>

@@ -12,6 +12,11 @@
             <%- include('partials/events', {events: events}); %>
             <section id="main" tabindex="-1">
                 <%- include('partials/colors'); %>
+                <% if(admin == true) { %>
+                    <form action="/admin/createEntry" class="adminForm">
+                        <button id="addEntry" class="add" title="Create new entry"><h1>NEW ENTRY ✎</h1></button>
+                    </form>
+                <%}%>
                 <section class="entry">
                     <h1>Article placeholder</h1>
                     <p class="date"> 10/05/2022 5:21 PM</p>
@@ -25,11 +30,6 @@
                     <p class="date"> 10/05/2022 5:21 PM</p>
                     <p>Mauris cursus mattis molestie a iaculis at erat pellentesque. Ac tortor dignissim convallis aenean. Commodo elit at imperdiet dui accumsan sit. Adipiscing at in tellus integer feugiat scelerisque varius morbi. Scelerisque felis imperdiet proin fermentum leo vel. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Viverra ipsum nunc aliquet bibendum. Sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus. In eu mi bibendum neque egestas congue. Orci dapibus ultrices in iaculis nunc sed. Tristique nulla aliquet enim tortor. Elit duis tristique sollicitudin nibh sit amet commodo nulla. Ultrices eros in cursus turpis massa.</p>
                 </section>
-                <% if(admin == true) { %>
-                    <form action="/admin/createEntry">
-                        <button id="addEntry" class="add">+</button>
-                    </form>
-                <%}%>
             </section>
         </div>
         <script src="/js/index.js"></script>

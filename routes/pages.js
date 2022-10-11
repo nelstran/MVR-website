@@ -18,9 +18,30 @@ const client = new Client({
   }
 });
 
-var events;
-var projects;
-var admin = false;
+var updateEvents = function(){
+  client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
+    if (err) return events = null;
+    events = data.rows;
+  })
+  return events;
+};
+var getProjects = function(){
+  client.query("SELECT * FROM projects", (err, data) =>{
+    if(err) return events = null;
+      projects = data.rows;
+  })
+  return projects;
+};
+var giveAdmin = function(req){
+  if(!req.session.loggedin)
+    return admin;
+  admin = true;
+  return admin;
+};
+
+var events = updateEvents();
+var projects = getProjects();
+var admin = true;
 
 router.use(userSession);
 
@@ -28,9 +49,9 @@ router.get('/', (req, res) => {
   res.redirect("/");
 });
 
-router.get('/projects', (req, res) => {
-  updateEvents();
-  getProjects();
+router.get('/projects', async (req, res) => {
+  await updateEvents();
+  await getProjects();
   giveAdmin(req);
    
   res.render('pages/projects', {events: events, projects: projects, admin: admin});
@@ -93,29 +114,6 @@ router.get('*', function(req, res) {
 client.connect()
 .then(() => console.log("Connected to Postgresql server!"))
 .catch(err => console.error("Unable to connect to Postgresql server!"));
-
-
-
-var updateEvents = function(){
-  client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
-    if (err) return events = null;
-    events = data.rows;
-  })
-  return events;
-};
-var getProjects = function(){
-  client.query("SELECT * FROM projects", (err, data) =>{
-    if(err) return events = null;
-      projects = data.rows;
-  })
-  return projects;
-};
-var giveAdmin = function(req){
-  if(!req.session.loggedin)
-    return false;
-  admin = true;
-  return true;
-};
 
 var authentication = function(req, res){
   let user = req.body.username;

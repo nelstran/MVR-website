@@ -18,6 +18,9 @@ router.get('/createEntry', authorization, (req, res) =>{
 router.get('/createEvent', authorization, (req, res) =>{
   res.send("Event page");
 })
+router.get('/createProject', authorization, (req, res) =>{
+  res.send("Project page");
+})
 
 router.post('/login', function(req, res) {
   pages.authentication(req, res)
