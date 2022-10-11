@@ -127,7 +127,7 @@ var authentication = function(req, res){
       if(results.rows.length > 0) {
         req.session.loggedin = true;
         req.session.username = user;
-        res.redirect('/');
+        res.redirect('/admin');
       }
       else{
         res.send('Incorrect Username and/or Password!');
