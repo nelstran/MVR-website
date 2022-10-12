@@ -1,9 +1,8 @@
-
 .adminForm h1{
     margin: 0;
     padding:0;
 }
-.add, .manage{
+.add, .manage, .logout{
     padding:0;
     border:none;
     outline: none;
@@ -14,7 +13,9 @@
 }
 .manage{
     background-color: #12aa36;
-
+}
+.logout{
+    background-color: #ca1111;
 }
 #addEntry, #addProject, .adminButton{
     border-radius: 5em;
@@ -76,6 +77,12 @@
 }
 .manage:active{
     background-color: #08581b !important;
+}
+.logout:hover, .logout:focus{
+    background-color: #a20d0d !important;
+}
+.logout:active{
+    background-color: #730909 !important;
 }
 
 .adminForm button{

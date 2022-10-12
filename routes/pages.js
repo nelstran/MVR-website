@@ -33,15 +33,17 @@ var getProjects = function(){
   return projects;
 };
 var giveAdmin = function(req){
-  if(!req.session.loggedin)
+  if(!req.session.loggedin){
+    admin = false;
     return admin;
+  }
   admin = true;
   return admin;
 };
 
 var events = updateEvents();
 var projects = getProjects();
-var admin = false;
+var admin = true;
 
 router.use(userSession);
 
