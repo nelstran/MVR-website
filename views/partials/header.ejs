@@ -21,11 +21,14 @@
         <div id="navbar-button">☰</div>
         <ul id="links">
             <div id="back-button">X</div>
-            <li><a tabindex=0 id="homeLink" href="/home">Home</a></li>
-            <li><a tabindex=0 id="projectLink" href="/pages/projects">Projects</a></li>
-            <li><a tabindex=0 id="socialLink" href="/pages/social">Social</a></li>
-            <li><a tabindex=0 id="forumLink" href="/pages/forum">Forums</a></li>
-            <li><a tabindex=0 id="aboutLink" href="/pages/about">About Us</a></li>
+            <% if (admin == true) { %>
+            <li><a tabindex=0 id="adminLink" style="background-color: white; color:black"href="/admin">Admin</a></li>
+            <% } %>
+            <li><a tabindex=0 href="/home">Home</a></li>
+            <li><a tabindex=0 href="/pages/projects">Projects</a></li>
+            <li><a tabindex=0 href="/pages/social">Social</a></li>
+            <li><a tabindex=0 href="/pages/forum">Forums</a></li>
+            <li><a tabindex=0 href="/pages/about">About Us</a></li>
             <li id="contribute">
                 <a tabindex=0 id="contribute-anchor">Contribute ▼</a>
                 <ul id="contribute-content">

@@ -27,4 +27,10 @@ router.get('/', authorization, (req, res) =>{
 router.post('/login', function(req, res) {
   pages.authentication(req, res)
 });
+router.get('/logout', function(req, res) {
+  req.session.loggedin = false;
+  req.session.username = null;
+  pages.giveAdmin(req);
+  res.redirect("/")
+});
 module.exports = router;
