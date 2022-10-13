@@ -12,22 +12,23 @@ var simplemde = new SimpleMDE({
     status: ["autosave"],
     spellChecker: false
 });
+
 var converter = new showdown.Converter();
+
 $("#previewButton").click(function(){
     $("#preview").removeClass("preview");
+    var file = $("#imgUpload").prop('files')[0];
+    if(!validateFile(file))
+        return;
     let entry = converter.makeHtml(simplemde.value());
     let title = $(`<h1> ${$("#titleInput").val()} </h1>`);
-    let imgDiv = $(`<div class="home-img-container"></div>`);
-    let img = $(`<img src="/images/dog.webp">`);
-    imgDiv.append(img);
+    let imgDiv = $(`<div class="home-img-container"><img src="${URL.createObjectURL(file)}"></div>`);
     let dt = new Date();
-    let hours = dt.getHours() % 12;
-    let ampm = dt.getHours() > 12 ? "pm" : "am"; 
-    // let timestamp = `${dt.getMonth()}/${dt.getDay()}/${dt.getFullYear()} ${hours}:${dt.getMinutes()} ${ampm}`;
     let timestamp = dt.toLocaleString([], {
         year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
     let date = $(`<p class="date"> ${timestamp}</p>`);
+
     $("#preview").empty();
     $("#preview").append(title);
     $("#preview").append(date);
@@ -41,3 +42,18 @@ $("#previewButton").click(function(){
         scrollTop: $("#main").scrollTop() + ($("#preview").offset().top - $("#main").offset().top)
     }, 500);
 })
+
+function validateFile(file){
+    var fileName = file.name
+    let idxDot = fileName.lastIndexOf(".") + 1
+    let extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" || extFile=="gif" || extFile=="webp"){
+        return true;
+    }
+    else{
+        alert("The following files are allow: JPG/JPEG, PNG, GIF, WEBP");
+        $("label[for=imgUpload]").css('color', "red");
+        $("#imgUpload").val(null);
+        return false;
+    }
+}
