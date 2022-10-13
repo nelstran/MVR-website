@@ -25,7 +25,7 @@ router.get('/', authorization, (req, res) =>{
   res.render('pages/admin', {admin: true});
 });
 router.post('/login', function(req, res) {
-  authentication(req, res)
+  pages.authentication(req, res)
 });
 router.get('/logout', function(req, res) {
   req.session.loggedin = false;
