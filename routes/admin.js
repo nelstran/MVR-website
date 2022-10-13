@@ -13,19 +13,19 @@ const authorization = (req, res, next) => {
   }
 
 router.get('/createEntry', authorization, (req, res) =>{
-  res.send("Entry page");
+  res.render("pages/createEntry", {admin: true});
 });
 router.get('/createEvent', authorization, (req, res) =>{
-  res.send("Event page");
+  res.render("pages/createEvent", {admin: true});
 })
 router.get('/createProject', authorization, (req, res) =>{
-  res.send("Project page");
+  res.render("pages/createProject", {admin: true});
 })
 router.get('/', authorization, (req, res) =>{
   res.render('pages/admin', {admin: true});
 });
 router.post('/login', function(req, res) {
-  pages.authentication(req, res)
+  authentication(req, res)
 });
 router.get('/logout', function(req, res) {
   req.session.loggedin = false;
