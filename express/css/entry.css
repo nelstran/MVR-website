@@ -41,6 +41,11 @@ button:active, input[type=button]:active{
 input[type=text]:focus, textarea:focus{
     outline:2px solid rgb(100,100,100);
 }
+#bottom-button-div{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 #preview{
     min-height: 20em;
     max-width: 60rem;
@@ -49,6 +54,6 @@ input[type=text]:focus, textarea:focus{
     padding:1em;
     background-color: rgb(31,31,31);
 }
-#preview::before{
+.preview::before{
     content: "\200B";
- }
+}
