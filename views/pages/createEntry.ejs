@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <head>
+        <%- include('../partials/metadata'); %>
+        <link rel="stylesheet" href="/css/entry.css">
+        <link rel="stylesheet" href="/css/simplemde.min.css">
+    </head>
+    
+    <body onload="setup()">
+        <%- include('../partials/header'); %>
+        <div id="bottomSide">
+            <section id="promo">
+                <section id="events" tabindex="-1">
+                </section>
+            </section>
+            <section id="main">
+                <%- include('../partials/colors'); %>
+                <form id="entryForm" action="/admin/uploadEntry">
+                    <p style="margin:0;"><strong>Create a post</strong></p>
+                    <input type="text" name="title" placeholder="Insert title here" id="titleInput">
+                    <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
+                    <input type="file" name="imgUpload" accept="images/*" style="cursor:pointer">
+                    <section id="entryArea">
+                        <textarea id="editor"></textarea>
+                    </section>
+                    <button id="submit">Post</button>
+                </form>
+            </section>
+        </div>
+        <script src="/js/index.js"></script>
+        <script src="/js/simplemde.min.js"></script>
+        <script src="/js/entry.js"></script>
+    </body>
+</html>
