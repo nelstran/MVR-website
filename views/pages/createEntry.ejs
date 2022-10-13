@@ -17,20 +17,28 @@
             </section>
             <section id="main">
                 <%- include('../partials/colors'); %>
-                <form id="entryForm" action="/admin/uploadEntry">
-                    <p style="margin:0;"><strong>Create a post</strong></p>
-                    <input type="text" name="title" placeholder="Insert title here" id="titleInput">
-                    <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
-                    <input type="file" name="imgUpload" accept="images/*" style="cursor:pointer">
-                    <section id="entryArea">
-                        <textarea id="editor"></textarea>
-                    </section>
-                    <button id="submit">Post</button>
-                </form>
+                <section>
+                    <form id="entryForm" action="/admin/uploadEntry">
+                        <p style="margin:0;"><strong>Create a post</strong></p>
+                        <input type="text" name="title" placeholder="Insert title here" id="titleInput">
+                        <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
+                        <input type="file" name="imgUpload" accept="images/*" style="cursor:pointer">
+                        <section id="entryArea">
+                            <textarea id="editor"></textarea>
+                        </section>
+                        <button id="submit">Post</button>
+                        <input type="button" value="Preview" id="previewButton">
+
+                    </form>
+                </section>
+                <h1>Preview:</h1>
+                <section id="preview" class="entry">
+                </section>
             </section>
         </div>
         <script src="/js/index.js"></script>
         <script src="/js/simplemde.min.js"></script>
+        <script src="/js/showdown.min.js"></script>
         <script src="/js/entry.js"></script>
     </body>
 </html>
