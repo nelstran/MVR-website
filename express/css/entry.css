@@ -41,6 +41,12 @@ button:active, input[type=button]:active{
 input[type=text]:focus, textarea:focus{
     outline:2px solid rgb(100,100,100);
 }
+#error{
+    display:none;
+    color:red;
+    margin-top:0;
+    text-align:center;
+}
 #bottom-button-div{
     display:flex;
     flex-direction: row;
