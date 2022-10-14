@@ -32,6 +32,14 @@ var getProjects = function(){
   })
   return projects;
 };
+
+var getEntries = function(){
+  client.query("SELECT * FROM entries", (err, data) =>{
+    if (err) return events = null;
+    entries = data.rows;
+  })
+  return entries;
+}
 var giveAdmin = function(req){
   if(!req.session.loggedin){
     admin = false;
@@ -43,6 +51,7 @@ var giveAdmin = function(req){
 
 var events = updateEvents();
 var projects = getProjects();
+var entries = getEntries();
 var admin = true;
 
 router.use(userSession);
@@ -128,7 +137,7 @@ var authentication = function(req, res){
       
       if(results.rows.length > 0) {
         req.session.loggedin = true;
-        req.session.username = user;
+        req.session.person = results.rows[0].person;
         res.redirect('/admin');
       }
       else{
@@ -149,12 +158,21 @@ function validate(user, pass){
     return false;
   return true;
 }
+
+var upload = function(query){
+  client.query(query, function(err, results){
+    if (err) throw err;
+    console.log("1 record inserted");
+  })
+}
 module.exports = {
     router,
     events, 
-    updateEvents, 
+    updateEvents,
+    getEntries, 
     giveAdmin, 
     authentication,
+    upload,
     admin, 
     userSession
 };
