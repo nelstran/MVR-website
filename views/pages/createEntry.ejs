@@ -18,17 +18,17 @@
             <section id="main">
                 <%- include('../partials/colors'); %>
                 <section>
-                    <form id="entryForm" action="/admin/uploadEntry" method="POST">
+                    <form id="entryForm" action="/admin/uploadEntry" method="POST" enctype="multipart/form-data">
                         <p style="margin:0;"><strong>Create a post</strong></p>
 
                         <input type="text" name="title" placeholder="Insert title here" id="titleInput">
                         <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
 
-                        <input type="file" name="imgUpload" id="imgUpload" 
+                        <input type="file" name="imgUpload" id="imgUpload" form="entryForm"
                         accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
                         
                         <section id="entryArea">
-                            <textarea id="editor"></textarea>
+                            <textarea id="editor" form="entryForm" name="content"></textarea>
                         </section>
 
                         <p id="error"></p>

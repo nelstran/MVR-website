@@ -12,20 +12,23 @@ var simplemde = new SimpleMDE({
     status: ["autosave"],
     spellChecker: false
 });
+
 var converter = new showdown.Converter();
+
 $("#previewButton").click(function(){
     $("#preview").removeClass("preview");
-    var file = $("#imgUpload").prop('files')[0];
+
+    let file = $("#imgUpload").prop('files')[0];
     if(!validateFile(file))
         return;
-    let entry = converter.makeHtml(simplemde.value());
+
     let title = $(`<h1> ${$("#titleInput").val()} </h1>`);
-    let imgDiv = file ? $(`<div class="home-img-container"><img src="${URL.createObjectURL(file)}"></div>`) : null;
-    let dt = new Date();
-    let timestamp = dt.toLocaleString([], {
+    let timestamp = new Date().toLocaleString([], {
         year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
     let date = $(`<p class="date"> ${timestamp}</p>`);
+    let imgDiv = file ? $(`<div class="home-img-container"><img src="${URL.createObjectURL(file)}"></div>`) : null;
+    let entry = converter.makeHtml(simplemde.value());
 
     $("#preview").empty();
     $("#preview").append(title);
@@ -40,55 +43,57 @@ $("#previewButton").click(function(){
         scrollTop: $("#main").scrollTop() + ($("#preview").offset().top - $("#main").offset().top)
     }, 500);
 })
-var file, title, content;
 $("#submit").click(function(){
+    console.log("hello");
     if(!validateEntry())
         return false;   
-    let dt = new Date();
-    let timestamp = dt.toLocaleString([], {
-        year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'
-    });
-    $.ajax({
-        type: "post",
-        url: "/admin/uploadEntry",
-        contentType: "application/json",
-        data: JSON.stringify({
-            title: title,
-            content: content,
-            date: timestamp
-        }),
-        dataType: "json"
-    }).done(console.log("Post to /uploadEntry"));
+    // let dt = new Date();
+    // let timestamp = dt.toLocaleString([], {
+    //     year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'
+    // });
+    $("#editor").empty();
+    $("#editor").append((simplemde.value()));
+    // $.ajax({
+    //     type: "post",
+    //     url: "/admin/uploadEntry",
+    //     contentType: "application/json",
+    //     data: JSON.stringify({
+    //         title: title,
+    //         content: content,
+    //         date: timestamp
+    //     }),
+    //     dataType: "json"
+    // }).done(console.log("Post to /uploadEntry"));
     return true;
 })
+
 function validateEntry(){
-    file = $("#imgUpload").prop('files')[0];
     var error = false;
+    let file = $("#imgUpload").prop('files')[0];
 
     $("#error").empty();
+
     if($("#titleInput").val().length == 0){
-        $("#error").append("• Title cannot be empty!");
-        $("#error").append("<br>");
+        $("#error").append("• Title cannot be empty! <br>");
         error = true;
     }
+
     if(simplemde.value().length == 0){
         $("#error").append("• Entry cannot be empty!");
         error = true;
     }
+
     if(!validateFile(file)){
         error = true
     }
+
     if(error){
         $("#error").css("display", "block");
         return false;
     }
-    else{
-        title = $("#titleInput").val();
-        content = simplemde.value();
-        content = converter.makeHtml(simplemde.value());
-    }
     return true;
 }
+
 function validateFile(file){
     if(!file)
         return true;
