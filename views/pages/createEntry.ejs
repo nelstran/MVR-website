@@ -18,22 +18,28 @@
             <section id="main">
                 <%- include('../partials/colors'); %>
                 <section>
-                    <form id="entryForm" action="/admin/uploadEntry">
+                    <form id="entryForm" action="/admin/uploadEntry" method="POST">
                         <p style="margin:0;"><strong>Create a post</strong></p>
+
                         <input type="text" name="title" placeholder="Insert title here" id="titleInput">
                         <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
+
                         <input type="file" name="imgUpload" id="imgUpload" 
                         accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
+                        
                         <section id="entryArea">
                             <textarea id="editor"></textarea>
                         </section>
+
+                        <p id="error"></p>
+
                         <div id="bottom-button-div">
                             <input type="button" value="Preview" id="previewButton">
                             <button id="submit">Post</button>
                         </div>
-
                     </form>
                 </section>
+                
                 <h1>Preview:</h1>
                 <section id="preview" class="entry preview">
                 </section>
