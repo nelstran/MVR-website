@@ -42,7 +42,7 @@ var getEntries = function(){
 }
 var giveAdmin = function(req){
   if(!req.session.loggedin){
-    //admin = false;
+    admin = false;
     return admin;
   }
   admin = true;
