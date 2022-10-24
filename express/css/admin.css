@@ -2,6 +2,44 @@
     margin: 0;
     padding:0;
 }
+.loginForm{
+    background-color: rgb(31,31,31);
+    border: .2em solid rgb(70, 70, 70);
+    display:flex;
+    gap:1em;
+    flex-direction: column;
+    padding:1em;
+    border-radius: 1em;
+}
+.loginForm input, .loginForm button{
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.1rem;
+
+    border: none;
+    outline: 1px solid rgb(70, 70, 70);
+    
+    margin-top:.5em;
+    padding: .5em;
+
+    transition: background-color .1s linear;
+
+    background-color: rgb(31,31,31);
+    color:white;
+}
+.loginForm button{
+    background-color: rgb(100,100,100);
+    max-width: 40%;
+    width: 10em;
+    align-self: center;
+}
+.loginForm button:hover, button:focus{
+    outline-offset: .1em;
+    background-color: rgb(70,70,70);
+}
+.loginForm button:active{
+    outline-offset: .1em;
+    background-color: rgb(50,50,50);
+}
 .add, .manage, .logout{
     padding:0;
     border:none;
@@ -36,6 +74,7 @@
     justify-self: center;
     padding: .5em;
     border-radius: 1em;
+    gap:0;
 }
 #addEvent{
     margin-inline:auto;
