@@ -2,9 +2,12 @@
     :root{
         --nav-bg-dark: #000000;
     }
+    #bottomSide{
+        grid-template-rows: minmax(calc(100px + 2rem), 225px) 3fr;
+    }
     @media screen and (max-height:30em){
         #bottomSide{
-            grid-template-rows: auto;
+            grid-template-rows: none;
         }
         #promo{
             display:none;
@@ -108,9 +111,6 @@
     }
     #contribute-content > li > a:hover, #contribute-content > li > a:focus{
         margin-inline:-1.7em;
-    }
-    #bottomSide{
-        grid-template-rows: minmax(calc(100px + 2rem), 225px) 3fr;
     }
     #promo{
         grid-template-rows: auto 1fr;

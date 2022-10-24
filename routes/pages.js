@@ -42,7 +42,7 @@ var getEntries = function(){
 }
 var giveAdmin = function(req){
   if(!req.session.loggedin){
-    admin = false;
+    //admin = false;
     return admin;
   }
   admin = true;
@@ -52,7 +52,7 @@ var giveAdmin = function(req){
 var events = updateEvents();
 var projects = getProjects();
 var entries = getEntries();
-var admin = true;
+var admin = process.env.DEV_MODE == "true";
 
 router.use(userSession);
 
