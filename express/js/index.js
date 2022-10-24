@@ -15,6 +15,13 @@ var cssVar = [
 //#region SETUP
 $(window).resize(setup);
 
+//Mobile keyboard breaks website, this gives the viewport a set height and width
+$(setTimeout(function () {
+    let viewheight = $(window).height();
+    let viewwidth = $(window).width();
+    let viewport = document.querySelector("meta[name=viewport]");
+    viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
+}, 300));
 function setup(){
     if(!hasChanged){
         if(window.innerWidth > window.innerHeight){
