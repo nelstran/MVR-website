@@ -33,6 +33,18 @@ router.get('/createEvent', authorization, (req, res) =>{
 router.get('/createProject', authorization, (req, res) =>{
   res.render("pages/createProject", {admin: true});
 })
+router.get('/manageEntries', authorization, async(req, res) =>{
+  let data;
+  await pages.getEntries().catch(err => console.log(err)).then(res => data = res);
+  console.log(data);
+  res.render("pages/manage", {admin: true, mode: "entries", data: data});
+})
+router.get('/manageEvents', authorization, (req, res) =>{
+  res.render("pages/manage", {admin: true, mode: "events", data: null});
+})
+router.get('/manageProjects', authorization, (req, res) =>{
+  res.render("pages/manage", {admin: true, mode: "projects", data: null});
+})
 router.get('/', authorization, (req, res) =>{
   res.render('pages/admin', {admin: true});
 });

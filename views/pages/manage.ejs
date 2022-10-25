@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <head>
+        <%- include('../partials/metadata'); %>
+        <link rel="stylesheet" href="/css/admin.css">
+    </head>
+    
+    <body onload="setup()">
+        <%- include('../partials/header'); %>
+        <div id="bottomSide">
+            <section id="main">
+                <%- include('../partials/colors'); %>
+                <h1>Manage <%- mode %></h1>
+                <table>
+                    <tr>
+                        <% data.foreach(field =>{ %>
+                            <td> <%- field %> </td>
+                        <% }) %>
+                    </tr>
+
+                </table>
+            </section>
+        </div>
+        <script src="/js/index.js"></script>
+    </body>
+</html>
