@@ -18,27 +18,30 @@ const client = new Client({
   }
 });
 
-var updateEvents = function(){
-  client.query("SELECT * FROM events ORDER BY event_date ASC", (err, data) =>{
-    if (err) return events = null;
-    events = data.rows;
-  })
-  return events;
+var getEvents = async function(){
+  try{
+    return await client.query("SELECT * FROM events ORDER BY event_date ASC");
+  }
+  catch (err){
+    console.error(err);
+  }
 };
-var getProjects = function(){
-  client.query("SELECT * FROM projects", (err, data) =>{
-    if(err) return events = null;
-      projects = data.rows;
-  })
-  return projects;
+var getProjects = async function(){
+  try{
+    return await client.query("SELECT * FROM projects");
+  }
+  catch (err){
+    console.error(err);
+  }
 };
 
-var getEntries = function(){
-  client.query("SELECT * FROM entries ORDER BY date DESC", (err, data) =>{
-    if (err) return events = null;
-    entries = data.rows;
-  })
-  return entries;
+var getEntries = async function(){
+  try{
+    return await client.query("SELECT * FROM entries ORDER BY date DESC");
+  }
+  catch (err){
+    console.error(err);
+  }
 }
 var giveAdmin = function(req){
   if(!req.session.loggedin){
@@ -48,10 +51,6 @@ var giveAdmin = function(req){
   admin = true;
   return admin;
 };
-
-var events = updateEvents();
-var projects = getProjects();
-var entries = getEntries();
 var admin = process.env.DEV_MODE == "true";
 
 router.use(userSession);
@@ -61,60 +60,60 @@ router.get('/', (req, res) => {
 });
 
 router.get('/projects', async (req, res) => {
-  await updateEvents();
-  await getProjects();
+  let events = await getEvents();
+  let projects = await getProjects();
   giveAdmin(req);
    
-  res.render('pages/projects', {events: events, projects: projects, admin: admin});
+  res.render('pages/projects', {events: events.rows, projects: projects.rows, admin: admin});
 });
 
-router.get('/social', (req, res) => {
-  updateEvents();
+router.get('/social', async (req, res) => {
+  let events = await getEvents();
   giveAdmin(req);
    
-  res.render('pages/social', {events: events, socials: require("../express/json/socials.json"), admin: admin});
+  res.render('pages/social', {events: events.rows, socials: require("../express/json/socials.json"), admin: admin});
 });
 
-router.get('/forum', (req, res) => {
-  updateEvents();
+router.get('/forum', async (req, res) => {
+  let events = await getEvents();
   giveAdmin(req);
    
-  res.render('pages/forum', {events: events, admin: admin});
+  res.render('pages/forum', {events: events.rows, admin: admin});
 });
 
-router.get('/about', (req, res) => {
-  updateEvents();
+router.get('/about', async (req, res) => {
+  let events = await getEvents();
   giveAdmin(req);
    
-  res.render('pages/about', {events: events, admin: admin});
+  res.render('pages/about', {events: events.rows, admin: admin});
 });
 
-router.get('/donate', (req, res) => {
-  updateEvents();
+router.get('/donate', async (req, res) => {
+  let events = await getEvents();
   giveAdmin(req);
    
-  res.render('pages/donate', {events: events, admin: admin});
+  res.render('pages/donate', {events: events.rows, admin: admin});
 });
 
-router.get('/join', (req, res) => {
-  updateEvents();
+router.get('/join', async (req, res) => {
+  let events = await getEvents();
   giveAdmin(req);
 
-  res.render('pages/join', {events: events, admin: admin});
+  res.render('pages/join', {events: events.rows, admin: admin});
 });
 
-router.get('/contact', (req, res) => {
-  updateEvents();
-  giveAdmin(req);
-   
-  res.render('pages/contact', {events: events, admin: admin});
-});
-
-router.get('/wvcdaboys', (req, res) => {
-  updateEvents();
+router.get('/contact', async (req, res) => {
+  let events = await getEvents();
   giveAdmin(req);
    
-  res.render('pages/wvcdaboys', {events: events, admin: admin});
+  res.render('pages/contact', {events: events.rows, admin: admin});
+});
+
+router.get('/wvcdaboys', async (req, res) => {
+  let events = await getEvents();
+  giveAdmin(req);
+   
+  res.render('pages/wvcdaboys', {events: events.rows, admin: admin});
 });
 
 //Error page
@@ -167,8 +166,7 @@ var upload = function(query){
 }
 module.exports = {
     router,
-    events, 
-    updateEvents,
+    getEvents,
     getEntries, 
     giveAdmin, 
     authentication,

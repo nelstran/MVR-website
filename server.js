@@ -7,8 +7,8 @@ const port = process.env.PORT || 3000;
 
 const path = require('path');
 
-var events = pages.updateEvents();
-var entries = pages.getEntries();
+var events;
+var entries;
 var admin = false;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,11 +25,10 @@ app.get('/', (req, res) => {
   res.redirect("/home");
 });
 app.get('/home', async (req, res) => {
-  events = await pages.updateEvents();
+  events = await pages.getEvents();
   admin = pages.giveAdmin(req);
   entries = await pages.getEntries();
-   
-  res.render('home', {events: events, admin: admin, entries: entries});
+  res.render('home', {events: events.rows, admin: admin, entries: entries.rows});
 });
 
 //Page not found
