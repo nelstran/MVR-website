@@ -34,7 +34,7 @@ var getProjects = function(){
 };
 
 var getEntries = function(){
-  client.query("SELECT * FROM entries", (err, data) =>{
+  client.query("SELECT * FROM entries ORDER BY date DESC", (err, data) =>{
     if (err) return events = null;
     entries = data.rows;
   })
