@@ -1,3 +1,10 @@
+#bottomSide{
+    grid-template-columns: none;
+    grid-template-rows: none;
+}
+#promo{
+    display:none
+}
 .adminForm{
     display:flex;
     flex:1;
@@ -63,38 +70,14 @@
 .logout{
     background-color: #ca1111;
 }
-#addEntry, #addProject, .adminButton{
+.adminButton{
     border-radius: 5em;
     width:auto;
     height: fit-content;
     padding:1em;
     margin: 1em;
 }
-#addProject{
-    font-size: 60%;
-    margin-block: 1em;
-}
-.adminEvent{
-    background-color: rgb(31,31,31);
-    border: .2em solid rgb(70, 70, 70);
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-    padding: .5em;
-    border-radius: 1em;
-    gap:0;
-}
-#addEvent{
-    margin-inline:auto;
-    font-size:2em;
-    min-width: 5rem;
-    max-width: 5rem;
-    min-height: 5rem;
-    max-height: 5rem;
-    margin-block: .2em;
-    border-radius: 100%;
-}
-#addEvent + h2, .adminButton + h2{
+.adminButton + h2{
     font-size: 1em;
     text-align: center;
     margin:0;
