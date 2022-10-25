@@ -40,9 +40,3 @@ app.get('*', function(req, res) {
 app.listen(port, () => {
   console.log(`App listening at port ${port}`);
 });
-
-// Handling Error
-process.on("unhandledRejection", err => {
-  console.log(`An error occurred: ${err.message}`)
-  server.close(() => process.exit(1))
-})
