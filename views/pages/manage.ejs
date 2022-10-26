@@ -5,6 +5,7 @@
     <head>
         <%- include('../partials/metadata'); %>
         <link rel="stylesheet" href="/css/admin.css">
+        <link rel="stylesheet" href="/css/manage.css">
     </head>
     
     <body onload="setup()">
@@ -15,11 +16,19 @@
                 <h1>Manage <%- mode %></h1>
                 <table>
                     <tr>
-                        <% data.foreach(field =>{ %>
-                            <td> <%- field %> </td>
-                        <% }) %>
+                        <% if(data != null){ %>
+                            <% for(const field of data.fields) { %>
+                                <th><%- field.name %></th>
+                            <% } %>
+                        <% } %>
                     </tr>
-
+                    <% for(const entry of data.rows) { %>
+                        <tr>
+                            <% for(const [key, val] of Object.entries(entry)) {%>
+                            <td><%- val %></td>
+                            <% } %>
+                        </tr>
+                    <% } %>
                 </table>
             </section>
         </div>
