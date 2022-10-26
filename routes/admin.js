@@ -41,8 +41,9 @@ router.get('/manageEvents', authorization, async (req, res) =>{
   let data = await pages.query("SELECT event_name, event_date, event_location from events ORDER BY event_date ASC");
   res.render("pages/manage", {admin: true, mode: "events", data: data});
 })
-router.get('/manageProjects', authorization, (req, res) =>{
-  res.render("pages/manage", {admin: true, mode: "projects", data: null});
+router.get('/manageProjects', authorization, async (req, res) =>{
+  let data = await pages.query("SELECT title, description FROM projects");
+  res.render("pages/manage", {admin: true, mode: "projects", data: data});
 })
 router.get('/', authorization, (req, res) =>{
   res.render('pages/admin', {admin: true});
