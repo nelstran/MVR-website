@@ -9,12 +9,13 @@ td{
 th{
     padding:.5em;
 }
-th:nth-child(2){
-    border-inline: 1px solid rgb(70, 70, 70);
-}
 table, td, th {
     border-block: 1px solid rgb(70, 70, 70);
 }
 tr:nth-child(even){
     background-color: rgb(31,31,31);
+}
+.table-val-div{
+    overflow:auto;
+    max-height: 10em;
 }
