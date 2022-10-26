@@ -4,26 +4,14 @@
 
     <head>
         <%- include('../partials/metadata'); %>
-        <link rel="stylesheet" href="/css/entry.css">
+        <link rel="stylesheet" href="/css/admin/admin.css">
+        <link rel="stylesheet" href="/css/admin/entry.css">
         <link rel="stylesheet" href="/css/simplemde.min.css">
-        <style>
-            #bottomSide{
-                grid-template-columns: none;
-                grid-template-rows: none;
-            }
-            #promo{
-                display:none
-            }
-        </style>
     </head>
     
     <body onload="setup()">
         <%- include('../partials/header'); %>
         <div id="bottomSide">
-            <section id="promo">
-                <section id="events" tabindex="-1">
-                </section>
-            </section>
             <section id="main">
                 <%- include('../partials/colors'); %>
                 <section>
