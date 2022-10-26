@@ -22,12 +22,14 @@
                             <% } %>
                         <% } %>
                     </tr>
-                    <% for(const entry of data.rows) { %>
-                        <tr>
-                            <% for(const [key, val] of Object.entries(entry)) {%>
-                            <td><%- val %></td>
-                            <% } %>
-                        </tr>
+                    <% if(data != null){ %>
+                        <% for(const entry of data.rows) { %>
+                            <tr>
+                                <% for(const [key, val] of Object.entries(entry)) {%>
+                                <td><div class="table-val-div"><%- val %></div></td>
+                                <% } %>
+                            </tr>
+                        <% } %>
                     <% } %>
                 </table>
             </section>
