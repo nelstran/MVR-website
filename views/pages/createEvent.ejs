@@ -4,27 +4,53 @@
 
     <head>
         <%- include('../partials/metadata'); %>
-        <style>
-            #bottomSide{
-                grid-template-columns: none;
-                grid-template-rows: none;
-            }
-            #promo{
-                display:none
-            }
-        </style>
+        <link rel="stylesheet" href="/css/admin.css">
+        <link rel="stylesheet" href="/css/event.css">
     </head>
     
     <body onload="setup()">
         <%- include('../partials/header'); %>
         <div id="bottomSide">
-            <section id="promo">
-                <section id="events" tabindex="-1">
-                </section>
-            </section>
             <section id="main">
                 <%- include('../partials/colors'); %>
-                <h1>Event Page</h1>
+                <section id="event-form-container">
+                    <form id="eventForm" action="/admin/uploadEvent" method="POST" enctype="multipart/form-data">
+                        <p style="margin:0"><strong>Create an event</strong></p>
+                        <input type="text" name="title" placeholder="Insert title here" id="titleInput">
+
+                        <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
+                        <input type="file" name="imgUpload" id="imgUpload" form="entryForm"
+                        accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
+
+                        <div id="info-container">
+                            <div class="info-entry">
+                                <label for="date" style="font-size:80%;">Select date:</label>
+                                <input type="date" name="date" id="eventDate">
+                            </div>
+                            <div class="info-entry">
+                                <label for="location" style="font-size:80%;">Set location:</label>
+                                <input type="text" name="location" id="eventLocation">
+                            </div>
+                        </div>
+                        <button id="submit">Post</button>
+                    </form>
+                    <section id="preview-event-container">
+                        <section class="event" id="preview-event">
+                            <div id="img-placeholder"></div>
+                            <div style="text-align:center">
+                                <h2 class="not-visible"></h2>
+                                <p class="not-visible">
+                                    <div id="date-placeholder"></div>
+                                    @<br>
+                                    <div id="location-placeholder"></div>
+                                </p>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+                <section>
+
+                </section>
             </section>
         </div>
         <script src="/js/index.js"></script>
