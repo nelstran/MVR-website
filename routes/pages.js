@@ -158,11 +158,17 @@ function validate(user, pass){
   return true;
 }
 
-var upload = function(query){
-  client.query(query, function(err, results){
-    if (err) throw err;
-    console.log("1 record inserted");
-  })
+var query = async function(query){
+  // client.query(query, function(err, results){
+  //   if (err) throw err;
+  //   return results;
+  // })
+  try{
+    return await client.query(query);
+  }
+  catch (err){
+    console.error(err);
+  }
 }
 module.exports = {
     router,
@@ -170,7 +176,7 @@ module.exports = {
     getEntries, 
     giveAdmin, 
     authentication,
-    upload,
+    query,
     admin, 
     userSession
 };

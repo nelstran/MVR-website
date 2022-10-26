@@ -33,11 +33,13 @@ router.get('/createEvent', authorization, (req, res) =>{
 router.get('/createProject', authorization, (req, res) =>{
   res.render("pages/createProject", {admin: true});
 })
-router.get('/manageEntries', authorization, (req, res) =>{
-  res.render("pages/manage", {admin: true, mode: "entries", data: null});
+router.get('/manageEntries', authorization, async (req, res) =>{
+  let data = await pages.query("SELECT title, date, content from entries ORDER BY date DESC");
+  res.render("pages/manage", {admin: true, mode: "entries", data: data});
 })
-router.get('/manageEvents', authorization, (req, res) =>{
-  res.render("pages/manage", {admin: true, mode: "events", data: null});
+router.get('/manageEvents', authorization, async (req, res) =>{
+  let data = await pages.query("SELECT event_name, event_date, event_location from events ORDER BY event_date ASC");
+  res.render("pages/manage", {admin: true, mode: "events", data: data});
 })
 router.get('/manageProjects', authorization, (req, res) =>{
   res.render("pages/manage", {admin: true, mode: "projects", data: null});
@@ -85,6 +87,6 @@ function uploadToDatabase(req, filePath){
   let content = req.body.content;
   let html = converter.makeHtml(content);
   let query = `INSERT INTO entries (author, title, date, content, html, img_id) VALUES ('${author}', '${title}', '${date}', '${content}', '${html}', '${filePath}')`;
-  pages.upload(query);
+  pages.query(query);
 }
 module.exports = router;
