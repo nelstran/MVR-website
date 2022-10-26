@@ -4,24 +4,12 @@
 
     <head>
         <%- include('../partials/metadata'); %>
-        <style>
-            #bottomSide{
-                grid-template-columns: none;
-                grid-template-rows: none;
-            }
-            #promo{
-                display:none
-            }
-        </style>
+        <link rel="stylesheet" href="/css/admin.css">
     </head>
     
     <body onload="setup()">
         <%- include('../partials/header'); %>
         <div id="bottomSide">
-            <section id="promo">
-                <section id="events" tabindex="-1">
-                </section>
-            </section>
             <section id="main">
                 <%- include('../partials/colors'); %>
                 <h1>Project Page</h1>
