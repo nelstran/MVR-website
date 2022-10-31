@@ -1,9 +1,10 @@
 $("#submit").click(function(e){
-    let forms = [$("#titleInput"), $("#eventDate"), $("#eventLocation")];
+    let forms = [$("#titleInput"), $("#eventDate"), $("#eventLocation"), $("#imgUpload")];
     let valid = [
         forms[0].val().length > 0,
         !!forms[1].val(),
-        forms[2].val().length > 0
+        forms[2].val().length > 0,
+        forms[3].val() != ""
     ];
     if(valid.every(bool => bool == true)){
         return true;
@@ -14,10 +15,12 @@ $("#submit").click(function(e){
             if(!valid[i]){
                 $(`label[for=${formID}]`).addClass("animate");
                 $(`input[name="${formID}"]`).addClass("animate");
+                $(`input[name="${formID}"]`).addClass("invalid");
                 $(`label[for=${formID}]`).css("color", "red");
             }
             else{
                 $(`label[for=${formID}]`).css("color", "white");
+                $(`input[name="${formID}"]`).removeClass("invalid");
             }
         }
     }
