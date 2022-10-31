@@ -13,9 +13,6 @@ label{
     position:relative;
 
 }
-.invalid{
-    background-color: rgb(255, 134, 134);
-}
 .animate{
     animation: error .2s linear forwards;
 }

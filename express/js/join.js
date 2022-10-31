@@ -32,13 +32,11 @@ $("#joinButton").click(function(e){
             if(!valid[i]){
                 $(`label[for=${formID}]`).addClass("animate");
                 $(`label[for=${formID}]`).css("color", "red");
-                $(`label[for=${formID}] input`).addClass("invalid");
                 if(scrollToForm == null)
                     scrollToForm = formID;
             }
             else{
                 $(`label[for=${formID}]`).css("color", "white");
-                $(`label[for=${formID}] input`).removeClass("invalid");
             }
         }
         $('html, body').animate({
