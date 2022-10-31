@@ -48,7 +48,7 @@ button, input[type=button]{
     align-self: center;
 }
 .invalid{
-    outline: 2px solid rgb(255, 134, 134) !important;
+    outline-color: rgb(146, 44, 44) !important;
 }
 .animate{
     animation: error .2s linear forwards;
