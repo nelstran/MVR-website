@@ -307,7 +307,7 @@ body{
     display: -ms-flexbox;
     display: -webkit-flex;
 
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     
     overflow-y:auto;
