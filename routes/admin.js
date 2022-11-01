@@ -52,20 +52,20 @@ router.post('/login', (req, res) => {
   pages.authentication(req, res)
 });
 router.post("/uploadEntry", async (req, res) =>{
-  await uploadImagetoIK(req).then(result => {
+  await uploadImagetoIK(req).then(async result => {
     if(result)
-      uploadEntryToDB(req, result.filePath.replace("/",""))
+      await uploadEntryToDB(req, result.filePath.replace("/",""))
     else
-      uploadEntryToDB(req, null);
+      await uploadEntryToDB(req, null);
   })
   .then(res.redirect('/'));
   
 })
 router.post("/uploadEvent", async (req, res) =>{
   await uploadImagetoIK(req)
-  .then(result => {
+  .then(async result => {
     if(result)
-      uploadEventToDB(req, result.filePath.replace("/",""));
+      await uploadEventToDB(req, result.filePath.replace("/",""));
     else
       res.send("Error has occured uploading event");
   })
@@ -98,7 +98,7 @@ async function uploadImagetoIK(req){
     });
   })
 }
-function uploadEntryToDB(req, filePath){
+async function uploadEntryToDB(req, filePath){
   let author;
   if(req.session)
     author = req.session.person;
@@ -109,15 +109,17 @@ function uploadEntryToDB(req, filePath){
   let content = req.body.content;
   let html = converter.makeHtml(content);
   let query = `INSERT INTO entries (author, title, date, content, html, img_id) VALUES ('${author}', '${title}', '${date}', '${content}', '${html}', '${filePath}')`;
-  pages.query(query);
+  
+  await pages.query(query);
   console.log("Uploaded entry");
 };
-function uploadEventToDB(req,filePath){
+async function uploadEventToDB(req,filePath){
   let title = req.body.title;
   let date = req.body.date;
   let location = req.body.location;
   let query = `INSERT INTO events (event_name, event_date, event_location, event_image_id) VALUES ('${title}', '${date}', '${location}', '${filePath}')`;
-  pages.query(query);
+  
+  await pages.query(query);
   console.log("Uploaded event");
 
 };

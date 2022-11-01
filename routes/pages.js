@@ -159,10 +159,6 @@ function validate(user, pass){
 }
 
 var query = async function(query){
-  // client.query(query, function(err, results){
-  //   if (err) throw err;
-  //   return results;
-  // })
   try{
     return await client.query(query);
   }
