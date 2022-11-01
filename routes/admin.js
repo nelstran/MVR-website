@@ -48,26 +48,13 @@ router.get('/manageProjects', authorization, async (req, res) =>{
 router.get('/', authorization, (req, res) =>{
   res.render('pages/admin', {admin: true});
 });
-router.post('/login', function(req, res) {
+router.post('/login', (req, res) => {
   pages.authentication(req, res)
 });
-router.post("/uploadEntry", (req, res) =>{
-  var img_data, base64Image, img_name;
-
-  if(req.files){
-    img_name = req.files.imgUpload.name;
-    img_data = req.files.imgUpload.data;
-    base64Image = img_data.toString('base64');
-  }
-
-  imagekit.upload({
-    file : base64Image,
-    fileName : img_name,
-  }, function(error, result) {
-      if(error) console.log(error);
-      else console.log(result);
-      uploadToDatabase(req,result.filePath.replace("/",""));
-  });
+router.post("/uploadEntry", async (req, res) =>{
+  await uploadImagetoIK(req).then(result => 
+    uploadEntryToDB(req, result.filePath.replace("/",""))
+    );
   res.redirect('/');
 })
 router.get('/logout', function(req, res) {
@@ -77,7 +64,27 @@ router.get('/logout', function(req, res) {
   res.redirect("/")
 });
 
-function uploadToDatabase(req, filePath){
+async function uploadImagetoIK(req){
+  var img_data, base64Image, img_name;
+
+  if(req.files){
+    img_name = req.files.imgUpload.name;
+    img_data = req.files.imgUpload.data;
+    base64Image = img_data.toString('base64');
+  }
+
+  return new Promise((resolve, reject) =>{
+    imagekit.upload({
+      file : base64Image,
+      fileName : img_name,
+    }, function(error, result) {
+        if(error) reject(error);
+        else resolve(result);
+    });
+  })
+  
+}
+function uploadEntryToDB(req, filePath){
   let author;
   if(req.session)
     author = req.session.person;

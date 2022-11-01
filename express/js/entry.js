@@ -46,24 +46,9 @@ $("#previewButton").click(function(){
 $("#submit").click(function(){
     console.log("hello");
     if(!validateEntry())
-        return false;   
-    // let dt = new Date();
-    // let timestamp = dt.toLocaleString([], {
-    //     year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'
-    // });
+        return false;  
     $("#editor").empty();
     $("#editor").append((simplemde.value()));
-    // $.ajax({
-    //     type: "post",
-    //     url: "/admin/uploadEntry",
-    //     contentType: "application/json",
-    //     data: JSON.stringify({
-    //         title: title,
-    //         content: content,
-    //         date: timestamp
-    //     }),
-    //     dataType: "json"
-    // }).done(console.log("Post to /uploadEntry"));
     return true;
 })
 
