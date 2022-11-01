@@ -55,18 +55,22 @@ router.post("/uploadEntry", async (req, res) =>{
   await uploadImagetoIK(req).then(result => {
     if(result)
       uploadEntryToDB(req, result.filePath.replace("/",""))
-  });
-  res.redirect('/');
+    else
+      uploadEntryToDB(req, null);
+  })
+  .then(res.redirect('/'));
+  
 })
 router.post("/uploadEvent", async (req, res) =>{
-  await uploadImagetoIK(req).then(result => {
-    if(result){
-    uploadEventToDB(req, result.filePath.replace("/",""))
-  console.log("Uploaded image");
-
-    }
-  });
-  res.redirect('/');
+  await uploadImagetoIK(req)
+  .then(result => {
+    if(result)
+      uploadEventToDB(req, result.filePath.replace("/",""));
+    else
+      res.send("Error has occured uploading event");
+  })
+  .then(res.redirect('/'));
+  
 })
 router.get('/logout', function(req, res) {
   req.session.loggedin = false;
