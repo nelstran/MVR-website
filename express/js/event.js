@@ -1,3 +1,6 @@
+$(function(){
+    $("#eventDate").attr("min",new Date().toISOString().split("T")[0])
+})
 $("#submit").click(function(e){
     let forms = [$("#titleInput"), $("#eventDate"), $("#eventLocation"), $("#imgUpload")];
     let valid = [
