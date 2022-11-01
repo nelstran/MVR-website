@@ -52,9 +52,20 @@ router.post('/login', (req, res) => {
   pages.authentication(req, res)
 });
 router.post("/uploadEntry", async (req, res) =>{
-  await uploadImagetoIK(req).then(result => 
-    uploadEntryToDB(req, result.filePath.replace("/",""))
-    );
+  await uploadImagetoIK(req).then(result => {
+    if(result)
+      uploadEntryToDB(req, result.filePath.replace("/",""))
+  });
+  res.redirect('/');
+})
+router.post("/uploadEvent", async (req, res) =>{
+  await uploadImagetoIK(req).then(result => {
+    if(result){
+    uploadEventToDB(req, result.filePath.replace("/",""))
+  console.log("Uploaded image");
+
+    }
+  });
   res.redirect('/');
 })
 router.get('/logout', function(req, res) {
@@ -67,11 +78,11 @@ router.get('/logout', function(req, res) {
 async function uploadImagetoIK(req){
   var img_data, base64Image, img_name;
 
-  if(req.files){
-    img_name = req.files.imgUpload.name;
-    img_data = req.files.imgUpload.data;
-    base64Image = img_data.toString('base64');
-  }
+  if(!req.files)
+    return;
+  img_name = req.files.imgUpload.name;
+  img_data = req.files.imgUpload.data;
+  base64Image = img_data.toString('base64');
 
   return new Promise((resolve, reject) =>{
     imagekit.upload({
@@ -82,7 +93,6 @@ async function uploadImagetoIK(req){
         else resolve(result);
     });
   })
-  
 }
 function uploadEntryToDB(req, filePath){
   let author;
@@ -96,5 +106,15 @@ function uploadEntryToDB(req, filePath){
   let html = converter.makeHtml(content);
   let query = `INSERT INTO entries (author, title, date, content, html, img_id) VALUES ('${author}', '${title}', '${date}', '${content}', '${html}', '${filePath}')`;
   pages.query(query);
-}
+  console.log("Uploaded entry");
+};
+function uploadEventToDB(req,filePath){
+  let title = req.body.title;
+  let date = req.body.date;
+  let location = req.body.location;
+  let query = `INSERT INTO events (event_name, event_date, event_location, event_image_id) VALUES ('${title}', '${date}', '${location}', '${filePath}')`;
+  pages.query(query);
+  console.log("Uploaded event");
+
+};
 module.exports = router;
