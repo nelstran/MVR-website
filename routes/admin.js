@@ -59,7 +59,6 @@ router.post("/uploadEntry", async (req, res) =>{
       await uploadEntryToDB(req, null);
   })
   .then(res.redirect('/'));
-  
 })
 router.post("/uploadEvent", async (req, res) =>{
   await uploadImagetoIK(req)
@@ -70,7 +69,16 @@ router.post("/uploadEvent", async (req, res) =>{
       res.send("Error has occured uploading event");
   })
   .then(res.redirect('/'));
-  
+})
+router.post("/uploadProject", async (req, res) =>{
+  await uploadImagetoIK(req)
+  .then(async result => {
+    if(result)
+      await uploadProjectToDB(req, result.filePath.replace("/",""));
+    else
+      res.send("Error has occured uploading project");
+  })
+  .then(res.redirect('/'));
 })
 router.get('/logout', function(req, res) {
   req.session.loggedin = false;
@@ -121,6 +129,13 @@ async function uploadEventToDB(req,filePath){
   
   await pages.query(query);
   console.log("Uploaded event");
-
+};
+async function uploadProjectToDB(req,filePath){
+  let title = req.body.title;
+  let description = req.body.desc;
+  let query = `INSERT INTO projects (title, description, img_id) VALUES ('${title}', '${description}', '${filePath}')`;
+  
+  await pages.query(query);
+  console.log("Uploaded project");
 };
 module.exports = router;
