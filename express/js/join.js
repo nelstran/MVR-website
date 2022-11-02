@@ -30,6 +30,7 @@ $("#joinButton").click(function(e){
         for(let i = 0; i < valid.length; i++){
             let formID = forms[i].attr('id');
             if(!valid[i]){
+                $(`label[for="${formID}"]`).css("animation-delay", `${25*i}ms`);
                 $(`label[for=${formID}]`).addClass("animate");
                 $(`label[for=${formID}]`).css("color", "red");
                 if(scrollToForm == null)
