@@ -52,3 +52,9 @@
     font-size: 60%;
     margin-block: 1em;
 }
+.add{
+    -webkit-transition: background-color .1s ease;
+    -moz-transition: background-color .1s ease;
+    -o-transition: background-color .1s ease;
+    transition: background-color .1s ease;
+}

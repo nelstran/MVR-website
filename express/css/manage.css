@@ -19,3 +19,8 @@ tr:nth-child(even){
     overflow:auto;
     max-height: 10em;
 }
+@media screen and (max-width:30rem){
+    table{
+        border: 2px solid red;
+    }
+}
