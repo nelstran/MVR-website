@@ -16,6 +16,7 @@ $("#submit").click(function(e){
         for(let i = 0; i < valid.length; i++){
             let formID = forms[i].attr('name');
             if(!valid[i]){
+                $(`[name="${formID}"], [for="${formID}"]`).css("animation-delay", `${25*i}ms`);
                 $(`label[for=${formID}]`).addClass("animate");
                 $(`input[name="${formID}"]`).addClass("animate");
                 $(`input[name="${formID}"]`).addClass("invalid");

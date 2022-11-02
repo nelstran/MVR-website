@@ -25,7 +25,7 @@ label{
     flex-direction: column;
     gap: .5em;
 }
-input[type=text], input[type=file], input[type=date], input[type=button], button{
+input[type=text], input[type=file], input[type=date], button{
     font-family: 'Rubik', sans-serif;
     font-size: 1.1rem;
 
@@ -41,7 +41,7 @@ input[type=text], input[type=file], input[type=date], input[type=button], button
     background-color: rgb(31,31,31);
     color:white;
 }
-button, input[type=button]{
+button{
     background-color: rgb(100,100,100);
     max-width: 40%;
     width: 10em;
@@ -67,11 +67,11 @@ button, input[type=button]{
         right:0px;
     }
 }   
-button:hover, button:focus, input[type=button]:hover, input[type=button]:focus{
+button:hover, button:focus, input[type=button]:focus{
     outline-offset: .1em;
     background-color: rgb(70,70,70);
 }
-button:active, input[type=button]:active{
+button:active{
     outline-offset: .1em;
     background-color: rgb(50,50,50);
 }
