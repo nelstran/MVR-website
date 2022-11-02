@@ -325,6 +325,9 @@ body{
     margin: 0;
     display:inline;
 }
+.entry > h1{
+    font-size: 125%;
+}
 .date{
     font-size:75%;
     color: #828282;
