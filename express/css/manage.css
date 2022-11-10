@@ -19,8 +19,27 @@ tr:nth-child(even){
     overflow:auto;
     max-height: 10em;
 }
+.action-div div{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1em;
+}
+.actionButton{
+    border-radius: 5em;
+    width:100%;
+    height: fit-content;
+    padding-inline:1em;
+}
+.actionButton h1{
+    font-size: 1em;
+    text-align: center;
+    margin:.5em;
+}
 @media screen and (max-width:30rem){
-    table{
-        border: 2px solid red;
+    tr > th:not(:first-child, .action-div){
+        display:none;
+    }
+    tr > td:not(:first-child, .action-div){
+        display:none;
     }
 }
