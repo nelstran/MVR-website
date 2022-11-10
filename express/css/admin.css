@@ -52,7 +52,7 @@
     outline-offset: .1em;
     background-color: rgb(50,50,50);
 }
-.add, .manage, .logout{
+.add, .manage, .logout, .edit, .delete{
     padding:0;
     border:none;
     outline: none;
@@ -61,13 +61,13 @@
 .manage{
     height: calc(100%-2em);
 }
-.add{
+.add, .edit{
     background-color: #328abd;
 }
 .manage{
     background-color: #12aa36;
 }
-.logout{
+.logout, .delete{
     background-color: #ca1111;
 }
 .adminButton{
@@ -96,10 +96,10 @@
     width:100%;
     margin-inline:0;
 }
-.add:hover, .add:focus{
+.add:hover, .add:focus, .edit:hover, .edit:focus{
     background-color: #215c7e !important;
 }
-.add:active{
+.add:active, .edit:active{
     background-color: #17435c !important;
 }
 .manage:hover, .manage:focus{
@@ -108,10 +108,10 @@
 .manage:active{
     background-color: #08581b !important;
 }
-.logout:hover, .logout:focus{
+.logout:hover, .logout:focus, .delete:hover, .delete:focus{
     background-color: #a20d0d !important;
 }
-.logout:active{
+.logout:active, .delete:active{
     background-color: #730909 !important;
 }
 

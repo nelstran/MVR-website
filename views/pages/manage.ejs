@@ -20,6 +20,7 @@
                             <% for(const field of data.fields) { %>
                                 <th><%- field.name %></th>
                             <% } %>
+                            <th class="action-div">Action</th>
                         <% } %>
                     </tr>
                     <% if(data != null){ %>
@@ -28,6 +29,12 @@
                                 <% for(const [key, val] of Object.entries(entry)) {%>
                                 <td><div class="table-val-div"><%- val %></div></td>
                                 <% } %>
+                                <td class="action-div">
+                                    <div>
+                                        <button class="edit actionButton"><h1>Edit</h1></button>
+                                        <button class="delete actionButton"><h1>Delete</h1></button>
+                                    </div>
+                                </td>
                             </tr>
                         <% } %>
                     <% } %>
