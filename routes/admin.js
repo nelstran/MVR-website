@@ -16,6 +16,8 @@ var converter = new showdown.Converter();
 
 router.use(upload());
 router.use(pages.userSession);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const authorization = (req, res, next) => {
     if (pages.giveAdmin(req)) {
       next()
@@ -34,15 +36,15 @@ router.get('/createProject', authorization, (req, res) =>{
   res.render("pages/createProject", {admin: true});
 })
 router.get('/manageEntries', authorization, async (req, res) =>{
-  let data = await pages.query("SELECT title, date, content from entries ORDER BY date DESC");
+  let data = await pages.query("SELECT id, title, date, content from entries ORDER BY date DESC");
   res.render("pages/manage", {admin: true, mode: "entries", data: data});
 })
 router.get('/manageEvents', authorization, async (req, res) =>{
-  let data = await pages.query("SELECT event_name, event_date, event_location from events ORDER BY event_date ASC");
+  let data = await pages.query("SELECT id, event_name, event_date, event_location from events ORDER BY event_date ASC");
   res.render("pages/manage", {admin: true, mode: "events", data: data});
 })
 router.get('/manageProjects', authorization, async (req, res) =>{
-  let data = await pages.query("SELECT title, description FROM projects");
+  let data = await pages.query("SELECT id, title, description FROM projects");
   res.render("pages/manage", {admin: true, mode: "projects", data: data});
 })
 router.get('/', authorization, (req, res) =>{
@@ -79,6 +81,17 @@ router.post("/uploadProject", async (req, res) =>{
       res.send("Error has occured uploading project");
   })
   .then(res.redirect('/'));
+})
+router.post("/delete", authorization, async (req, res) =>{
+  let query = `DELETE FROM ${req.body.db} WHERE id = ${req.body.id} RETURNING *`;
+  let row = await pages.query(query);
+  imagekit.deleteFile(row.rows.img_id, function(error, result) {
+    if(error) console.log(error);
+        else console.log(result);
+  });
+  console.log(row.rows);
+  console.log(`Deleted row:${req.body.id} from ${req.body.db}`);
+  
 })
 router.get('/logout', function(req, res) {
   req.session.loggedin = false;
