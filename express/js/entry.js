@@ -11,6 +11,7 @@ var simplemde = new EasyMDE({
 	},
     status: ["autosave", "words"],
     spellChecker: false,
+    maxHeight: "15em"
 });
 
 var converter = new showdown.Converter();
