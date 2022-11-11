@@ -1,4 +1,4 @@
-var simplemde = new SimpleMDE({
+var simplemde = new EasyMDE({
     element: $('.editor')[0],
     placeholder: "Insert manifesto here",
     toolbar: ["bold", "italic", "heading", "|", 
@@ -9,8 +9,8 @@ var simplemde = new SimpleMDE({
 		uniqueId: "MyUniqueID",
 		delay: 1000,
 	},
-    status: ["autosave"],
-    spellChecker: false
+    status: ["autosave", "words"],
+    spellChecker: false,
 });
 
 var converter = new showdown.Converter();
