@@ -23,6 +23,8 @@
                     <tr>
                         <% if(data != null){ %>
                             <% for(const field of data.fields) { %>
+                                <% if(field.name == "id")
+                                    continue; %>
                                 <th><%- field.name %></th>
                             <% } %>
                             <th class="action-div">Action</th>
@@ -31,13 +33,18 @@
                     <% if(data != null){ %>
                         <% for(const entry of data.rows) { %>
                             <tr>
+                                <% let id = 0; %>
                                 <% for(const [key, val] of Object.entries(entry)) {%>
+                                    <% if(key == "id"){
+                                        id = val;
+                                        continue;
+                                    } %>
                                 <td><div class="table-val-div"><%- val %></div></td>
                                 <% } %>
                                 <td class="action-div">
                                     <div>
                                         <button class="edit actionButton"><h1>Edit</h1></button>
-                                        <button class="delete actionButton"><h1>Delete</h1></button>
+                                        <button class="delete actionButton" id="<%- `${id}/${mode}` %>"><h1>Delete</h1></button>
                                     </div>
                                 </td>
                             </tr>
@@ -47,5 +54,6 @@
             </section>
         </div>
         <script src="/js/index.js"></script>
+        <script src="/js/manage.js"></script>
     </body>
 </html>
