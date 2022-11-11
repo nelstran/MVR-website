@@ -5,6 +5,18 @@
 #promo{
     display:none
 }
+form:not(.backForm, .adminForm){
+    background-color: rgb(31,31,31);
+    border: .2em solid rgb(70, 70, 70);
+    display:flex;
+    gap:.5em;
+    flex-direction: column;
+    padding:1em;
+    border-radius: 1em;
+    max-width: 60rem;
+    width:50vw;
+    min-width: 15em;
+}
 .adminForm{
     display:flex;
     flex:1;
@@ -54,7 +66,7 @@
     outline-offset: .1em;
     background-color: rgb(50,50,50);
 }
-.add, .manage, .logout, .edit, .delete{
+.add, .manage, .logout, .edit, .delete, .back{
     padding:0;
     border:none;
     outline: none;
@@ -71,6 +83,9 @@
 }
 .logout, .delete{
     background-color: #ca1111;
+}
+.back{
+    background-color: #ffffff;
 }
 .adminButton{
     border-radius: 5em;
@@ -95,6 +110,27 @@
     flex-direction: column;
     margin-inline: .3em;
 }
+#misc-div{
+    display:flex;
+    flex-direction: row;
+    width:100%;
+    gap:1em;
+}
+.backForm{
+    width:100%;
+}
+.back{
+    color:black;
+    border-radius: 5em;
+    height: fit-content;
+    width:100%;
+    padding:1em;
+    margin-block: 1em;
+}
+.back h1{
+    margin: 0;
+    padding:0;
+}
 .adminButton{
     width:100%;
     margin-inline:0;
@@ -116,6 +152,12 @@
 }
 .logout:active, .delete:active{
     background-color: #730909 !important;
+}
+.back:hover, .back:focus{
+    background-color: #c0c0c0 !important;
+}
+.back:active{
+    background-color: #757575 !important;
 }
 
 .adminForm button{

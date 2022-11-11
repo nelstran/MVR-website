@@ -1,16 +1,4 @@
-form{
-    background-color: rgb(31,31,31);
-    border: .2em solid rgb(70, 70, 70);
-    display:flex;
-    gap:.5em;
-    flex-direction: column;
-    padding:1em;
-    border-radius: 1em;
-    max-width: 60rem;
-    width:50vw;
-    min-width: 15em;
-}
-input[type=text], input[type=file], input[type=button], button{
+input[type=text], input[type=file], input[type=button], button:not(.back){
     font-family: 'Rubik', sans-serif;
     font-size: 1.1rem;
 
@@ -24,17 +12,17 @@ input[type=text], input[type=file], input[type=button], button{
     background-color: rgb(31,31,31);
     color:white;
 }
-button, input[type=button]{
+button:not(.back), input[type=button]{
     background-color: rgb(100,100,100);
     max-width: 40%;
     width: 10em;
     align-self: center;
 }
-button:hover, button:focus, input[type=button]:hover, input[type=button]:focus{
+button:not(.back):hover, button:not(.back):focus, input[type=button]:hover, input[type=button]:focus{
     outline-offset: .1em;
     background-color: rgb(70,70,70);
 }
-button:active, input[type=button]:active{
+button:not(.back):active, input[type=button]:active{
     outline-offset: .1em;
     background-color: rgb(50,50,50);
 }
