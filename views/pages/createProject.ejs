@@ -13,6 +13,11 @@
         <div id="bottomSide">
             <section id="main">
                 <%- include('../partials/colors'); %>
+                <form action="/admin" class="backForm">
+                    <button class="back" title="Go back">
+                        <h1>GO BACK</h1>
+                    </button>
+                </form>
                 <section>
                     <form id="projectForm" action="/admin/uploadProject" method="POST" enctype="multipart/form-data">
                         <p style="margin:0"><strong>Post a project</strong></p>

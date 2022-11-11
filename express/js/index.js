@@ -218,6 +218,7 @@ $("#back-button").on("click", function(){
 })
 $("#links > *:not(#contribute > a, #contribute, #back-button)").click(function(e) {
     e.preventDefault();
+    $("#back-button").click();
     setTimeout(function (){
         window.location = e.target.href;
     }, $(e.target).css("transition-duration"));
