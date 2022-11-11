@@ -1,16 +1,4 @@
-form{
-    background-color: rgb(31,31,31);
-    border: .2em solid rgb(70, 70, 70);
-    display:flex;
-    gap:.5em;
-    flex-direction: column;
-    padding:1em;
-    border-radius: 1em;
-    max-width: 60rem;
-    width:50vw;
-    min-width: 15em;
-}
-input[type=text], input[type=file], button, textarea{
+input[type=text], input[type=file], button:not(.back), textarea{
     font-family: 'Rubik', sans-serif;
     font-size: 1.1rem;
 
@@ -30,7 +18,7 @@ textarea{
     overflow-y:auto;
     resize:vertical;
 }
-button{
+button:not(.back){
     background-color: rgb(100,100,100);
     max-width: 40%;
     width: 10em;
@@ -56,11 +44,11 @@ button{
         right:0px;
     }
 } 
-button:hover, button:focus{
+button:not(.back):hover, button:focus{
     outline-offset: .1em;
     background-color: rgb(70,70,70);
 }
-button:active{
+button:not(.back):active{
     outline-offset: .1em;
     background-color: rgb(50,50,50);
 }
