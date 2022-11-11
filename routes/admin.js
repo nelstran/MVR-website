@@ -56,7 +56,7 @@ router.post('/login', (req, res) => {
 router.post("/uploadEntry", async (req, res) =>{
   await uploadImagetoIK(req).then(async result => {
     if(result)
-      await uploadEntryToDB(req, result.filePath.replace("/",""))
+      await uploadEntryToDB(req, result.filePath.replace("/",""), result.fileId)
     else
       await uploadEntryToDB(req, null);
   })
@@ -66,7 +66,7 @@ router.post("/uploadEvent", async (req, res) =>{
   await uploadImagetoIK(req)
   .then(async result => {
     if(result)
-      await uploadEventToDB(req, result.filePath.replace("/",""));
+      await uploadEventToDB(req, result.filePath.replace("/",""), result.fileId);
     else
       res.send("Error has occured uploading event");
   })
@@ -76,7 +76,7 @@ router.post("/uploadProject", async (req, res) =>{
   await uploadImagetoIK(req)
   .then(async result => {
     if(result)
-      await uploadProjectToDB(req, result.filePath.replace("/",""));
+      await uploadProjectToDB(req, result.filePath.replace("/",""), result.fileId);
     else
       res.send("Error has occured uploading project");
   })
@@ -85,13 +85,10 @@ router.post("/uploadProject", async (req, res) =>{
 router.post("/delete", authorization, async (req, res) =>{
   let query = `DELETE FROM ${req.body.db} WHERE id = ${req.body.id} RETURNING *`;
   let row = await pages.query(query);
-  imagekit.deleteFile(row.rows.img_id, function(error, result) {
+  imagekit.deleteFile(row.rows[0].fileId, function(error, result) {
     if(error) console.log(error);
         else console.log(result);
   });
-  console.log(row.rows);
-  console.log(`Deleted row:${req.body.id} from ${req.body.db}`);
-  
 })
 router.get('/logout', function(req, res) {
   req.session.loggedin = false;
@@ -119,7 +116,7 @@ async function uploadImagetoIK(req){
     });
   })
 }
-async function uploadEntryToDB(req, filePath){
+async function uploadEntryToDB(req, filePath, fileId){
   let author;
   if(req.session)
     author = req.session.person;
@@ -129,24 +126,25 @@ async function uploadEntryToDB(req, filePath){
   });
   let content = req.body.content;
   let html = converter.makeHtml(content);
-  let query = `INSERT INTO entries (author, title, date, content, html, img_id) VALUES ('${author}', '${title}', '${date}', '${content}', '${html}', '${filePath}')`;
+  let query = `INSERT INTO entries (author, title, date, content, html, img_id, "fileId") VALUES ('${author}', '${title}', '${date}', '${content}', '${html}', '${filePath}', '${fileId}')`;
   
   await pages.query(query);
   console.log("Uploaded entry");
 };
-async function uploadEventToDB(req,filePath){
+async function uploadEventToDB(req,filePath, fileId){
   let title = req.body.title;
   let date = req.body.date;
   let location = req.body.location;
-  let query = `INSERT INTO events (event_name, event_date, event_location, event_image_id) VALUES ('${title}', '${date}', '${location}', '${filePath}')`;
+  let query = `INSERT INTO events (event_name, event_date, event_location, event_image_id, "fileId") VALUES ('${title}', '${date}', '${location}', '${filePath}', '${fileId}')`;
   
   await pages.query(query);
   console.log("Uploaded event");
 };
-async function uploadProjectToDB(req,filePath){
+async function uploadProjectToDB(req,filePath, fileId){
   let title = req.body.title;
   let description = req.body.desc;
-  let query = `INSERT INTO projects (title, description, img_id) VALUES ('${title}', '${description}', '${filePath}')`;
+  console.log(fileId);
+  let query = `INSERT INTO projects (title, description, img_id, "fileId") VALUES ('${title}', '${description}', '${filePath}', '${fileId}')`;
   
   await pages.query(query);
   console.log("Uploaded project");
