@@ -85,6 +85,8 @@ router.post("/uploadProject", async (req, res) =>{
 router.post("/delete", authorization, async (req, res) =>{
   let query = `DELETE FROM ${req.body.db} WHERE id = ${req.body.id} RETURNING *`;
   let row = await pages.query(query);
+  if(!row.rows[0].fileId)
+    return;
   imagekit.deleteFile(row.rows[0].fileId, function(error, result) {
     if(error) console.log(error);
         else console.log(result);
@@ -99,7 +101,7 @@ router.get('/logout', function(req, res) {
 
 async function uploadImagetoIK(req){
   var img_data, base64Image, img_name;
-
+  
   if(!req.files)
     return;
   img_name = req.files.imgUpload.name;
