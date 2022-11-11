@@ -12,17 +12,17 @@ input[type=text], input[type=file], input[type=button], button:not(.back){
     background-color: rgb(31,31,31);
     color:white;
 }
-button:not(.back), input[type=button]{
+#bottom-button-div > button, input[type=button]{
     background-color: rgb(100,100,100);
     max-width: 40%;
     width: 10em;
     align-self: center;
 }
-button:not(.back):hover, button:not(.back):focus, input[type=button]:hover, input[type=button]:focus{
+#bottom-button-div > button:hover, #bottom-button-div > button:focus, input[type=button]:hover, input[type=button]:focus{
     outline-offset: .1em;
     background-color: rgb(70,70,70);
 }
-button:not(.back):active, input[type=button]:active{
+#bottom-button-div > button:active, input[type=button]:active{
     outline-offset: .1em;
     background-color: rgb(50,50,50);
 }
