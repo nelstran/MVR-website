@@ -7,4 +7,6 @@ $(".delete").click(function(){
         data: { id: data[0], db: data[1] },
         type: 'POST',
     });
+    $(this).parents("tr").remove();
+    alert("Row deleted");
 })
