@@ -99,7 +99,7 @@ router.get('/logout', function(req, res) {
 
 async function uploadImagetoIK(req){
   var img_data, base64Image, img_name;
-  console.log(req.files);
+
   if(!req.files)
     return;
   img_name = req.files.imgUpload.name;
@@ -128,7 +128,7 @@ async function uploadEntryToDB(req, filePath, fileId){
   let html = converter.makeHtml(content);
   let query = `INSERT INTO entries (author, title, date, content, html, img_id, "fileId") VALUES ('${author}', '${title}', '${date}', '${content}', '${html}', '${filePath}', '${fileId}')`;
   
-  console.log(await pages.query(query));
+  await pages.query(query);
   console.log("Uploaded entry");
 };
 async function uploadEventToDB(req,filePath, fileId){
@@ -137,7 +137,7 @@ async function uploadEventToDB(req,filePath, fileId){
   let location = req.body.location;
   let query = `INSERT INTO events (event_name, event_date, event_location, event_image_id, "fileId") VALUES ('${title}', '${date}', '${location}', '${filePath}', '${fileId}')`;
   
-  console.log(await pages.query(query));
+  await pages.query(query);
   console.log("Uploaded event");
 };
 async function uploadProjectToDB(req,filePath, fileId){
@@ -145,7 +145,7 @@ async function uploadProjectToDB(req,filePath, fileId){
   let description = req.body.desc.replaceAll(`'`, `''`);
   let query = `INSERT INTO projects (title, description, img_id, "fileId") VALUES ('${title}', '${description}', '${filePath}', '${fileId}')`;
   
-  console.log(await pages.query(query));
+  await pages.query(query);
   console.log("Uploaded project");
 };
 module.exports = router;
