@@ -255,7 +255,6 @@ var drop = false;
 $("#contribute").hover(function(){
     appear();
     hoverState = true;
-    // console.log(`Hover:${hoverState} Focus:${focusState}`)
 }, function(){
     if(!focusState && !drop)
         disappear();
@@ -270,7 +269,6 @@ $("#contribute a").blur(function(){
     var inFocus = false;
     setTimeout(function(){
         inFocus = $.contains($anchor[0], document.activeElement);
-        // console.log(`Infocus:${inFocus} Hover:${hoverState} Focus:${focusState}`)
         if(!inFocus)
             focusState = false;
         if(!focusState && !hoverState && !drop)
