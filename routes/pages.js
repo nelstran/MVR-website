@@ -1,6 +1,6 @@
 const { response } = require('express');
 const express = require('express');
-const session = require('express-session');
+const session = require('cookie-session');
 const app = express();
 const router = express.Router();
 const userSession = new session({
@@ -163,7 +163,7 @@ var query = async function(query){
     return await client.query(query);
   }
   catch (err){
-    console.error(err);
+    return err;
   }
 }
 module.exports = {
