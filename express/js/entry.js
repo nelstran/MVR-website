@@ -45,7 +45,6 @@ $("#previewButton").click(function(){
     }, 500);
 })
 $("#submit").click(function(){
-    console.log("hello");
     if(!validateEntry())
         return false;  
     $("#editor").empty();

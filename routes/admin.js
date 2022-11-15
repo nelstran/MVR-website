@@ -85,6 +85,7 @@ router.post("/uploadProject", async (req, res) =>{
 router.post("/delete", authorization, async (req, res) =>{
   let query = `DELETE FROM ${req.body.db} WHERE id = ${req.body.id} RETURNING *`;
   let row = await pages.query(query);
+  console.log(row.rows[0]);
   if(!row.rows[0].fileId)
     return;
   imagekit.deleteFile(row.rows[0].fileId, function(error, result) {
@@ -130,7 +131,7 @@ async function uploadEntryToDB(req, filePath, fileId){
   let html = converter.makeHtml(content);
   let query = `INSERT INTO entries (author, title, date, content, html, img_id, "fileId") VALUES ('${author}', '${title}', '${date}', '${content}', '${html}', '${filePath}', '${fileId}')`;
   
-  await pages.query(query);
+  console.log(await pages.query(query));
   console.log("Uploaded entry");
 };
 async function uploadEventToDB(req,filePath, fileId){
@@ -139,7 +140,7 @@ async function uploadEventToDB(req,filePath, fileId){
   let location = req.body.location;
   let query = `INSERT INTO events (event_name, event_date, event_location, event_image_id, "fileId") VALUES ('${title}', '${date}', '${location}', '${filePath}', '${fileId}')`;
   
-  await pages.query(query);
+  console.log(await pages.query(query));
   console.log("Uploaded event");
 };
 async function uploadProjectToDB(req,filePath, fileId){
@@ -147,7 +148,7 @@ async function uploadProjectToDB(req,filePath, fileId){
   let description = req.body.desc.replaceAll(`'`, `''`);
   let query = `INSERT INTO projects (title, description, img_id, "fileId") VALUES ('${title}', '${description}', '${filePath}', '${fileId}')`;
   
-  await pages.query(query);
+  console.log(await pages.query(query));
   console.log("Uploaded project");
 };
 module.exports = router;
