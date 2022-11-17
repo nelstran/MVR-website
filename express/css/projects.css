@@ -96,7 +96,9 @@
 .desc h1{
     margin-block:1em;
 }
-.desc h3{
+.desc p{
+    font-size: 1.3em;
+    font-weight:500;
     margin:auto;
     overflow-wrap: break-word;
     max-width: 62.5rem;

@@ -155,7 +155,7 @@
     .entry{
         display:grid;
     }
-    .entry > h1, .date{
+    .entry > h2, .date{
         order: 2;
     }
     .home-img-container{

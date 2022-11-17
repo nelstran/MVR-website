@@ -30,7 +30,7 @@ label{
         right:0px;
     }
 }
-input[type=text], input[type=email], textarea, select, button{
+input[type=text], input[type=email], textarea, select, button:not(.add){
     font-family: 'Rubik', sans-serif;
     font-size: 1.1rem;
 

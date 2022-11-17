@@ -18,7 +18,7 @@
 .socials div > img{
     max-height: 15rem;
 }
-.socials div > h1{
+.socials div > h3{
     width:100%;
     max-width: 100vh;
     text-align: center;
@@ -45,11 +45,6 @@
     padding:0;
     margin:0;
     height:100%;
-}
-.socials ul > h1{
-    text-align: center;
-    padding:0;
-    margin:0;
 }
 .socials li{
     display:flex;
