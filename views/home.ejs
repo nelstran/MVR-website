@@ -15,7 +15,7 @@
                 <% if(admin == true) { %>
                     <form action="/admin/createEntry">
                         <button id="addEntry" class="add" title="Create new entry">
-                            <h1 style="margin:0; padding:0">NEW ENTRY ✎</h1>
+                            <p>NEW ENTRY ✎</p>
                         </button>
                     </form>
                 <%}%>
@@ -23,7 +23,7 @@
                     <% let imgURL = "https://ik.imagekit.io/mvrecords/"; %>
                     <% entries.forEach(entry =>{ %>
                         <section class="entry">
-                            <h1><%- entry.title %></h1>
+                            <h2><%- entry.title %></h2>
                             <p class="date"><%- entry.date %></p>
                             <% if(entry.img_id != "null"){ %>
                                 <div class="home-img-container">

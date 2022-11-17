@@ -15,14 +15,14 @@
             <%- include('../partials/events', {events: events}); %>
             <section id="main">
                 <%- include('../partials/colors'); %>
-                <h1 style="text-align: center; margin:1em;">See what we're working on!</h1>
+                <h2 style="text-align: center; margin:1em;">See what we're working on!</h2>
                 <% if(admin == false) {%>
                     <p id="notMuch">Not much going on right now...</p>
                 <% } %>
                 <% if(admin == true) { %>
                     <form action="/admin/createProject">
                         <button id="addProject" class="add" title="Add a project">
-                            <h1 style="margin:0; padding:0">Showcase your work ♬</h1>
+                            <p style="margin:0; padding:0">Showcase your work ♬</p>
                         </button>
                     </form>
                 <%}%>
@@ -47,7 +47,7 @@
                                     <div class="img-container">
                                         <img src="<%- imgURL + project.img_id %>">
                                     </div>
-                                    <h3><%- project.description %></h3>
+                                    <p><%- project.description %></p>
                                 </div>
                             </div>
                         </div>

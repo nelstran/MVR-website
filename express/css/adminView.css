@@ -12,6 +12,12 @@
     cursor:pointer;
     background-color: #328abd;
 }
+.add p{
+    margin:0;
+    padding:0;
+    font-size: 1.3em;
+    font-weight:800;
+}
 .add:hover, .add:focus{
     background-color: #215c7e !important;
 }

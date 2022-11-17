@@ -18,7 +18,7 @@ for(let key in socials){
     <section class="socials">
         <div>
             <img src="<%- band.icon == null ? nullImg : band.icon %>">   
-            <h1> <%- band.name %> </h1>
+            <h2> <%- band.name %> </h2>
             <div class="socialLinks">
                 <% for(let social in band.socials){
                     let media = social;
@@ -53,7 +53,7 @@ for(let key in socials){
             </div> 
         </div>
         <div style="gap:0">
-            <h1>Members:<hr></h1> 
+            <h3>Members:<hr></h3> 
             <ul>
                 <% for(let key in band.members){
                     var member = key;
