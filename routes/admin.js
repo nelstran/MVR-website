@@ -21,8 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const authorization = (req, res, next) => {
-    if (req.session.passport) {
-      if(req.session.passport.user)
+    if (req.session.passport && req.session.passport.user) {
         return next();
     }
     res.redirect("/"); 

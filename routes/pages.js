@@ -48,8 +48,7 @@ var getEntries = async function(){
   }
 }
 var giveAdmin = function(req){
-  if(req.session.passport){
-    if(req.session.passport.user)
+  if(req.session.passport && req.session.passport.user){
       return admin = true;
   }
   return admin = false;
