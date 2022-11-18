@@ -1,10 +1,13 @@
 const { response } = require('express');
 const express = require('express');
-const session = require('cookie-session');
+const session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+var crypto = require('crypto');
 const app = express();
 const router = express.Router();
 const userSession = new session({
-  secret: 'secret',
+  secret: 'secret key',
 	resave: true,
 	saveUninitialized: true
 })
@@ -44,17 +47,41 @@ var getEntries = async function(){
   }
 }
 var giveAdmin = function(req){
-  if(!req.session.loggedin){
-    admin = false;
-    return admin;
+  if(req.session.passport){
+    if(req.session.passport.user)
+      return admin = true;
   }
-  admin = true;
-  return admin;
+  return admin = false;
 };
 var admin = process.env.DEV_MODE == "true";
 
-router.use(userSession);
+passport.use(new LocalStrategy(function verify(username, password, cb) {
+  client.query(`SELECT * FROM users WHERE user_id='${username}'`, function(err, results) {
+    if (err)
+      return cb(err);
+    if (results.rows.length == 0)
+      return cb(null, false, {
+        message: 'Incorrect username or password.'
+      }); 
+    let row = results.rows[0];
+    
+    crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
+      if (err) { return cb(err); }
+      if (row.hashed != hashedPassword.toString('base64')) {
+        return cb(null, false, { message: 'Incorrect username or password.' });
+      }
+      let user = {id: row.id, person: row.person};
+      return cb(null, user);
+    });
+  });
+}));
 
+router.use(userSession);
+router.use(passport.initialize());
+router.use(passport.session());
+
+passport.serializeUser( (userObj, done) => {done(null, userObj)})
+passport.deserializeUser((userObj, done) => {done (null, userObj )})
 router.get('/', (req, res) => {
   res.redirect("/");
 });
@@ -174,5 +201,6 @@ module.exports = {
     authentication,
     query,
     admin, 
-    userSession
+    userSession,
+    passport
 };
