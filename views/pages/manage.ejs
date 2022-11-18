@@ -22,7 +22,9 @@
                 <table>
                     <tr>
                         <% if(data != null){ %>
+                            <% var trID = []; %>
                             <% for(const field of data.fields) { %>
+                                <% trID.push(field.name); %>
                                 <% if(field.name == "id")
                                     continue; %>
                                 <th><%- field.name %></th>
@@ -43,7 +45,7 @@
                                 <% } %>
                                 <td class="action-div">
                                     <div>
-                                        <button class="edit actionButton"><p>Edit</p></button>
+                                        <button class="edit actionButton" id="<%- `${mode}/${id}/${trID.join("/")}` %>" ><p>Edit</p></button>
                                         <button class="delete actionButton" id="<%- `${id}/${mode}` %>"><p>Delete</p></button>
                                     </div>
                                 </td>

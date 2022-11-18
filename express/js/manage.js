@@ -10,3 +10,13 @@ $(".delete").click(function(){
     $(this).parents("tr").remove();
     alert("Row deleted");
 })
+$(".edit").click(function(){
+    let data = $(this).attr("id").split("/");
+    let table = data.shift();
+    let id = data.shift();
+    $.ajax({
+        url: '/admin/edit',
+        data: { db: table, id: id, rows: data},
+        type: 'POST',
+    });
+})

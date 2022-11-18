@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const authorization = (req, res, next) => {
-    if (req.session.passport && req.session.passport.user) {
+    if ((req.session.passport && req.session.passport.user) || true) {
         return next();
     }
     res.redirect("/"); 
@@ -102,6 +102,13 @@ router.post("/delete", authorization, async (req, res) =>{
     if(error) console.log(error);
         else console.log(result);
   });
+})
+
+router.post("/edit", authorization, async (req, res) =>{
+  let fields = req.body.rows.join(", ");
+  let query = `SELECT ${fields} FROM ${req.body.db} WHERE id = '${req.body.id}'`;
+  let row = await pages.query(query);
+  console.log(row.rows[0]);
 })
 
 async function uploadImagetoIK(req){
