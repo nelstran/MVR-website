@@ -16,14 +16,15 @@ var converter = new showdown.Converter();
 
 router.use(upload());
 router.use(pages.userSession);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 const authorization = (req, res, next) => {
-    if (pages.giveAdmin(req)) {
-      next()
-    } else {
-      res.redirect("/");
+    if (req.session.passport && req.session.passport.user) {
+        return next();
     }
+    res.redirect("/"); 
   }
 
 router.get('/createEntry', authorization, (req, res) =>{
@@ -50,9 +51,18 @@ router.get('/manageProjects', authorization, async (req, res) =>{
 router.get('/', authorization, (req, res) =>{
   res.render('pages/admin', {admin: true});
 });
-router.post('/login', (req, res) => {
-  pages.authentication(req, res)
+
+router.post('/login', pages.passport.authenticate('local', {
+  successRedirect: '/admin',
+  failureRedirect: '/pages/wvcdaboys'
+}));
+router.get('/logout', function(req, res) {
+  req.session.passport = null;
+  req.user = null;
+  // pages.giveAdmin(req);
+  res.redirect("/")
 });
+
 router.post("/uploadEntry", async (req, res) =>{
   await uploadImagetoIK(req).then(async result => {
     if(result)
@@ -93,12 +103,6 @@ router.post("/delete", authorization, async (req, res) =>{
         else console.log(result);
   });
 })
-router.get('/logout', function(req, res) {
-  req.session.loggedin = false;
-  req.session.username = null;
-  pages.giveAdmin(req);
-  res.redirect("/")
-});
 
 async function uploadImagetoIK(req){
   var img_data, base64Image, img_name;

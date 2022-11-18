@@ -1,22 +1,27 @@
-const { response } = require('express');
 const express = require('express');
-const session = require('cookie-session');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const crypto = require('crypto');
 const app = express();
 const router = express.Router();
+
 const userSession = new session({
-  secret: 'secret',
+  secret: 'secret key',
 	resave: true,
 	saveUninitialized: true
 })
 
 const { Client } = require('pg');
 const env = require('dotenv').config();
+
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
+var admin = false;
 
 var getEvents = async function(){
   try{
@@ -34,7 +39,6 @@ var getProjects = async function(){
     console.error(err);
   }
 };
-
 var getEntries = async function(){
   try{
     return await client.query("SELECT * FROM entries ORDER BY date DESC");
@@ -44,16 +48,38 @@ var getEntries = async function(){
   }
 }
 var giveAdmin = function(req){
-  if(!req.session.loggedin){
-    admin = false;
-    return admin;
+  if(req.session.passport && req.session.passport.user){
+      return admin = true;
   }
-  admin = true;
-  return admin;
+  return admin = false;
 };
-var admin = process.env.DEV_MODE == "true";
+passport.use(new LocalStrategy(function verify(username, password, cb) {
+  client.query(`SELECT * FROM users WHERE user_id='${username}'`, function(err, results) {
+    if (err)
+      return cb(err);
+    if (results.rows.length == 0)
+      return cb(null, false, {
+        message: 'Incorrect username or password.'
+      }); 
+    let row = results.rows[0];
+    
+    crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
+      if (err) { return cb(err); }
+      if (row.hashed != hashedPassword.toString('base64')) {
+        return cb(null, false, { message: 'Incorrect username or password.' });
+      }
+      let user = {id: row.id, person: row.person};
+      return cb(null, user);
+    });
+  });
+}));
 
 router.use(userSession);
+router.use(passport.initialize());
+router.use(passport.session());
+
+passport.serializeUser( (userObj, done) => {done(null, userObj)});
+passport.deserializeUser((userObj, done) => {done (null, userObj)});
 
 router.get('/', (req, res) => {
   res.redirect("/");
@@ -125,39 +151,6 @@ client.connect()
 .then(() => console.log("Connected to Postgresql server!"))
 .catch(err => console.error("Unable to connect to Postgresql server!"));
 
-var authentication = function(req, res){
-  let user = req.body.username;
-  let pass = req.body.password;
-
-  if(user && pass && validate(user,pass)){
-    let query = `SELECT * FROM users WHERE user_id='${user}' AND password='${pass}'`;
-    client.query(query, function(err, results, fields){
-      if(err) throw err;
-      
-      if(results.rows.length > 0) {
-        req.session.loggedin = true;
-        req.session.person = results.rows[0].person;
-        res.redirect('/admin');
-      }
-      else{
-        res.send('Incorrect Username and/or Password!');
-      }
-    });
-  }
-  else{
-    res.send('Please enter Username and Password!');
-    res.end();
-  }
-};
-
-function validate(user, pass){
-  if(user.includes(" ") || pass.includes(" ") ||
-    user.includes("=") || pass.includes("=") ||
-    user.length < 7 || pass.length < 7)
-    return false;
-  return true;
-}
-
 var query = async function(query){
   try{
     return await client.query(query);
@@ -170,9 +163,9 @@ module.exports = {
     router,
     getEvents,
     getEntries, 
-    giveAdmin, 
-    authentication,
+    giveAdmin,
     query,
     admin, 
-    userSession
+    userSession,
+    passport
 };
