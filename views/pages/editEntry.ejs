@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <head>
+        <%- include('../partials/metadata'); %>
+        <link rel="stylesheet" href="/css/admin.css">
+        <link rel="stylesheet" href="/css/entry.css">
+        <link rel="stylesheet" href="/css/editEntry.css">
+
+        <link rel="stylesheet" href="/css/simplemde.min.css">
+        <link rel="stylesheet" href="/css/easymde.css">
+    </head>
+    
+    <body onload="setup()">
+        <%- include('../partials/header'); %>
+        <div id="bottomSide">
+            <section id="main">
+                <%- include('../partials/colors'); %>
+                <form class="backForm">
+                    <button class="back" title="Go back" onclick="history.back()">
+                        <p>GO BACK</p>
+                    </button>
+                </form>
+                <section>
+                    <form id="entryForm" action="/admin/uploadEntry" method="POST" enctype="multipart/form-data">
+                        <p style="margin:0;"><strong>Edit this post</strong></p>
+
+                        <input type="text" name="title" value="<%- data.title %>" id="titleInput" maxlength="255">
+                        
+                        <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
+                        <div class="img-container">
+                            <% let imgURL = "https://ik.imagekit.io/mvrecords/"; %>
+                            <img src="<%- imgURL + data.img_id %>">
+                            <div class="button-container">
+                                <input type="file" name="imgUpload" id="imgUpload" form="entryForm"
+                                accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
+                                <input type="button" name="clearImg" id="clearImg" value="Remove Image">
+                            </div>
+                        </div>
+                        <section id="entryArea">
+                            <textarea id="editor" form="entryForm" name="content"><%- data.content %></textarea>
+                        </section>
+
+                        <p id="error"></p>
+
+                        <div id="bottom-button-div">
+                            <input type="button" value="Preview" id="previewButton">
+                            <button id="submit">Confirm</button>
+                        </div>
+                    </form>
+                </section>
+                
+                <h2>Preview:</h2>
+                <section id="preview" class="entry preview">
+                </section>
+            </section>
+        </div>
+        <script src="/js/index.js"></script>
+        <!-- <script src="/js/simplemde.min.js"></script> -->
+        <script src="/js/showdown.min.js"></script>
+        <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+        <script src="/js/entry.js"></script>
+    </body>
+</html>

@@ -45,8 +45,17 @@
                                 <% } %>
                                 <td class="action-div">
                                     <div>
-                                        <button class="edit actionButton" id="<%- `${mode}/${id}/${trID.join("/")}` %>" ><p>Edit</p></button>
-                                        <button class="delete actionButton" id="<%- `${id}/${mode}` %>"><p>Delete</p></button>
+                                        <form class="editForm" action="/admin/edit" method="POST" style="width:100%">
+                                            <input name="db" value="<%- mode %>" style="display:none">
+                                            <input name="id" value="<%- id %>" style="display:none">
+                                            <input name="rows" value="<%- trID.join("/") %>" style="display:none">
+                                            <button class="edit actionButton" id="<%- `${mode}/${id}/${trID.join("/")}` %>" >
+                                                <p>Edit</p>
+                                            </button>
+                                        </form>
+                                        <button class="delete actionButton" id="<%- `${id}/${mode}` %>">
+                                            <p>Delete</p>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>

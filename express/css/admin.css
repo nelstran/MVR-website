@@ -5,7 +5,7 @@
 #promo{
     display:none
 }
-form:not(.backForm, .adminForm){
+form:not(.backForm, .adminForm, .editForm){
     background-color: rgb(31,31,31);
     border: .2em solid rgb(70, 70, 70);
     display:flex;

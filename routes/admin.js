@@ -104,12 +104,23 @@ router.post("/delete", authorization, async (req, res) =>{
   });
 })
 
-router.post("/edit", authorization, async (req, res) =>{
-  let fields = req.body.rows.join(", ");
-  let query = `SELECT ${fields} FROM ${req.body.db} WHERE id = '${req.body.id}'`;
-  let row = await pages.query(query);
-  console.log(row.rows[0]);
-})
+router.post("/edit", async (req, res) =>{
+  let fields = req.body.rows.replaceAll("/", ", ");
+  let query = `SELECT ${fields}, img_id FROM ${req.body.db} WHERE id = '${req.body.id}'`;
+  let row = await pages.query(query); 
+  let data = row.rows[0];
+  switch(req.body.db){
+    case 'entries':
+      res.render("pages/editEntry", {admin: true, data: data});
+      break;
+    case 'events':
+      res.render("pages/editEvents", {admin: true, data: data});
+      break;
+    case 'projects':
+      res.render("pages/editProjects", {admin: true, data: data});
+      break;
+  }
+});
 
 async function uploadImagetoIK(req){
   var img_data, base64Image, img_name;
@@ -149,7 +160,7 @@ async function uploadEventToDB(req,filePath, fileId){
   let title = req.body.title.replaceAll(`'`, `''`);
   let date = req.body.date.replaceAll(`'`, `''`);
   let location = req.body.location;
-  let query = `INSERT INTO events (event_name, event_date, event_location, event_image_id, "fileId") VALUES ('${title}', '${date}', '${location}', '${filePath}', '${fileId}')`;
+  let query = `INSERT INTO events (event_name, event_date, event_location, img_id, "fileId") VALUES ('${title}', '${date}', '${location}', '${filePath}', '${fileId}')`;
   
   console.log(await pages.query(query));
   console.log("Uploaded event");
