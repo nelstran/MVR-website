@@ -1,0 +1,19 @@
+.img-container{
+    display:flex;
+    flex-direction: column;
+    gap:.5em;
+
+}
+.img-container > img{
+    align-self: center;
+    max-width: 20em !important;
+}
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:1em;
+}
+#imgUpload{
+    flex:1;
+}

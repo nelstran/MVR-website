@@ -28,7 +28,8 @@ $("#previewButton").click(function(){
         year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
     let date = $(`<p class="date"> ${timestamp}</p>`);
-    let imgDiv = file ? $(`<div class="home-img-container"><img src="${URL.createObjectURL(file)}"></div>`) : null;
+    let img = file ? URL.createObjectURL(file) : $("#oldImg").attr("src");
+    let imgDiv = img ? $(`<div class="home-img-container"><img src="${img}"></div>`) : null;
     let entry = converter.makeHtml(simplemde.value());
 
     $("#preview").empty();

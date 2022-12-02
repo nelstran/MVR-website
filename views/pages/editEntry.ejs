@@ -31,11 +31,15 @@
                         <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
                         <div class="img-container">
                             <% let imgURL = "https://ik.imagekit.io/mvrecords/"; %>
-                            <img src="<%- imgURL + data.img_id %>">
+                            <% if(data.img_id){ %>
+                                <img id="oldImg" src="<%- imgURL + data.img_id %>">
+                            <% } %>
                             <div class="button-container">
                                 <input type="file" name="imgUpload" id="imgUpload" form="entryForm"
                                 accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
-                                <input type="button" name="clearImg" id="clearImg" value="Remove Image">
+                                <% if(data.img_id){ %>
+                                    <input type="button" name="clearImg" id="clearImg" value="Remove Image">
+                                <% } %>
                             </div>
                         </div>
                         <section id="entryArea">
@@ -61,5 +65,8 @@
         <script src="/js/showdown.min.js"></script>
         <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
         <script src="/js/entry.js"></script>
+        <script>
+            simplemde.clearAutosavedValue();
+        </script>
     </body>
 </html>
