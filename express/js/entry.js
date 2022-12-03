@@ -23,7 +23,7 @@ $("#previewButton").click(function(){
     if(!validateFile(file))
         return;
 
-    let title = $(`<h1> ${$("#titleInput").val()} </h1>`);
+    let title = $(`<h2> ${$("#titleInput").val()} </h2>`);
     let timestamp = new Date().toLocaleString([], {
         year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
