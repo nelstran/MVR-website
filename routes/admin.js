@@ -105,7 +105,7 @@ router.post("/delete", authorization, async (req, res) =>{
 })
 
 router.post("/edit", async (req, res) =>{
-  let fields = req.body.rows.replaceAll("/", ", ");
+  let fields = req.body.rows.replace(/\//g, ", ");
   let query = `SELECT ${fields}, img_id FROM ${req.body.db} WHERE id = '${req.body.id}'`;
   let row = await pages.query(query); 
   let data = row.rows[0];
