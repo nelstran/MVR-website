@@ -6,10 +6,7 @@
         "icon" : "https://ik.imagekit.io/mvrecords/star_j-MpMmAHYi.webp",
         "socials" : {
             "insta": "https://www.instagram.com/stardanceriot/",
-            "fb": null,
-            "twitter": null,
-            "yt": null,
-            "bandcamp": null
+            "soundcloud": "https://soundcloud.com/stardance-riot"
         },
         "members" : [
             {
@@ -40,9 +37,6 @@
         "icon" : "https://ik.imagekit.io/mvrecords/ethyl_IFwXcuQz-c.webp",
         "socials" : {
             "insta": "https://www.instagram.com/ethylcat/",
-            "fb": null,
-            "twitter": null,
-            "yt": null,
             "bandcamp": "https://ethylcat.bandcamp.com/releases"
         },
         "members" : [
@@ -65,33 +59,18 @@
         "name": "Tran Nelson (Terrorism)",
         "icon" : "https://ik.imagekit.io/mvrecords/tnt_uTzEp4eGi.webp",
         "socials" : {
-            "insta": null,
-            "fb": null,
-            "twitter": null,
-            "yt": null,
-            "bandcamp": null
         },
         "members" : [
             {
                 "name": "Paulo Cubas",
                 "icon": "https://ik.imagekit.io/mvrecords/paulo_D7PLnZ6f9N.webp",
                 "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
                 }
             },
             {
                 "name": "Nelson Tran",
                 "icon": null,
                 "social": {
-                    "insta": null,
-                    "fb": null,
-                    "twitter": null,
-                    "yt": null,
-                    "bandcamp": null
                 }
             }
         ]

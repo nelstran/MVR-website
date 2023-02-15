@@ -4,6 +4,7 @@ let fbICO =  "https://static.xx.fbcdn.net/rsrc.php/yD/r/d4ZIVX-5C-b.ico";
 let twitterICO = "//abs.twimg.com/favicons/twitter.2.ico";
 let ytICO = "https://www.youtube.com/s/desktop/cc9e7915/img/favicon_32x32.png";
 let bandICO = "https://s4.bcbits.com/img/favicon/favicon-32x32.png";
+let soundICO = "https://a-v2.sndcdn.com/assets/images/sc-icons/favicon-2cadd14bdb.ico"
 let nullImg = "https://ik.imagekit.io/mvrecords/null_lafJ4c-I0.webp";
 
 for(let key in socials){ 
@@ -18,7 +19,7 @@ for(let key in socials){
     <section class="socials">
         <div>
             <img src="<%- band.icon == null ? nullImg : band.icon %>">   
-            <h2> <%- band.name %> </h2>
+            <h3> <%- band.name %> </h3>
             <div class="socialLinks">
                 <% for(let social in band.socials){
                     let media = social;
@@ -44,6 +45,9 @@ for(let key in socials){
                                 break;
                             case "bandcamp":
                                 ico = bandICO;
+                                break;
+                            case "soundcloud":
+                                ico = soundICO;
                                 break;
                         }   
                         %> 
