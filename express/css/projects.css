@@ -77,6 +77,9 @@
     padding-inline: 3em;
     overflow-y:auto
 }
+.overlay a:visited{
+    color: #2c92ce;
+}
 .img-container{
     float:left;
     max-width: 25%;
