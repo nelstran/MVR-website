@@ -321,6 +321,9 @@ body{
     margin-block: .8rem;
     max-width: 62.5rem;
 }
+#main a:visited{
+    color: #2c92ce;
+}
 .entry{
     word-break: break-word;
 }
