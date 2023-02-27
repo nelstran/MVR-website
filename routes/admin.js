@@ -106,7 +106,7 @@ router.post("/delete", authorization, async (req, res) =>{
 
 router.post("/edit", async (req, res) =>{
   let fields = req.body.rows.replace(/\//g, ", ");
-  let query = `SELECT ${fields}, img_id FROM ${req.body.db} WHERE id = '${req.body.id}'`;
+  let query = `SELECT id, ${fields}, img_id FROM ${req.body.db} WHERE id = '${req.body.id}'`;
   let row = await pages.query(query); 
   let data = row.rows[0];
   switch(req.body.db){
@@ -151,9 +151,19 @@ async function uploadEntryToDB(req, filePath, fileId){
   });
   let content = req.body.content.replace(/'/g, `''`);
   let html = converter.makeHtml(content);
-  let query = `INSERT INTO entries (author, title, date, content, html, img_id, "fileId") VALUES ('${author}', '${title}', '${date}', '${content}', '${html}', '${filePath}', '${fileId}')`;
-  
-  console.log(await pages.query(query));
+  let updQuery = `UPDATE entries SET
+  author = '${author}',
+  title = '${title}',
+  date = '${date}',
+  content = '${content}',
+  html = '${html}',
+  img_id = '${filePath}',
+  "fileId" = '${fileId}'
+  WHERE id = ${req.body.id}`;
+  let insQuery = `INSERT INTO entries
+  (author, title, date, content, html, img_id, "fileId") VALUES
+  ('${author}', '${title}', '${date}', '${content}', '${html}', '${filePath}', '${fileId}')`;
+  console.log(await pages.query(req.body.id ? updQuery : insQuery));
   console.log("Uploaded entry");
 };
 async function uploadEventToDB(req,filePath, fileId){
