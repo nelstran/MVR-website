@@ -1,30 +1,34 @@
+//Get required packages
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
-const app = express();
+const { Client } = require('pg');
+const env = require('dotenv').config();
+
+//const app = express();
 const router = express.Router();
 
+//Experimenting with user session, have no idea what I'm doing
 const userSession = new session({
   secret: 'secret key',
 	resave: true,
 	saveUninitialized: true
 })
 
-const { Client } = require('pg');
-const env = require('dotenv').config();
-
+//Database client
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
-var admin = false;
+var admin = false; // Want to get rid of this
 var conn = false;
 
-var getEvents = async function(){
+//Function to get events from database
+async function getEvents(){
   try{
     return await query("SELECT * FROM events ORDER BY event_date ASC");
   }
@@ -32,7 +36,9 @@ var getEvents = async function(){
     console.error(err);
   }
 };
-var getProjects = async function(){
+
+//Function to get projects from database
+async function getProjects(){
   try{
     return await query("SELECT * FROM projects");
   }
@@ -40,7 +46,9 @@ var getProjects = async function(){
     console.error(err);
   }
 };
-var getEntries = async function(){
+
+//Function to get entries from database
+async function getEntries(){
   try{
     return await query("SELECT * FROM entries ORDER BY date DESC");
   }
@@ -48,22 +56,81 @@ var getEntries = async function(){
     console.error(err);
   }
 }
+
+//Function to get new data on each page navigation
+var getInfo = async function(req, arr){
+  let pageInfo = [];
+  //Iterate through each property to fetch
+  for await(data of arr){
+    let fetch;
+    switch(data){
+      case 'admin':
+        pageInfo[data] = giveAdmin(req);
+      break;
+      case 'events':
+        fetch = await getEvents();
+        pageInfo[data] = fetch ? fetch.rows : null;
+      break;
+      case 'projects':
+        fetch = await getProjects();
+        pageInfo[data] = fetch ? fetch.rows : null;
+      break;
+      case 'entries':
+        fetch = await getEntries();
+        pageInfo[data] = fetch ? fetch.rows : null;
+      break;
+      case 'socials':
+        pageInfo[data] = require("../express/json/socials.json");
+      break;
+    }
+  };
+  return pageInfo;
+};
+
+// Function to execute queries to database
+var query = async function(query){
+  if(!conn)
+    return null;
+    
+  let res = null;
+  await client.query(query)
+  .then(results => res=results)
+  .catch(err => {
+    console.log(err);
+  })
+  return res;
+}
+
+//Allows user to see admin functionality. (How to make this more secure?)
 var giveAdmin = function(req){
   if((req.session.passport && req.session.passport.user)){
-      return admin = true;
+      return true;
   }
-  return admin = false;
+  return false;
 };
+
+//Set session
+router.use(userSession);
+router.use(passport.initialize());
+router.use(passport.session());
+
+//No idea what this does
+passport.serializeUser( (userObj, done) => {done(null, userObj)});
+passport.deserializeUser((userObj, done) => {done (null, userObj)});
 passport.use(new LocalStrategy(function verify(username, password, cb) {
-  client.query(`SELECT * FROM users WHERE user_id='${username}'`, function(err, results) {
+  //Prepare statement and execute
+  client.query('SELECT * FROM users WHERE user_id= $1', [username], function(err, results) {
     if (err)
       return cb(err);
+
     if (results.rows.length == 0)
       return cb(null, false, {
         message: 'Incorrect username or password.'
       }); 
+
     let row = results.rows[0];
     
+    //Verify password if account exists
     crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
       if (err) { return cb(err); }
       if (row.hashed != hashedPassword.toString('base64')) {
@@ -75,99 +142,56 @@ passport.use(new LocalStrategy(function verify(username, password, cb) {
   });
 }));
 
-router.use(userSession);
-router.use(passport.initialize());
-router.use(passport.session());
-
-passport.serializeUser( (userObj, done) => {done(null, userObj)});
-passport.deserializeUser((userObj, done) => {done (null, userObj)});
-
 router.get('/', (req, res) => {
   res.redirect("/");
 });
 
+//Projects page
 router.get('/projects', async (req, res) => {
-  let events = await getEvents();
-  let projects = await getProjects();
-  giveAdmin(req);
-  let pageInfo = {
-    events: events ? events.rows : null,
-    projects: projects ? projects.rows : null,
-    admin: admin
-  };
-  pageInfo.p = false;
-  pageInfo.ad
+  let pageInfo = await getInfo(req, ["admin", "events", "projects"]);
   res.render('pages/projects', pageInfo);
 });
 
+//Social page
 router.get('/social', async (req, res) => {
-  let events = await getEvents();
-  giveAdmin(req);
-  let pageInfo = {
-    events: events ? events.rows : null,
-    socials: require("../express/json/socials.json"),
-    admin: admin
-  };
+  let pageInfo = await getInfo(req, ["admin", "events", "socials"]);
   res.render('pages/social', pageInfo);
 });
 
+//Forum (Doom) page
 router.get('/forum', async (req, res) => {
-  let events = await getEvents();
-  giveAdmin(req);
-  let pageInfo = {
-    events: events ? events.rows : null,
-    admin: admin
-  };
+  let pageInfo = await getInfo(req, ["admin", "events"]);
   res.render('pages/forum', pageInfo);
 });
 
+
+//About page
 router.get('/about', async (req, res) => {
-  let events = await getEvents();
-  giveAdmin(req);
-  let pageInfo = {
-    events: events ? events.rows : null,
-    admin: admin
-  };
+  let pageInfo = await getInfo(req, ["admin", "events"]);
   res.render('pages/about', pageInfo);
 });
 
+//Joke donation page
 router.get('/donate', async (req, res) => {
-  let events = await getEvents();
-  giveAdmin(req);
-  let pageInfo = {
-    events: events ? events.rows : null,
-    admin: admin
-  };
+  let pageInfo = await getInfo(req, ["admin", "events"]);
   res.render('pages/donate', pageInfo);
 });
 
+//Joke join page
 router.get('/join', async (req, res) => {
-  let events = await getEvents();
-  giveAdmin(req);
-  let pageInfo = {
-    events: events ? events.rows : null,
-    admin: admin
-  };
+  let pageInfo = await getInfo(req, ["admin", "events"]);
   res.render('pages/join', pageInfo);
 });
 
+//Joke contact page
 router.get('/contact', async (req, res) => {
-  let events = await getEvents();
-  giveAdmin(req);
-  let pageInfo = {
-    events: events ? events.rows : null,
-    admin: admin
-  }; 
+  let pageInfo = await getInfo(req, ["admin", "events"]);
   res.render('pages/contact', pageInfo);
 });
 
+//Login page
 router.get('/wvcdaboys', async (req, res) => {
-  let events = await getEvents();
-  giveAdmin(req);
-  let pageInfo = {
-    events: events ? events.rows : null,
-    admin: admin
-  };
+  let pageInfo = await getInfo(req, ["admin", "events"]);
   res.render('pages/wvcdaboys', pageInfo);
 });
 
@@ -186,22 +210,9 @@ client.connect()
   conn = false;
 });
 
-var query = async function(query){
-  if(!conn)
-    return null;
-  let res = null;
-  await client.query(query)
-  .then(results => res=results)
-  .catch(err => {
-    console.log(err);
-  })
-  return res;
-}
 module.exports = {
     router,
-    getEvents,
-    getEntries, 
-    giveAdmin,
+    getInfo,
     query,
     admin, 
     userSession,

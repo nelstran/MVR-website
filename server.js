@@ -1,15 +1,16 @@
+//Get required packages
 const express = require('express');
-// const session = require('express-session');
-const app = express();
 const adminRouter = require('./routes/admin');
 const pages = require('./routes/pages');
-const port = process.env.PORT || 3000;
-
 const path = require('path');
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 var events;
 var entries;
-var admin = false;
+
+//Initial setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("express"));// default URL for website
@@ -24,14 +25,10 @@ app.set('views', path.join(__dirname,'views'));
 app.get('/', (req, res) => {
   res.redirect("/home");
 });
+
+//Home page
 app.get('/home', async (req, res) => {
-  events = await pages.getEvents();
-  entries = await pages.getEntries();
-  let pageInfo = {
-    events: events ? events.rows : null,
-    entries: entries ? entries.rows : null,
-    admin: pages.giveAdmin(req)
-  };
+  let pageInfo = await pages.getInfo(req, ["events", "admin", "entries"]);
   res.render('home', pageInfo);
 });
 
@@ -40,6 +37,7 @@ app.get('*', function(req, res) {
   //Error page has not been made yet
   res.redirect('/');
 });
+
 app.listen(port, () => {
   console.log(`App listening at port ${port}`);
 });
