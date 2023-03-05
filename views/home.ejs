@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
     <head>
         <%- include('partials/metadata'); %>
     </head>
@@ -18,10 +17,10 @@
                             <p>NEW ENTRY ✎</p>
                         </button>
                     </form>
-                <%}%>
-                <% if(entries != null && entries.length != 0) { %>
-                    <% let imgURL = "https://ik.imagekit.io/mvrecords/"; %>
-                    <% entries.forEach(entry =>{ %>
+                <% } %>
+                <% if(entries != null && entries.length != 0){
+                    let imgURL = "https://ik.imagekit.io/mvrecords/";
+                    entries.forEach(entry =>{ %>
                         <section class="entry">
                             <h2><%- entry.title %></h2>
                             <p class="date"><%- entry.date %></p>
@@ -33,6 +32,10 @@
                             <%- entry.html %>
                         </section>
                     <% }) %>
+                <% } else { %>
+                    <section class="entry">
+                        <h2>Unable to connect to SQL database!</h2>
+                    </section>
                 <% } %>
             </section>
         </div>

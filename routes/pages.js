@@ -22,10 +22,11 @@ const client = new Client({
   }
 });
 var admin = false;
+var conn = false;
 
 var getEvents = async function(){
   try{
-    return await client.query("SELECT * FROM events ORDER BY event_date ASC");
+    return await query("SELECT * FROM events ORDER BY event_date ASC");
   }
   catch (err){
     console.error(err);
@@ -33,7 +34,7 @@ var getEvents = async function(){
 };
 var getProjects = async function(){
   try{
-    return await client.query("SELECT * FROM projects");
+    return await query("SELECT * FROM projects");
   }
   catch (err){
     console.error(err);
@@ -41,14 +42,14 @@ var getProjects = async function(){
 };
 var getEntries = async function(){
   try{
-    return await client.query("SELECT * FROM entries ORDER BY date DESC");
+    return await query("SELECT * FROM entries ORDER BY date DESC");
   }
   catch (err){
     console.error(err);
   }
 }
 var giveAdmin = function(req){
-  if(req.session.passport && req.session.passport.user){
+  if((req.session.passport && req.session.passport.user)){
       return admin = true;
   }
   return admin = false;
@@ -89,57 +90,85 @@ router.get('/projects', async (req, res) => {
   let events = await getEvents();
   let projects = await getProjects();
   giveAdmin(req);
-   
-  res.render('pages/projects', {events: events.rows, projects: projects.rows, admin: admin});
+  let pageInfo = {
+    events: events ? events.rows : null,
+    projects: projects ? projects.rows : null,
+    admin: admin
+  };
+  pageInfo.p = false;
+  pageInfo.ad
+  res.render('pages/projects', pageInfo);
 });
 
 router.get('/social', async (req, res) => {
   let events = await getEvents();
   giveAdmin(req);
-   
-  res.render('pages/social', {events: events.rows, socials: require("../express/json/socials.json"), admin: admin});
+  let pageInfo = {
+    events: events ? events.rows : null,
+    socials: require("../express/json/socials.json"),
+    admin: admin
+  };
+  res.render('pages/social', pageInfo);
 });
 
 router.get('/forum', async (req, res) => {
   let events = await getEvents();
   giveAdmin(req);
-   
-  res.render('pages/forum', {events: events.rows, admin: admin});
+  let pageInfo = {
+    events: events ? events.rows : null,
+    admin: admin
+  };
+  res.render('pages/forum', pageInfo);
 });
 
 router.get('/about', async (req, res) => {
   let events = await getEvents();
   giveAdmin(req);
-   
-  res.render('pages/about', {events: events.rows, admin: admin});
+  let pageInfo = {
+    events: events ? events.rows : null,
+    admin: admin
+  };
+  res.render('pages/about', pageInfo);
 });
 
 router.get('/donate', async (req, res) => {
   let events = await getEvents();
   giveAdmin(req);
-   
-  res.render('pages/donate', {events: events.rows, admin: admin});
+  let pageInfo = {
+    events: events ? events.rows : null,
+    admin: admin
+  };
+  res.render('pages/donate', pageInfo);
 });
 
 router.get('/join', async (req, res) => {
   let events = await getEvents();
   giveAdmin(req);
-
-  res.render('pages/join', {events: events.rows, admin: admin});
+  let pageInfo = {
+    events: events ? events.rows : null,
+    admin: admin
+  };
+  res.render('pages/join', pageInfo);
 });
 
 router.get('/contact', async (req, res) => {
   let events = await getEvents();
   giveAdmin(req);
-   
-  res.render('pages/contact', {events: events.rows, admin: admin});
+  let pageInfo = {
+    events: events ? events.rows : null,
+    admin: admin
+  }; 
+  res.render('pages/contact', pageInfo);
 });
 
 router.get('/wvcdaboys', async (req, res) => {
   let events = await getEvents();
   giveAdmin(req);
-   
-  res.render('pages/wvcdaboys', {events: events.rows, admin: admin});
+  let pageInfo = {
+    events: events ? events.rows : null,
+    admin: admin
+  };
+  res.render('pages/wvcdaboys', pageInfo);
 });
 
 //Error page
@@ -148,16 +177,25 @@ router.get('*', function(req, res) {
 });
 
 client.connect()
-.then(() => console.log("Connected to Postgresql server!"))
-.catch(err => console.error("Unable to connect to Postgresql server!"));
+.then(() => {
+  console.log("Connected to Postgresql server!");
+  conn = true;
+})
+.catch(err => {
+  console.error("Unable to connect to Postgresql server!");
+  conn = false;
+});
 
 var query = async function(query){
-  try{
-    return await client.query(query);
-  }
-  catch (err){
-    return err;
-  }
+  if(!conn)
+    return null;
+  let res = null;
+  await client.query(query)
+  .then(results => res=results)
+  .catch(err => {
+    console.log(err);
+  })
+  return res;
 }
 module.exports = {
     router,

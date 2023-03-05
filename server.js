@@ -26,9 +26,13 @@ app.get('/', (req, res) => {
 });
 app.get('/home', async (req, res) => {
   events = await pages.getEvents();
-  admin = pages.giveAdmin(req);
   entries = await pages.getEntries();
-  res.render('home', {events: events.rows, admin: admin, entries: entries.rows});
+  let pageInfo = {
+    events: events ? events.rows : null,
+    entries: entries ? entries.rows : null,
+    admin: pages.giveAdmin(req)
+  };
+  res.render('home', pageInfo);
 });
 
 //Page not found
