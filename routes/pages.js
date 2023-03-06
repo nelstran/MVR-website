@@ -24,7 +24,6 @@ const client = new Client({
     rejectUnauthorized: false
   }
 });
-var admin = false; // Want to get rid of this
 var conn = false;
 
 //Function to get events from database
@@ -214,7 +213,6 @@ module.exports = {
     router,
     getInfo,
     query,
-    admin, 
     userSession,
     passport
 };
