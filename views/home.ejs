@@ -24,7 +24,7 @@
                         <section class="entry">
                             <h2><%- entry.title %></h2>
                             <p class="date"><%- entry.date %></p>
-                            <% if(entry.img_id != "null"){ %>
+                            <% if(entry.img_id != null){ %>
                                 <div class="home-img-container">
                                     <img src="<%- imgURL + entry.img_id %>">
                                 </div>

@@ -100,6 +100,21 @@ var query = async function(query){
   return res;
 }
 
+//Function to execute prepared statements
+var prepare = async function(query, vars){
+  if(!conn)
+    return null;
+    
+  let res = null;
+  console.log(query);
+  console.log(vars);
+  await client.query(query, vars)
+  .then(results => res=results)
+  .catch(err => {
+    console.log(err);
+  })
+  return res;
+}
 //Allows user to see admin functionality. (How to make this more secure?)
 var giveAdmin = function(req){
   if((req.session.passport && req.session.passport.user)){
@@ -213,6 +228,7 @@ module.exports = {
     router,
     getInfo,
     query,
+    prepare,
     userSession,
     passport
 };
