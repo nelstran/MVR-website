@@ -117,7 +117,7 @@ var prepare = async function(query, vars){
 }
 //Allows user to see admin functionality. (How to make this more secure?)
 var giveAdmin = function(req){
-  if((req.session.passport && req.session.passport.user)){
+  if((req.session.passport && req.session.passport.user || process.env.DEV == "true")){
       return true;
   }
   return false;

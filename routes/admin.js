@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //Allows user to see admin functionality. (How to make this more secure?)
 const authorization = (req, res, next) => {
-    if ((req.session.passport && req.session.passport.user)) {
+    if ((req.session.passport && req.session.passport.user || process.env.DEV == "true")) {
         return next();
     }
     res.redirect("/"); 
@@ -83,10 +83,14 @@ router.get('/logout', function(req, res) {
 //Post entry query command(upload and editing)
 router.post("/uploadEntry", async (req, res) =>{
   await uploadImagetoIK(req).then(async result => {
-    if(result)
-      await uploadEntryToDB(req, result.filePath.replace("/",""), result.fileId)
-    else
+    if(result) {
+      await uploadEntryToDB(req, result.filePath.replace("/",""), result.fileId);
+      if(result.fileId)
+        await deleteImageFromIK(result.fileId);
+    }
+    else {
       await uploadEntryToDB(req, null);
+    }
   })
   .then(res.redirect('/'));
 })
@@ -128,12 +132,7 @@ router.post("/delete", authorization, async (req, res) =>{
     return;
 
   //Delete the file from imagekit
-  imagekit.deleteFile(row.rows[0].fileId, function(error, result) {
-    if(error)
-      console.log(error);
-    else
-      console.log(result);
-  });
+  deleteImageFromIK(row.rows[0].fileId);
 })
 
 //Post edit command
@@ -178,6 +177,17 @@ async function uploadImagetoIK(req){
     });
   })
 }
+
+//Function to delete images from imagekit
+async function deleteImageFromIK(file_id){
+  //Return a promis when uploading is finished
+  return new Promise((resolve, reject) =>{
+    imagekit.deleteFile(file_id, function(error, result) {
+      if(error) reject(error);
+      else resolve(result);
+    })
+  });
+};
 
 //Function to upload entries to the database
 async function uploadEntryToDB(req, filePath, fileId){
