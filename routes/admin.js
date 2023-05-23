@@ -85,8 +85,6 @@ router.post("/uploadEntry", async (req, res) =>{
   await uploadImagetoIK(req).then(async result => {
     if(result) {
       await uploadEntryToDB(req, result.filePath.replace("/",""), result.fileId);
-      if(result.fileId)
-        await deleteImageFromIK(result.fileId);
     }
     else {
       await uploadEntryToDB(req, null);
@@ -97,12 +95,13 @@ router.post("/uploadEntry", async (req, res) =>{
 
 //Post event query command
 router.post("/uploadEvent", async (req, res) =>{
-  await uploadImagetoIK(req)
-  .then(async result => {
-    if(result)
+  await uploadImagetoIK(req).then(async result => {
+    if(result){
       await uploadEventToDB(req, result.filePath.replace("/",""), result.fileId);
-    else
-      res.send("Error has occured uploading event");
+    }
+    else {
+      await uploadEventToDB(req, null);
+    }
   })
   .then(res.redirect('/'));
 })
@@ -146,10 +145,10 @@ router.post("/edit", async (req, res) =>{
       res.render("pages/editEntry", {admin: true, data: data});
       break;
     case 'events':
-      res.render("pages/editEvents", {admin: true, data: data});
+      res.render("pages/editEvent", {admin: true, data: data});
       break;
     case 'projects':
-      res.render("pages/editProjects", {admin: true, data: data});
+      res.render("pages/editProject", {admin: true, data: data});
       break;
   }
 });
@@ -166,7 +165,7 @@ async function uploadImagetoIK(req){
   img_data = req.files.imgUpload.data;
   base64Image = img_data.toString('base64');
 
-  //Return a promis when uploading is finished
+  //Return a promise when uploading is finished
   return new Promise((resolve, reject) =>{
     imagekit.upload({
       file : base64Image,
@@ -180,7 +179,7 @@ async function uploadImagetoIK(req){
 
 //Function to delete images from imagekit
 async function deleteImageFromIK(file_id){
-  //Return a promis when uploading is finished
+  //Return a promise when uploading is finished
   return new Promise((resolve, reject) =>{
     imagekit.deleteFile(file_id, function(error, result) {
       if(error) reject(error);
@@ -189,8 +188,9 @@ async function deleteImageFromIK(file_id){
   });
 };
 
-//Function to upload entries to the database
+//Function to upload entries to the database, updates them if editing
 async function uploadEntryToDB(req, filePath, fileId){
+  console.log(req.body);
   //Prepare values
   let author = req.session.person ? req.session.person : "undefined";
   let title = req.body.title.replace(/'/g, `''`);
@@ -199,28 +199,91 @@ async function uploadEntryToDB(req, filePath, fileId){
   });
   let content = req.body.content.replace(/'/g, `''`);
   let html = converter.makeHtml(content);
-  let updQuery = 'UPDATE entries SET author = $1, title = $2, date = $3, content = $4, html = $5, img_id = $6, "fileId" = $7 WHERE id = $8';
+  //Since I'm an idiot to have an insert/update in one command, we have to accommodate for both
+  let updQuery = 'UPDATE entries SET author = $1, title = $2, date = $3, content = $4, html = $5';
   let insQuery = 'INSERT INTO entries (author, title, date, content, html, img_id, "fileId") VALUES ($1, $2, $3, $4, $5, $6, $7)';
-  let vars = [author, title, date, content, html, filePath ? filePath : null, fileId];
+  let vars = [author, title, date, content, html];
   let preparedQuery;
-  if(req.body.id){
-    preparedQuery = updQuery;
+
+  //If id exists, edit current post
+  if(req.body.id) {
+    let query = `SELECT "fileId" FROM entries WHERE id = '${req.body.id}'`;
+    let res = await pages.query(query);
+    let imgQuery = '';
+    let idQuery = ' WHERE id = $';
+    let imgId;
+
+    //Get current image of post if exists
+    if(res.rows.length > 0)
+      imgId = res.rows[0].fileId;
+
+    //Update image if desired, filepath existing means change image, imgSrc means remove
+    if(filePath || req.body.imgSrc == ""){
+      imgQuery = ', img_id = $6, "fileId" = $7 ';
+      idQuery += '8';
+      vars.push(filePath);
+      vars.push(fileId);
+      if(imgId)
+        await deleteImageFromIK(imgId);
+    }
+    else{
+      idQuery += '6';
+    }
+
+    preparedQuery = updQuery + imgQuery + idQuery;
     vars.push(req.body.id);
   }
-  else{
+  else {
+    vars.push(filePath);
+    vars.push(fileId);
     preparedQuery = insQuery;
   }
   console.log(await pages.prepare(preparedQuery, vars));
 };
+
+//Function to upload event to the database, updates them if editing
 async function uploadEventToDB(req,filePath, fileId){
+  //Prepare values
   let title = req.body.title.replace(/'/g, `''`);
   let date = req.body.date.replace(/'/g, `''`);
   let location = req.body.location;
-  let query = `INSERT INTO events (event_name, event_date, event_location, img_id, "fileId") VALUES ('${title}', '${date}', '${location}', '${filePath}', '${fileId}')`;
-  
-  console.log(await pages.query(query));
-  console.log("Uploaded event");
+  //Since I'm an idiot to have an insert/update in one command, we have to accommodate for both
+  let updQuery = 'UPDATE events SET event_name = $1, event_date = $2, event_location = $3';
+  let insQuery = 'INSERT INTO events (event_name, event_date, event_location, img_id, "fileId") VALUES ($1, $2, $3, $4, $5)';
+  let vars = [title, date, location];
+  let preparedQuery;
+
+  //If id exists, edit current event
+  if(req.body.id){
+    let query = `SELECT "fileId" FROM events WHERE id = '${req.body.id}'`;
+    let res = await pages.query(query);
+    let imgQuery = '';
+    let idQuery = ' WHERE id = $';
+    let imgId = res.rows[0].fileId;
+    
+    //Update image if desired
+    if(filePath){
+      imgQuery = ', img_id = $4, "fileId" = $5 ';
+      idQuery += '6';
+      vars.push(filePath);
+      vars.push(fileId);
+      if(imgId)
+        await deleteImageFromIK(imgId);
+    }
+    else{
+      idQuery += '4';
+    }
+    preparedQuery = updQuery + imgQuery + idQuery;
+    vars.push(req.body.id);
+  }
+  else{
+    vars.push(filePath);
+    vars.push(fileId);
+    preparedQuery = insQuery;
+  }
+  console.log(await pages.prepare(preparedQuery, vars));
 };
+
 async function uploadProjectToDB(req,filePath, fileId){
   let title = req.body.title.replace(/'/g, `''`);
   let description = req.body.desc.replace(/'/g, `''`);

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <head>
+        <%- include('../partials/metadata'); %>
+        <link rel="stylesheet" href="/css/admin.css">
+        <link rel="stylesheet" href="/css/event.css">
+        <link rel="stylesheet" href="/css/editEvent.css">
+    </head>
+    
+    <body onload="setup()">
+        <%- include('../partials/header'); %>
+        <div id="bottomSide">
+            <section id="main">
+                <%- include('../partials/colors'); %>
+                <form class="backForm">
+                    <button class="back" title="Go back" onclick="history.back()">
+                        <p>GO BACK</p>
+                    </button>
+                </form>
+                <section>
+                    <form id="eventForm" action="/admin/uploadEvent" method="POST" enctype="multipart/form-data">
+                        <p style="margin:0"><strong>Edit this event</strong></p>
+                        
+                        <input type="text" name="title" value="<%- data.event_name %>" id="titleInput" maxlength="255" required>
+                        <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
+                        <div class="img-container">
+                            <% let imgURL = "https://ik.imagekit.io/mvrecords/"; %>
+                            <% if(data.img_id){ %>
+                                <img id="oldImg" src="<%- imgURL + data.img_id %>">
+                            <% } %>
+                            <div class="button-container">
+                                <input type="file" name="imgUpload" id="imgUploadEdit" form="eventForm"
+                                accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
+                            </div>
+                        </div>
+                        <div id="info-container">
+                            <div class="info-entry">
+                                <label for="date" style="font-size:80%;">Select date:</label>
+                                <% let date = data.event_date.toLocaleDateString("en-US").split("/");
+                                    date = `${date[2]}-${date[0].padStart(2, "0")}-${date[1].padStart(2, "0")}`; %>
+                                <input type="date" name="date" id="eventDate" value="<%- date %>" required>
+                            </div>
+                            <div class="info-entry">
+                                <label for="location" style="font-size:80%;">Set location:</label>
+                                <input type="text" name="location" id="eventLocation" value="<%- data.event_location %>" maxlength="255" required>
+                            </div>
+                        </div>
+
+                        <input name="id" value="<%- data.id %>" style="display:none">
+                        <button id="submit">Post</button>
+                    </form>
+                </section>
+                <section>
+
+                </section>
+            </section>
+        </div>
+        <script src="/js/index.js"></script>
+        <script src="/js/event.js"></script>
+    </body>
+</html>
