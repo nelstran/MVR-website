@@ -83,12 +83,10 @@ router.get('/logout', function(req, res) {
 //Post entry query command(upload and editing)
 router.post("/uploadEntry", async (req, res) =>{
   await uploadImagetoIK(req).then(async result => {
-    if(result) {
+    if(result) 
       await uploadEntryToDB(req, result.filePath.replace("/",""), result.fileId);
-    }
-    else {
+    else 
       await uploadEntryToDB(req, null);
-    }
   })
   .then(res.redirect('/'));
 })
@@ -96,12 +94,10 @@ router.post("/uploadEntry", async (req, res) =>{
 //Post event query command
 router.post("/uploadEvent", async (req, res) =>{
   await uploadImagetoIK(req).then(async result => {
-    if(result){
+    if(result)
       await uploadEventToDB(req, result.filePath.replace("/",""), result.fileId);
-    }
-    else {
+    else
       await uploadEventToDB(req, null);
-    }
   })
   .then(res.redirect('/'));
 })
@@ -113,7 +109,7 @@ router.post("/uploadProject", async (req, res) =>{
     if(result)
       await uploadProjectToDB(req, result.filePath.replace("/",""), result.fileId);
     else
-      res.send("Error has occured uploading project");
+      await uploadProjectToDB(req, null);
   })
   .then(res.redirect('/'));
 })
@@ -124,7 +120,7 @@ router.post("/delete", authorization, async (req, res) =>{
   let query = `DELETE FROM ${req.body.db} WHERE id = ${req.body.id} RETURNING *`;
   let row = await pages.query(query);
 
-  console.log(row.rows[0]);
+  //console.log(row.rows[0]);
 
   //Do nothing if there is no file id
   if(!row.rows[0].fileId)
@@ -190,7 +186,6 @@ async function deleteImageFromIK(file_id){
 
 //Function to upload entries to the database, updates them if editing
 async function uploadEntryToDB(req, filePath, fileId){
-  console.log(req.body);
   //Prepare values
   let author = req.session.person ? req.session.person : "undefined";
   let title = req.body.title.replace(/'/g, `''`);
@@ -285,11 +280,43 @@ async function uploadEventToDB(req,filePath, fileId){
 };
 
 async function uploadProjectToDB(req,filePath, fileId){
+  //Prepare values
   let title = req.body.title.replace(/'/g, `''`);
   let description = req.body.desc.replace(/'/g, `''`);
-  let query = `INSERT INTO projects (title, description, img_id, "fileId") VALUES ('${title}', '${description}', '${filePath}', '${fileId}')`;
-  
-  console.log(await pages.query(query));
-  console.log("Uploaded project");
+  //Since I'm an idiot to have an insert/update in one command, we have to accommodate for both
+  let updQuery = 'UPDATE projects SET title = $1, description = $2';
+  let insQuery = 'INSERT INTO projects (title, description, img_id, "fileId") VALUES ($1, $2, $3, $4)';
+  let vars = [title, description];
+  let preparedQuery;
+
+  //If id exists, edit current project
+  if(req.body.id){
+    let query = `SELECT "fileId" FROM projects WHERE id = '${req.body.id}'`;
+    let res = await pages.query(query);
+    let imgQuery = '';
+    let idQuery = ' WHERE id = $';
+    let imgId = res.rows[0].fileId;
+    
+    //Update image if desired
+    if(filePath){
+      imgQuery = ', img_id = $3, "fileId" = $4 ';
+      idQuery += '5';
+      vars.push(filePath);
+      vars.push(fileId);
+      if(imgId)
+        await deleteImageFromIK(imgId);
+    }
+    else{
+      idQuery += '3';
+    }
+    preparedQuery = updQuery + imgQuery + idQuery;
+    vars.push(req.body.id);
+  }
+  else{
+    vars.push(filePath);
+    vars.push(fileId);
+    preparedQuery = insQuery;
+  }
+  console.log(await pages.prepare(preparedQuery, vars));
 };
 module.exports = router;
