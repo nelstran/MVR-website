@@ -1,4 +1,3 @@
-
 var copiedColor = sessionStorage.getItem("copiedColor");
 var hasChanged = false;
 
@@ -22,6 +21,8 @@ $(setTimeout(function () {
     let viewport = document.querySelector("meta[name=viewport]");
     viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
 }, 300));
+
+//Initial setup
 function setup(){
     if(!hasChanged){
         if(window.innerWidth > window.innerHeight){
@@ -52,6 +53,24 @@ function setup(){
     $("#contribute-content > li").each(function(i){
         i++;
         $(this).css("transition", `opacity ${i * 75}ms, right ${i * 100}ms`)
+    })
+};
+
+//Make each image same height, do something else in landscape mode
+function setIMGSize(){
+    return Promise.all($(".promoIMG").each(function(){
+        var width = $(this).width();
+        $(this).css("height", width);
+    })).then(() =>{
+        $(".promoIMG, .event div h2").addClass("visible");
+        $(".promoIMG, .event div h2").removeClass("not-visible");
+        if(window.innerWidth > window.innerHeight){
+            $(".event div p").addClass("visible");
+            $(".event div p").removeClass("not-visible");
+        }
+        else{
+            $(".event div p").addClass("not-visible");
+        }
     })
 };
 
@@ -147,6 +166,28 @@ document.getElementById("topSide").addEventListener("wheel", function(e){
 });
 var didScroll = false;
 var lastScroll = 0;
+$(window).scroll(function(){
+    if(!didScroll){
+        let st=$(window).scrollTop();
+        let navButton = $("#navbar-button");
+        if(lastScroll < st && st > 100){
+            navButton.css({
+                "position": "fixed",
+                "top": "-10em"
+            })
+        }
+        else{
+            navButton.css({
+                "position": "fixed",
+                "top": "0"
+            })
+        }
+        lastScroll = st;
+    }
+});
+var didScroll = false;
+var lastScroll = 0;
+
 $(window).scroll(function(){
     if(!didScroll){
         let st=$(window).scrollTop();

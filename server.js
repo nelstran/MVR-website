@@ -7,9 +7,6 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-var events;
-var entries;
-
 //Initial setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,9 +30,9 @@ app.get('/home', async (req, res) => {
 });
 
 //Page not found
-app.get('*', function(req, res) {
-  //Error page has not been made yet
-  res.redirect('/');
+app.get('*', async function(req, res) {
+  let pageInfo = await pages.getInfo(req, ["events", "admin", "entries"]);
+  res.render('pages/404', pageInfo);
 });
 
 app.listen(port, () => {

@@ -1,0 +1,38 @@
+#main{
+    margin-inline: unset;
+    max-width: unset;
+}
+#errorSection{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#errorSection img{
+    max-height: 85%;
+    filter:invert(100%);
+    animation-iteration-count: infinite;
+}
+
+.animate{
+    animation: glow 2s linear forwards;
+}
+@keyframes glow{
+    0%{
+        filter:invert(0%);
+    }
+    25%{
+        filter:invert(50%);
+    }
+    50%{
+        filter:invert(100%);
+    }
+    75%{
+        filter:invert(50%);
+    }
+    100%{
+        filter:invert(0%);
+    }
+}

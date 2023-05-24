@@ -6,7 +6,7 @@ var simplemde = new EasyMDE({
     "link", "preview", "guide"],
     autosave: {
 		enabled: true,
-		uniqueId: "MyUniqueID",
+		uniqueId: "MyUniqueID", //How do I set a unique ID for each user
 		delay: 1000,
 	},
     status: ["autosave", "words"],
@@ -16,6 +16,7 @@ var simplemde = new EasyMDE({
 
 var converter = new showdown.Converter();
 
+//Preview what the post would look like 
 $("#previewButton").click(function(){
     $("#preview").removeClass("preview");
 
@@ -45,6 +46,8 @@ $("#previewButton").click(function(){
         scrollTop: $("#main").scrollTop() + ($("#preview").offset().top - $("#main").offset().top)
     }, 500);
 })
+
+//Submit the post
 $("#submit").click(function(){
     if(!validateEntry())
         return false;  
@@ -53,6 +56,7 @@ $("#submit").click(function(){
     return true;
 })
 
+//Self explanatory
 function validateEntry(){
     var error = false;
     let file = $("#imgUpload").prop('files')[0];
@@ -80,6 +84,7 @@ function validateEntry(){
     return true;
 }
 
+//Only upload certain file types
 function validateFile(file){
     if(!file)
         return true;

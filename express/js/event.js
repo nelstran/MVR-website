@@ -1,6 +1,8 @@
+//Gets the date only from PG database
 $(function(){
     $("#eventDate").attr("min",new Date().toISOString().split("T")[0])
 })
+//Submit the event
 $("#submit").click(function(e){
     let forms = [$("#titleInput"), $("#eventDate"), $("#eventLocation"), $("#imgUpload")];
     let valid = [
@@ -30,7 +32,7 @@ $("#submit").click(function(e){
     }
     return false;
 });
-
+//Loop animation
 $("label, input").on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function (){
     $(this).removeClass("animate");
 })
