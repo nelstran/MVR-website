@@ -26,7 +26,7 @@ const authorization = (req, res, next) => {
     if ((req.session.passport && req.session.passport.user || process.env.DEV == "true")) {
         return next();
     }
-    res.redirect("/"); 
+    res.redirect("/invalidPage"); 
   }
 
 //Page to make an entry
