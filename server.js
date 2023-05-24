@@ -29,10 +29,14 @@ app.get('/home', async (req, res) => {
   res.render('home', pageInfo);
 });
 
-//Page not found
-app.get('*', async function(req, res) {
+app.get('/invalidPage', async function(req, res) {
   let pageInfo = await pages.getInfo(req, ["events", "admin", "entries"]);
   res.render('pages/404', pageInfo);
+});
+
+//Page not found
+app.get('*', async function(req, res) {
+  res.redirect("/invalidPage");
 });
 
 app.listen(port, () => {

@@ -209,11 +209,6 @@ router.get('/wvcdaboys', async (req, res) => {
   res.render('pages/wvcdaboys', pageInfo);
 });
 
-//Error page
-router.get('*', function(req, res) {
-  res.redirect('/');
-});
-
 client.connect()
 .then(() => {
   console.log("Connected to Postgresql server!");
