@@ -56,3 +56,6 @@ Since I've had no prior knowledge in web development at all since I've first sta
 
 If you see any unsafe code, flaws, or would like to improve this website please contact me at nelsonquoc2003@gmail.com
 
+
+DISCLAIMER: I am not responsible for any content (articles, images, audio, etc.) that was, is, or will be on the website. 
+
