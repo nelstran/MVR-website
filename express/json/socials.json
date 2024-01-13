@@ -6,7 +6,8 @@
         "icon" : "https://ik.imagekit.io/mvrecords/star_j-MpMmAHYi.webp",
         "socials" : {
             "insta": "https://www.instagram.com/stardanceriot/",
-            "soundcloud": "https://soundcloud.com/stardance-riot"
+            "soundcloud": "https://soundcloud.com/stardance-riot",
+            "spotify": "https://open.spotify.com/artist/57YCWUjjrw8TZaote5OQ40?si=ie4ye8THSOu6yXZol_pcdg"
         },
         "members" : [
             {
@@ -49,13 +50,13 @@
                 "icon": "https://ik.imagekit.io/mvrecords/creighton_-kv4qBBCGZ.webp"
             },
             {
-                "name": "Ella",
-                "icon": null
+                "name": "Lindy Alvarado",
+                "icon": "https://ik.imagekit.io/mvrecords/lindy_XFuv6knsJ.webp"
             }
         ]
     },
     {
-        "enabled": true,
+        "enabled": false,
         "name": "Tran Nelson (Terrorism)",
         "icon" : "https://ik.imagekit.io/mvrecords/tnt_uTzEp4eGi.webp",
         "socials" : {
