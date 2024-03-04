@@ -6,6 +6,7 @@ const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
 const { Client } = require('pg');
 const env = require('dotenv').config();
+const moment = require('moment');
 
 //const app = express();
 const router = express.Router();
@@ -49,7 +50,7 @@ async function getProjects(){
 //Function to get entries from database
 async function getEntries(){
   try{
-    return await query("SELECT * FROM entries ORDER BY date DESC");
+    return await query("SELECT * FROM entries ORDER BY CAST(date as date) DESC");
   }
   catch (err){
     console.error(err);
@@ -83,6 +84,7 @@ var getInfo = async function(req, arr){
       break;
     }
   };
+  pageInfo['moment'] = moment
   return pageInfo;
 };
 

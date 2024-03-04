@@ -5,6 +5,7 @@
         <%- include('partials/metadata'); %>
     </head>
     
+    <base target="_blank">
     <body onload="setup()">
         <%- include('partials/header'); %>
         <div id="bottomSide">
@@ -31,6 +32,7 @@
                             <% } %>
                             <%- entry.html %>
                         </section>
+                        <hr style="width: 100%;">
                     <% }) %>
                 <% } else { %>
                     <section class="entry">

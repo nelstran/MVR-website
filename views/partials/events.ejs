@@ -24,7 +24,7 @@
                 <img class="promoIMG not-visible" src="<%- imgURL + events[i].img_id %>">
                 <div style="text-align:center">
                     <h2 class="not-visible"><%- events[i].event_name %></h2>
-                    <p class="not-visible"><%- events[i].event_date.toLocaleDateString("en-US") %> @<br> <%- events[i].event_location %> </p>
+                    <p class="not-visible"><%- moment(events[i].event_date).format('MM/DD/YYYY')%> @<br> <%- events[i].event_location %> </p>
                 </div>
             </section>
             <% } %>
