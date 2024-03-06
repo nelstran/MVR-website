@@ -94,9 +94,6 @@ function setIMGSize(){
 //#endregion
 
 //#region FUNCTIONS
-function hideHeader(event){ //Remove in final project
-    $(event).css("display", "none");
-}
 function toggleImage(event){
     let element = $(event).attr("id").split("-");
     let id = element[1];

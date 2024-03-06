@@ -1,5 +1,5 @@
 $("#submit").click(function(e){
-    let forms = [$("#titleInput"), $("#imgUpload"), $("#project-desc")];
+    let forms = [$("#titleInput"), $("#imgUpload")];
     let valid = [
         forms[0].val().length > 0,
         forms[1].val() != "",

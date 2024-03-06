@@ -18,9 +18,9 @@
     overflow: hidden;
     /* border: 2px solid red; */
 }
-.grid-item > img, .grid-item > h3{
+/* .grid-item > img, .grid-item > h3{
     cursor:pointer;
-}
+} */
 .grid-item > *{
     width:100%;
     height:auto;

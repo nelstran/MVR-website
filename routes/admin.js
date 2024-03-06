@@ -39,8 +39,8 @@ router.get('/createEvent', authorization, (req, res) =>{
   res.render("pages/createEvent", {admin: true});
 });
 
-//Page to add projects
-router.get('/createProject', authorization, (req, res) =>{
+//Page to add past events
+router.get('/createPastEvent', authorization, (req, res) =>{
   res.render("pages/createProject", {admin: true});
 });
 
@@ -56,9 +56,9 @@ router.get('/manageEvents', authorization, async (req, res) =>{
   res.render("pages/manage", {admin: true, mode: "events", data: data});
 })
 
-//Managing projects
-router.get('/manageProjects', authorization, async (req, res) =>{
-  let data = await pages.query("SELECT id, title, description FROM projects");
+//Managing past events
+router.get('/managePastEvents', authorization, async (req, res) =>{
+  let data = await pages.query("SELECT id, title FROM projects"); //Too much work to change table name
   res.render("pages/manage", {admin: true, mode: "projects", data: data});
 })
 
@@ -103,7 +103,7 @@ router.post("/uploadEvent", async (req, res) =>{
 })
 
 //Post project query command
-router.post("/uploadProject", async (req, res) =>{
+router.post("/uploadPastEvent", async (req, res) =>{
   await uploadImagetoIK(req)
   .then(async result => {
     if(result)
@@ -288,14 +288,13 @@ async function uploadEventToDB(req,filePath, fileId){
 async function uploadProjectToDB(req,filePath, fileId){
   //Prepare values
   let title = req.body.title.replace(/'/g, `''`);
-  let description = req.body.desc.replace(/'/g, `''`);
   //Since I'm an idiot to have an insert/update in one command, we have to accommodate for both
-  let updQuery = 'UPDATE projects SET title = $1, description = $2';
-  let insQuery = 'INSERT INTO projects (title, description, img_id, "fileId") VALUES ($1, $2, $3, $4)';
-  let vars = [title, description];
+  let updQuery = 'UPDATE projects SET title = $1';
+  let insQuery = 'INSERT INTO projects (title, img_id, "fileId") VALUES ($1, $2, $3)';
+  let vars = [title];
   let preparedQuery;
 
-  //If id exists, edit current project
+  //If id exists, edit current past event
   if(req.body.id){
     let query = `SELECT "fileId" FROM projects WHERE id = '${req.body.id}'`;
     let res = await pages.query(query);
@@ -305,15 +304,15 @@ async function uploadProjectToDB(req,filePath, fileId){
     
     //Update image if desired
     if(filePath){
-      imgQuery = ', img_id = $3, "fileId" = $4 ';
-      idQuery += '5';
+      imgQuery = ', img_id = $2, "fileId" = $3 ';
+      idQuery += '4';
       vars.push(filePath);
       vars.push(fileId);
       if(imgId)
         await deleteImageFromIK(imgId);
     }
     else{
-      idQuery += '3';
+      idQuery += '2';
     }
     preparedQuery = updQuery + imgQuery + idQuery;
     vars.push(req.body.id);

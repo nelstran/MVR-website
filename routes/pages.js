@@ -37,8 +37,8 @@ async function getEvents(){
   }
 };
 
-//Function to get projects from database
-async function getProjects(){
+//Function to get past eventss from database
+async function getPastEvents(){
   try{
     return await query("SELECT * FROM projects");
   }
@@ -72,7 +72,7 @@ var getInfo = async function(req, arr){
         pageInfo[data] = fetch ? fetch.rows : null;
       break;
       case 'projects':
-        fetch = await getProjects();
+        fetch = await getPastEvents();
         pageInfo[data] = fetch ? fetch.rows : null;
       break;
       case 'entries':
@@ -162,8 +162,8 @@ router.get('/', (req, res) => {
   res.redirect("/");
 });
 
-//Projects page
-router.get('/projects', async (req, res) => {
+//Past events page (used to be projects)
+router.get('/past-events', async (req, res) => {
   let pageInfo = await getInfo(req, ["admin", "events", "projects"]);
   res.render('pages/projects', pageInfo);
 });

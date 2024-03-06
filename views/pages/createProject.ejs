@@ -19,15 +19,13 @@
                     </button>
                 </form>
                 <section>
-                    <form id="projectForm" action="/admin/uploadProject" method="POST" enctype="multipart/form-data">
-                        <p style="margin:0"><strong>Post a project</strong></p>
+                    <form id="projectForm" action="/admin/uploadPastEvent" method="POST" enctype="multipart/form-data">
+                        <p style="margin:0"><strong>Post a past event</strong></p>
                         
                         <input type="text" name="title" placeholder="Insert title here" id="titleInput" maxlength="255" required>
                         <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
                         <input type="file" name="imgUpload" id="imgUpload" form="projectForm"
                         accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
-
-                        <textarea id="project-desc" name="desc" placeholder="Insert project description here"></textarea>
                         <button id="submit">Post</button>
                     </form>
                 </section>

@@ -20,8 +20,8 @@
                     </button>
                 </form>
                 <section>
-                    <form id="projectForm" action="/admin/uploadProject" method="POST" enctype="multipart/form-data">
-                        <p style="margin:0"><strong>Edit this project</strong></p>
+                    <form id="projectForm" action="/admin/uploadPastEvent" method="POST" enctype="multipart/form-data">
+                        <p style="margin:0"><strong>Edit this past event</strong></p>
                         
                         <input type="text" name="title" value="<%- data.title %>" id="titleInput" maxlength="255" required>
                         <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
@@ -35,7 +35,6 @@
                                 accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
                             </div>
                         </div>
-                        <textarea id="project-desc" name="desc"><%- data.description %></textarea>
                         <input name="id" value="<%- data.id %>" style="display:none">
                         <button id="submit">Post</button>
                     </form>

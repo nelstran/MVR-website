@@ -15,14 +15,14 @@
             <%- include('../partials/events', {events: events}); %>
             <section id="main">
                 <%- include('../partials/colors'); %>
-                <h2 style="text-align: center; margin:1em;">See what we're working on!</h2>
+                <h2 style="text-align: center; margin:1em;">See what you missed!</h2>
                 <% if(admin == false) {%>
                     <p id="notMuch">Not much going on right now...</p>
                 <% } %>
                 <% if(admin == true) { %>
-                    <form action="/admin/createProject">
+                    <form action="/admin/createPastEvent">
                         <button id="addProject" class="add" title="Add a project">
-                            <p style="margin:0; padding:0">Showcase your work ♬</p>
+                            <p style="margin:0; padding:0">Add past events</p>
                         </button>
                     </form>
                 <%}%>
@@ -35,11 +35,11 @@
                     <%if(projects != null && projects.length != 0 && true) { %>
                     <% let imgURL = "https://ik.imagekit.io/mvrecords/"; %>
                     <% projects.forEach(project =>{ %>
-                        <div class="grid-item" onclick="toggleDesc(this)">
+                        <div class="grid-item">
                             <h3 class="content"> <%- project.title %> </h3>
                             <img src="<%- imgURL + project.img_id %>">
-                            <div class="desc hidden"> <!-- overlay -->
-                                <div class="overlay"> <!-- content -->
+                            <!-- <div class="desc hidden">
+                                <div class="overlay">
                                     <h1 style="text-align:center">
                                         <%- project.title %>
                                     </h1>
@@ -47,9 +47,8 @@
                                     <div class="img-container">
                                         <img src="<%- imgURL + project.img_id %>">
                                     </div>
-                                    <p><%- project.description %></p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     <%})
                     }%>
