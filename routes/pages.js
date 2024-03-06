@@ -40,7 +40,7 @@ async function getEvents(){
 //Function to get past eventss from database
 async function getPastEvents(){
   try{
-    return await query("SELECT * FROM projects");
+    return await query("SELECT * FROM projects ORDER BY random()");
   }
   catch (err){
     console.error(err);
