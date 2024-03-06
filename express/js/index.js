@@ -101,7 +101,7 @@ function toggleImage(event){
     let element = $(event).attr("id").split("-");
     let id = element[1];
     if(element[0] == "image")
-        $(`#poster-${id}`).css("display", "block");
+        $(`#poster-${id}`).css("display", "flex");
     else
         $(`#poster-${id}`).css("display", "none");
 }

@@ -30,7 +30,14 @@
             <% } %>
             <% for(let i = 0; i < events.length; i++){ %>
                 <div class="poster" onclick="toggleImage(this);" id="poster-<%- i %>">
-                    <span style="background-image: url('<%- imgURL + events[i].img_id %>');"></span>
+                    <span>
+                        <p>Click to dismiss</p>
+                        <img src="<%- imgURL + events[i].img_id %>"/>
+                        <% if(events[i].link && events[i].link_text) { %>
+                            <a href="<%- events[i].link %>" target="_blank"><%- events[i].link_text %></a>
+                        <% }%>
+                    </span>
+                    
                 </div>
             <% } %>
         <% } %>

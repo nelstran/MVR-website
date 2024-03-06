@@ -23,9 +23,22 @@
                         <p style="margin:0"><strong>Create an event</strong></p>
                         
                         <input type="text" name="title" placeholder="Insert title here" id="titleInput" maxlength="255" required>
+
                         <label for="imgUpload" style="font-size:80%;">Upload an image:</label>
                         <input type="file" name="imgUpload" id="imgUpload" form="eventForm"
-                        accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
+                            accept="image/png, image/jpg, image/jpeg, image/gif, image/webp" style="cursor:pointer">
+
+                        <div id="info-container">
+                            <div class="info-entry">
+                                <label for="linkLabel" style="font-size:80%;">Text:</label>
+                                <input type="text" placeholder="Get tickets here!" name="linkLabel" id="eventLinkLabel">
+                            </div>
+                            <div class="info-entry">
+                                <label for="link" style="font-size:80%;">Link:</label>
+                                <input type="text" placeholder="https://google.com/" name="link" id="eventLink">
+                            </div>
+                        </div>
+                        
 
                         <div id="info-container">
                             <div class="info-entry">

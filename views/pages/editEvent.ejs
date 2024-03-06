@@ -37,6 +37,16 @@
                         </div>
                         <div id="info-container">
                             <div class="info-entry">
+                                <label for="linkLabel" style="font-size:80%;">Text:</label>
+                                <input type="text" value="<%- data.link_text %>" placeholder="Get tickets here!" name="linkLabel" id="eventLinkLabel">
+                            </div>
+                            <div class="info-entry">
+                                <label for="link" style="font-size:80%;">Link:</label>
+                                <input type="text" value="<%- data.link %>" placeholder="https://google.com/" name="link" id="eventLink">
+                            </div>
+                        </div>
+                        <div id="info-container">
+                            <div class="info-entry">
                                 <label for="date" style="font-size:80%;">Select date:</label>
                                 <% let date = data.event_date.toLocaleDateString("en-US").split("/");
                                     date = `${date[2]}-${date[0].padStart(2, "0")}-${date[1].padStart(2, "0")}`; %>

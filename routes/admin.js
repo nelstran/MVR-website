@@ -52,7 +52,7 @@ router.get('/manageEntries', authorization, async (req, res) =>{
 
 //Managing events
 router.get('/manageEvents', authorization, async (req, res) =>{
-  let data = await pages.query("SELECT id, event_name, event_date, event_location from events ORDER BY event_date ASC");
+  let data = await pages.query("SELECT id, event_name, event_date, event_location, link_text, link from events ORDER BY event_date ASC");
   res.render("pages/manage", {admin: true, mode: "events", data: data});
 })
 
@@ -242,10 +242,15 @@ async function uploadEventToDB(req,filePath, fileId){
   let title = req.body.title.replace(/'/g, `''`);
   let date = req.body.date.replace(/'/g, `''`);
   let location = req.body.location;
+  let linkText = req.body.linkLabel ? req.body.linkLabel : null;
+  let link = req.body.link ? req.body.link : null;
+
+  if(link && !linkText)
+    linkText = 'Get tickets here!';
   //Since I'm an idiot to have an insert/update in one command, we have to accommodate for both
-  let updQuery = 'UPDATE events SET event_name = $1, event_date = $2, event_location = $3';
-  let insQuery = 'INSERT INTO events (event_name, event_date, event_location, img_id, "fileId") VALUES ($1, $2, $3, $4, $5)';
-  let vars = [title, date, location];
+  let updQuery = 'UPDATE events SET event_name = $1, event_date = $2, event_location = $3, link_text = $4, link = $5';
+  let insQuery = 'INSERT INTO events (event_name, event_date, event_location, link_text, link, img_id, "fileId") VALUES ($1, $2, $3, $4, $5, $6, $7)';
+  let vars = [title, date, location, linkText, link];
   let preparedQuery;
 
   //If id exists, edit current event
@@ -258,15 +263,15 @@ async function uploadEventToDB(req,filePath, fileId){
     
     //Update image if desired
     if(filePath){
-      imgQuery = ', img_id = $4, "fileId" = $5 ';
-      idQuery += '6';
+      imgQuery = ', img_id = $6, "fileId" = $7 ';
+      idQuery += '8';
       vars.push(filePath);
       vars.push(fileId);
       if(imgId)
         await deleteImageFromIK(imgId);
     }
     else{
-      idQuery += '4';
+      idQuery += '6';
     }
     preparedQuery = updQuery + imgQuery + idQuery;
     vars.push(req.body.id);
@@ -276,6 +281,7 @@ async function uploadEventToDB(req,filePath, fileId){
     vars.push(fileId);
     preparedQuery = insQuery;
   }
+  
   console.log(await pages.prepare(preparedQuery, vars));
 };
 
