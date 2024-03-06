@@ -4,6 +4,9 @@ const adminRouter = require('./routes/admin');
 const pages = require('./routes/pages');
 const path = require('path');
 
+const compression = require('compression');
+const helmet = require('helmet');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -15,6 +18,14 @@ app.use('/admin', adminRouter);
 app.use('/pages', pages.router);
 app.use(pages.userSession);
 
+app.use(compression());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src":["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    }
+  })
+)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'));
 
