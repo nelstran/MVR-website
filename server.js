@@ -7,7 +7,7 @@ const path = require('path');
 const compression = require('compression');
 
 const app = express();
-const port = process.env.PORT || 25565;
+const port = process.env.PORT || 3000;
 
 //Initial setup
 app.use(express.json());
