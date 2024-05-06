@@ -20,14 +20,9 @@ const userSession = new session({
 
 //Database client
 const client = new Client({
-  host: process.env.PG_HOST,
-  user: process.env.PG_USER,
-  database: process.env.PG_DB,
-  password: process.env.PG_PW,
-  port: "5432",
-  connectionTimeoutMillis: 60000,
-  ssl:{
-    rejectUnauthorized: false,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
   }
 });
 var conn = false;
@@ -222,7 +217,7 @@ client.connect()
   conn = true;
 })
 .catch(err => {
-  console.error(err);
+  console.error("Unable to connect to Postgresql server!");
   conn = false;
 });
 
