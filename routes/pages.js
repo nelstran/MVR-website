@@ -206,9 +206,9 @@ router.get('/contact', async (req, res) => {
 });
 
 //Login page
-router.get('/wvcdaboys', async (req, res) => {
+router.get('/login', async (req, res) => {
   let pageInfo = await getInfo(req, ["admin", "events"]);
-  res.render('pages/wvcdaboys', pageInfo);
+  res.render('pages/login', pageInfo);
 });
 
 client.connect()

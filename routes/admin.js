@@ -70,7 +70,7 @@ router.get('/', authorization, (req, res) =>{
 //Login page (Need to find out how to do wrong password message)
 router.post('/login', pages.passport.authenticate('local', {
   successRedirect: '/admin',
-  failureRedirect: '/pages/wvcdaboys'
+  failureRedirect: '/pages/login'
 }));
 
 //Get Logout command
