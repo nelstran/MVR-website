@@ -1,4 +1,4 @@
-
+### NOTICE (02/13/2025): Due to costs, I am unable to keep the site running for the moment. I will be looking at other platforms to host the website on. 
 # Midvale Records
 
 <p align="center" ><img style="border: 20px solid white;" src="https://github.com/nelstran/MVR-website/blob/99a96a022676a3629f0379e5fddee1112d68eae5/express/images/logoB-min.jpg?raw=true" alt="project-image" height="128" width="128"></p>
@@ -32,7 +32,7 @@ Midvale Records is:
 
 ## Using
 
-* **Hosting** - [Heroku](https://www.heroku.com/)
+* **Hosting** - ~~[Heroku](https://www.heroku.com/)~~
 * **Database** - [Postgres](https://www.postgresql.org/)
 * **Media CDN** - [ImageKit](https://imagekit.io/)
 * **Framework** - [ExpressJS](https://expressjs.com/)
