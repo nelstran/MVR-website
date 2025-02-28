@@ -32,7 +32,7 @@ Midvale Records is:
 
 ## Using
 
-* **Hosting** - ~~[Heroku](https://www.heroku.com/)~~
+* **Hosting** - [Heroku](https://www.heroku.com/)
 * **Database** - [Postgres](https://www.postgresql.org/)
 * **Media CDN** - [ImageKit](https://imagekit.io/)
 * **Framework** - [ExpressJS](https://expressjs.com/)
